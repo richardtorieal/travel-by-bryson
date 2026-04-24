@@ -1,0 +1,32 @@
+@import "../../../styles/variables";
+
+.header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto $spacing-xl;
+}
+
+.title {
+  font-size: $font-size-h2;
+  margin-bottom: $spacing-sm;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: $color-text-muted;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-md;
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}

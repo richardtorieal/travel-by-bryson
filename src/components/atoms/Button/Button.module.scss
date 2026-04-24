@@ -1,0 +1,75 @@
+@import "../../../styles/variables";
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-family: $font-body;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-height: 44px; // Ensure touch target accessibility
+
+  &.fullWidth {
+    width: 100%;
+  }
+
+  // Sizes
+  &.sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  &.md {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  &.lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  // Variants
+  &.primary {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &:hover {
+      background-color: lighten($color-primary, 10%);
+    }
+  }
+
+  &.secondary {
+    background-color: $color-background;
+    color: $color-primary;
+    border: 1px solid $color-primary;
+
+    &:hover {
+      background-color: darken($color-background, 5%);
+    }
+  }
+
+  &.accent {
+    background-color: $color-accent;
+    color: $color-primary;
+
+    &:hover {
+      background-color: lighten($color-accent, 10%);
+    }
+  }
+
+  &.outline {
+    background-color: transparent;
+    color: $color-primary;
+    border: 1px solid $color-primary;
+
+    &:hover {
+      background-color: rgba($color-primary, 0.05);
+    }
+  }
+}

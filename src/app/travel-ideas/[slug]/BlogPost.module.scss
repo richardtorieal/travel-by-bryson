@@ -1,0 +1,60 @@
+@import "../../../../styles/variables";
+
+.container {
+  max-width: 800px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+}
+
+.category {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-accent;
+  font-weight: 700;
+  margin-bottom: $spacing-sm;
+}
+
+.title {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: $spacing-md;
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 2.5rem;
+  }
+}
+
+.date {
+  font-size: 0.875rem;
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: $color-background;
+  margin-bottom: $spacing-xl;
+  border-radius: 4px;
+}
+
+.content {
+  color: $color-text;
+  line-height: 1.8;
+  font-size: 1.125rem;
+
+  h2 {
+    font-size: 2rem;
+    margin: $spacing-xl 0 $spacing-md;
+    color: $color-primary;
+  }
+
+  p {
+    margin-bottom: $spacing-lg;
+  }
+}

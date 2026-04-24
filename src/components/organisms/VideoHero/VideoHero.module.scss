@@ -1,0 +1,97 @@
+@import "../../../styles/variables";
+
+.heroWrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: $color-primary;
+}
+
+.videoPlaceholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.tempMedia {
+  width: 100%;
+  height: 100%;
+  background-color: #0d151c; // Darker navy for premium feel
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+  z-index: 2;
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  color: $color-white;
+  max-width: 800px;
+}
+
+.subtitle {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: $spacing-md;
+  color: $color-accent;
+}
+
+.title {
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  line-height: 1;
+  margin-bottom: $spacing-lg;
+  color: $color-white;
+
+  span {
+    font-style: italic;
+    font-weight: 300;
+  }
+}
+
+.description {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: $spacing-xl;
+  color: rgba(255,255,255,0.8);
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: $spacing-xl;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+
+  span {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: $color-white;
+  }
+}
+
+.line {
+  width: 1px;
+  height: 50px;
+  background-color: $color-accent;
+}

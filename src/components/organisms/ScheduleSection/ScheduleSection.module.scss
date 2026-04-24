@@ -1,0 +1,66 @@
+@import "../../../styles/variables";
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xl;
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  font-size: $font-size-h1;
+  margin-bottom: $spacing-md;
+  line-height: 1.1;
+}
+
+.description {
+  font-size: 1.25rem;
+  color: $color-text-muted;
+  margin-bottom: $spacing-lg;
+  line-height: 1.6;
+}
+
+.ctaCard {
+  flex: 0 0 400px;
+  background-color: $color-white;
+  padding: $spacing-lg;
+  border-radius: 4px;
+  border-left: 5px solid $color-accent;
+  box-shadow: 0 20px 40px rgba($color-primary, 0.1);
+
+  @media (max-width: $breakpoint-md) {
+    flex: 1;
+    width: 100%;
+    text-align: left;
+  }
+
+  h3 {
+    margin-bottom: $spacing-md;
+    font-size: 1.5rem;
+  }
+
+  ul {
+    li {
+      margin-bottom: $spacing-sm;
+      color: $color-text-muted;
+      position: relative;
+      padding-left: $spacing-md;
+
+      &::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: $color-accent;
+        font-weight: bold;
+      }
+    }
+  }
+}

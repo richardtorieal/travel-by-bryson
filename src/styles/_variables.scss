@@ -1,0 +1,30 @@
+// src/styles/_variables.scss
+
+$color-background: #F5F5F0;
+$color-white: #FFFFFF;
+$color-primary: #1A2B3C;
+$color-secondary: #2C3E50;
+$color-accent: #D4AF37;
+$color-text: #1A2B3C;
+$color-text-muted: #5D6D7E;
+$color-border: #D5D8DC;
+
+$font-heading: 'Playfair Display', serif;
+$font-body: 'Montserrat', sans-serif;
+
+// Responsive Font Sizes
+$font-size-base: 16px;
+$font-size-h1: clamp(2.5rem, 8vw, 4rem);
+$font-size-h2: clamp(2rem, 6vw, 2.5rem);
+$font-size-h3: clamp(1.25rem, 4vw, 1.5rem);
+
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;
+$spacing-xl: 8rem;
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;

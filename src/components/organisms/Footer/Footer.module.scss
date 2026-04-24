@@ -1,0 +1,83 @@
+@import "../../../styles/variables";
+
+.footer {
+  background-color: $color-white;
+  padding: $spacing-xl 0 $spacing-md;
+  border-top: 1px solid $color-border;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: $spacing-xl;
+  margin-bottom: $spacing-xl;
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+}
+
+.brand {
+  .logo {
+    font-family: var(--font-playfair);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: $color-primary;
+    margin-bottom: $spacing-sm;
+
+    span {
+      color: $color-accent;
+      font-weight: 300;
+    }
+  }
+
+  .description {
+    color: $color-text-muted;
+    line-height: 1.6;
+    max-width: 300px;
+  }
+}
+
+.column {
+  h3 {
+    font-size: 1.125rem;
+    margin-bottom: $spacing-md;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  a {
+    display: block;
+    margin-bottom: $spacing-xs;
+    color: $color-text-muted;
+    font-size: 0.875rem;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.bottom {
+  border-top: 1px solid rgba($color-primary, 0.05);
+  padding-top: $spacing-md;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $color-text-muted;
+  font-size: 0.75rem;
+
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+    gap: $spacing-sm;
+    text-align: center;
+  }
+}
+
+.legal {
+  display: flex;
+  gap: $spacing-md;
+}
