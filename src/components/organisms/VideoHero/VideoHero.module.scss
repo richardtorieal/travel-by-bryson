@@ -6,9 +6,10 @@
   width: 100%;
   overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-end; // Change from center to flex-end
   justify-content: center;
   background-color: $color-background;
+  padding-bottom: 20vh; // Position it roughly in the lower third
 }
 
 .videoPlaceholder {
