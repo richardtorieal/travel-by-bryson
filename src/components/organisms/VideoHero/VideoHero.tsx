@@ -29,7 +29,7 @@ const VideoHero: React.FC = () => {
         <motion.div style={{ y, opacity }} className={styles.content}>
           <div className={styles.actions}>
             <Link href="/contact">
-              <Button variant="primary" size="lg">Plan Your Journey</Button>
+              <Button variant="primary" size="lg" className={styles.heroButton}>Plan Your Journey</Button>
             </Link>
           </div>
         </motion.div>

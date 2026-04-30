@@ -30,6 +30,7 @@ Based on the reference design, we will evolve the Bryson Travel aesthetic toward
 ## 5. Hero Section Evolution
 - Move from the current left-aligned video hero to a centered, high-impact image/video hero.
 - Use a refined overlay to ensure text readability while maintaining image vibrancy.
+- **Hero Button**: Use a complimentary "Glassmorphism" or soft-toned style that integrates with the hero imagery rather than high-contrast black.
 
 ## 5. Spacing
 - Increase vertical padding between sections to `$spacing-xl` (8rem) or more to emphasize luxury through whitespace.
