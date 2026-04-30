@@ -27,14 +27,6 @@ const VideoHero: React.FC = () => {
 
       <Container>
         <motion.div style={{ y, opacity }} className={styles.content}>
-          <span className={styles.subtitle}>Luxury Hotel Insider</span>
-          <h1 className={styles.title}>
-            The New <em>Standard</em> <br />
-            of Bespoke Travel
-          </h1>
-          <p className={styles.description}>
-            Unlocking world-class experiences through 6+ years of high-end hospitality expertise.
-          </p>
           <div className={styles.actions}>
             <Link href="/contact">
               <Button variant="primary" size="lg">Plan Your Journey</Button>

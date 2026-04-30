@@ -28,9 +28,12 @@ const PerksGrid: React.FC = () => {
       <Container>
         <div className={styles.intro}>
           <h2 className={styles.introTitle}>
-            Travel more, but <em>6x easier</em>. <br />
-            Save hours with our local experts and curated plans.
+            The New <em>Standard</em> <br />
+            of Bespoke Travel
           </h2>
+          <p className={styles.introSubtitle}>
+            Save hours with our local experts and curated plans.
+          </p>
         </div>
         <div className={styles.grid}>
           {STATS.map((stat, index) => (
