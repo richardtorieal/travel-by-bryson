@@ -4,6 +4,7 @@ import Container from '../../atoms/Container/Container';
 import Section from '../../atoms/Section/Section';
 import { TRAVEL_IDEAS } from '@/data/travelIdeas';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const TravelIdeasGrid: React.FC = () => {
   return (
@@ -17,7 +18,18 @@ const TravelIdeasGrid: React.FC = () => {
         <div className={styles.grid}>
           {TRAVEL_IDEAS.map((post) => (
             <Link key={post.slug} href={`/travel-ideas/${post.slug}`} className={styles.card}>
-              <div className={styles.imagePlaceholder}>
+              <div className={styles.imageWrapper}>
+                {post.image ? (
+                  <Image 
+                    src={post.image} 
+                    alt={post.title} 
+                    fill 
+                    className={styles.image}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                ) : (
+                  <div className={styles.imagePlaceholder} />
+                )}
                 <div className={styles.category}>{post.category}</div>
               </div>
               <div className={styles.content}>

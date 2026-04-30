@@ -1,4 +1,4 @@
-@import "../../../../styles/variables";
+@import "../../../styles/variables";
 
 .container {
   max-width: 800px;
@@ -35,12 +35,23 @@
   letter-spacing: 0.05em;
 }
 
-.imagePlaceholder {
+.imageWrapper {
   width: 100%;
   aspect-ratio: 16/9;
-  background-color: $color-background;
+  position: relative;
   margin-bottom: $spacing-xl;
   border-radius: 4px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background-color: $color-background;
 }
 
 .content {
@@ -57,4 +68,24 @@
   p {
     margin-bottom: $spacing-lg;
   }
+}
+
+.inlineImageWrapper {
+  margin: $spacing-xl 0;
+  text-align: center;
+}
+
+.inlineImage {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+}
+
+.imageCaption {
+  display: block;
+  font-size: 0.875rem;
+  color: $color-text-muted;
+  margin-top: $spacing-sm;
+  font-style: italic;
 }
