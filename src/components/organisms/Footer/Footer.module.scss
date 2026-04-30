@@ -1,8 +1,8 @@
 @import "../../../styles/variables";
 
 .footer {
-  background-color: $color-white;
   padding: $spacing-xl 0 $spacing-md;
+  background-color: $color-white;
   border-top: 1px solid $color-border;
 }
 
@@ -18,52 +18,63 @@
   }
 }
 
-.brand {
-  .logo {
-    font-family: var(--font-playfair);
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: $color-primary;
-    margin-bottom: $spacing-sm;
+.logo {
+  font-family: $font-body;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: $color-primary;
+  text-transform: uppercase;
+  margin-bottom: $spacing-md;
 
-    span {
-      color: $color-accent;
-      font-weight: 300;
-    }
-  }
-
-  .description {
-    color: $color-text-muted;
-    line-height: 1.6;
-    max-width: 300px;
+  span {
+    font-weight: 300;
   }
 }
 
+.description {
+  color: $color-text-muted;
+  line-height: 1.8;
+  max-width: 400px;
+}
+
 .column {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
   h3 {
-    font-size: 1.125rem;
-    margin-bottom: $spacing-md;
+    font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
+    margin-bottom: $spacing-md;
+    color: $color-primary;
+    font-weight: 700;
+
+    em {
+      font-family: $font-heading;
+      font-style: italic;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+    }
   }
 
   a {
-    display: block;
-    margin-bottom: $spacing-xs;
     color: $color-text-muted;
     font-size: 0.875rem;
-    transition: color 0.3s ease;
+    transition: $transition-smooth;
 
     &:hover {
-      color: $color-accent;
+      color: $color-primary;
+      transform: translateX(5px);
     }
   }
 }
 
 .bottom {
-  border-top: 1px solid rgba($color-primary, 0.05);
   padding-top: $spacing-md;
+  border-top: 1px solid $color-border;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -80,4 +91,13 @@
 .legal {
   display: flex;
   gap: $spacing-md;
+
+  a {
+    color: $color-text-muted;
+    transition: $transition-smooth;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
 }

@@ -15,7 +15,7 @@ const Section: React.FC<SectionProps> = ({
   padding = 'md'
 }) => {
   return (
-    <section className={`${styles.section} ${styles[variant]} ${styles[`padding-${padding}`]} ${className}`}>
+    <section className={`${styles.section} ${styles[variant]} ${styles[padding]} ${className}`}>
       {children}
     </section>
   );

@@ -10,7 +10,7 @@ const AboutContent: React.FC = () => {
         <div className={styles.wrapper}>
           <div className={styles.text}>
             <span className={styles.subtitle}>The Insider Story</span>
-            <h2 className={styles.title}>From Luxury Hotels to Your Personal Advisor</h2>
+            <h2 className={styles.title}>From Luxury Hotels to Your <em>Personal Advisor</em></h2>
             <p>
               With over six years of experience working within the world&apos;s most prestigious luxury hotels, 
               I&apos;ve seen the industry from the inside out. I understand the nuances of exceptional service 
@@ -26,8 +26,8 @@ const AboutContent: React.FC = () => {
               insider who knows how to ensure you&apos;re treated like a VIP from the moment you arrive.
             </p>
           </div>
-          <div className={styles.imagePlaceholder}>
-            {/* Image would go here */}
+          <div className={styles.imageWrapper}>
+            <img src="/assets/london-museums-interactive.jpg" alt="London Experience" className={styles.image} />
             <div className={styles.box}>
               <span>6+ Years in Luxury Hospitality</span>
             </div>

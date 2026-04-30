@@ -22,7 +22,6 @@ const VideoHero: React.FC = () => {
     <div ref={ref} className={styles.heroWrapper}>
       <motion.div style={{ scale }} className={styles.videoPlaceholder}>
         <div className={styles.overlay} />
-        {/* In production, replace with <video src="/hero.mp4" autoPlay muted loop playsInline /> */}
         <div className={styles.tempMedia} />
       </motion.div>
 
@@ -30,30 +29,19 @@ const VideoHero: React.FC = () => {
         <motion.div style={{ y, opacity }} className={styles.content}>
           <span className={styles.subtitle}>Luxury Hotel Insider</span>
           <h1 className={styles.title}>
-            The New Standard <br />
-            <span>of Bespoke Travel</span>
+            The New <em>Standard</em> <br />
+            of Bespoke Travel
           </h1>
           <p className={styles.description}>
-            Unlocking world-class experiences through 6+ years <br />
-            of high-end hospitality expertise.
+            Unlocking world-class experiences through 6+ years of high-end hospitality expertise.
           </p>
           <div className={styles.actions}>
             <Link href="/contact">
-              <Button variant="accent" size="lg">Plan Your Journey</Button>
+              <Button variant="primary" size="lg">Plan Your Journey</Button>
             </Link>
           </div>
         </motion.div>
       </Container>
-
-      <motion.div 
-        style={{ opacity }}
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className={styles.scrollIndicator}
-      >
-        <span>Discover More</span>
-        <div className={styles.line} />
-      </motion.div>
     </div>
   );
 };

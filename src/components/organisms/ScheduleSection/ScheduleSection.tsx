@@ -7,18 +7,20 @@ import Link from 'next/link';
 
 const ScheduleSection: React.FC = () => {
   return (
-    <Section variant="sand" padding="xl">
+    <Section variant="light" padding="xl">
       <Container>
         <div className={styles.wrapper}>
-          <div className={styles.content}>
-            <h2 className={styles.title}>Ready to Begin Your Next Journey?</h2>
-            <p className={styles.description}>
+          <div className={styles.header}>
+            <h2 className={styles.title}>Ready to Begin Your <em>Next Journey</em>?</h2>
+            <p className={styles.subtitle}>
               Whether you have a specific destination in mind or need inspiration, 
               let&apos;s connect to discuss how I can help make your vision a reality.
             </p>
-            <Link href="/contact">
-              <Button variant="primary" size="lg">Schedule a Call</Button>
-            </Link>
+            <div className={styles.actions}>
+              <Link href="/contact">
+                <Button variant="primary" size="lg">Schedule a Call</Button>
+              </Link>
+            </div>
           </div>
           <div className={styles.ctaCard}>
             <h3>What to Expect</h3>

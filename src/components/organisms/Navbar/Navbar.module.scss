@@ -1,16 +1,26 @@
 @import "../../../styles/variables";
 
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 80px;
-  background-color: rgba($color-white, 0.95);
-  backdrop-filter: blur(5px);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid rgba($color-primary, 0.05);
+  z-index: 100;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: transparent;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // For non-hero pages or scrolled state
+  &:global(.scrolled), &:global(.not-home) {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    height: 70px;
+    border-bottom: 1px solid $color-border;
+    box-shadow: $shadow-sm;
+  }
 }
 
 .container {
@@ -20,39 +30,40 @@
 }
 
 .logo {
-  font-family: var(--font-playfair);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: $color-primary;
+  a {
+    font-family: $font-body;
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    color: $color-primary;
+    text-transform: uppercase;
 
-  span {
-    color: $color-accent;
-    font-weight: 300;
+    span {
+      font-weight: 300;
+    }
   }
 }
 
 .links {
   display: flex;
   align-items: center;
-  gap: $spacing-md;
-
-  a {
-    font-family: var(--font-montserrat);
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: $color-text;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: $color-accent;
-    }
-  }
+  gap: $spacing-lg;
 
   @media (max-width: $breakpoint-md) {
     display: none;
+  }
+
+  a {
+    color: $color-primary;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    transition: $transition-smooth;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }
 
@@ -60,20 +71,17 @@
   display: none;
   flex-direction: column;
   gap: 6px;
-  background: none;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-
-  span {
-    display: block;
-    width: 25px;
-    height: 2px;
-    background-color: $color-primary;
-    transition: all 0.3s ease;
-  }
+  padding: 10px;
 
   @media (max-width: $breakpoint-md) {
     display: flex;
   }
+
+  span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: $color-primary;
+  }
 }
+

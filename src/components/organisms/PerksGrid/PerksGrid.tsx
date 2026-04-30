@@ -2,28 +2,23 @@ import React from 'react';
 import styles from './PerksGrid.module.scss';
 import Container from '../../atoms/Container/Container';
 import Section from '../../atoms/Section/Section';
-import PerkCard from '../../molecules/PerkCard/PerkCard';
 
-const PERKS = [
+const STATS = [
   {
-    title: 'Room Upgrades',
-    description: 'Complimentary room upgrades at check-in, subject to availability.',
-    icon: '✨'
+    value: '98%',
+    label: 'Travelers trust Bryson to curate their perfect escape.'
   },
   {
-    title: 'Daily Breakfast',
-    description: 'Complimentary daily breakfast for two at over 8,200 luxury hotels.',
-    icon: '☕'
+    value: '200+',
+    label: 'Custom travel plans created for solo, couple, and group adventures.'
   },
   {
-    title: '$100 Resort Credit',
-    description: 'Special resort or spa credits to enhance your stay.',
-    icon: '💎'
+    value: '150+',
+    label: 'Certified luxury hotel partners ready to assist your journey.'
   },
   {
-    title: 'VIP Status',
-    description: 'Early check-in and late check-out to make the most of your trip.',
-    icon: '👑'
+    value: '4.9★',
+    label: 'Average rating from travelers worldwide.'
   }
 ];
 
@@ -31,16 +26,18 @@ const PerksGrid: React.FC = () => {
   return (
     <Section variant="white" padding="xl">
       <Container>
-        <div className={styles.header}>
-          <h2 className={styles.title}>The Insider Advantage</h2>
-          <p className={styles.subtitle}>
-            Booking through a professional advisor unlocks exclusive benefits 
-            that you simply can&apos;t find on your own.
-          </p>
+        <div className={styles.intro}>
+          <h2 className={styles.introTitle}>
+            Travel more, but <em>6x easier</em>. <br />
+            Save hours with our local experts and curated plans.
+          </h2>
         </div>
         <div className={styles.grid}>
-          {PERKS.map((perk, index) => (
-            <PerkCard key={index} {...perk} />
+          {STATS.map((stat, index) => (
+            <div key={index} className={styles.statItem}>
+              <span className={styles.value}>{stat.value}</span>
+              <p className={styles.label}>{stat.label}</p>
+            </div>
           ))}
         </div>
       </Container>

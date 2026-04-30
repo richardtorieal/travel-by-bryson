@@ -4,15 +4,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 2rem;
   border-radius: 4px;
   font-family: $font-body;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  font-weight: 700;
+  transition: $transition-smooth;
   cursor: pointer;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  min-height: 44px; // Ensure touch target accessibility
+  letter-spacing: 0.1em;
+  min-height: 48px;
+
+  &.rounded {
+    border-radius: $border-radius-pill;
+  }
 
   &.fullWidth {
     width: 100%;
@@ -20,18 +24,18 @@
 
   // Sizes
   &.sm {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.75rem;
   }
 
   &.md {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
+    padding: 0.875rem 2.25rem;
+    font-size: 0.875rem;
   }
 
   &.lg {
-    padding: 1rem 2rem;
-    font-size: 1.125rem;
+    padding: 1.125rem 3rem;
+    font-size: 1rem;
   }
 
   // Variants

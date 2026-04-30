@@ -17,7 +17,8 @@ const TestimonialGrid: React.FC = () => {
     <Section variant="light" padding="xl">
       <Container>
         <div className={styles.header}>
-          <h2 className={styles.title}>What Our Clients Say</h2>
+          <span className={styles.subtitle}>Client Experiences</span>
+          <h2 className={styles.title}>What Our <em>Clients</em> Say</h2>
         </div>
         <div className={styles.grid}>
           {displayReviews.map((t, index) => (

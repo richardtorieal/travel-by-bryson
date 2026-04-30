@@ -12,7 +12,7 @@ const TravelIdeasGrid: React.FC = () => {
       <Container>
         <div className={styles.header}>
           <span className={styles.subtitle}>Insider Journal</span>
-          <h2 className={styles.title}>Travel Ideas</h2>
+          <h2 className={styles.title}>Travel <em>Ideas</em></h2>
         </div>
         
         <div className={styles.grid}>

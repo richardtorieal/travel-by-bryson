@@ -7,12 +7,13 @@ import Link from 'next/link';
 const Hero: React.FC = () => {
   return (
     <div className={styles.hero}>
+      <div className={styles.imageOverlay} />
       <Container className={styles.container}>
         <div className={styles.content}>
           <span className={styles.subtitle}>Luxury Travel Curator</span>
           <h1 className={styles.title}>
-            Bespoke Experiences <br />
-            <span>By an Insider</span>
+            The New <em>Standard</em> <br />
+            of Bespoke Travel
           </h1>
           <p className={styles.description}>
             Leveraging 6 years in luxury hotels to bring you exclusive perks, 

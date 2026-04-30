@@ -5,7 +5,7 @@ import Footer from "@/components/organisms/Footer/Footer";
 
 export default function Destinations() {
   return (
-    <main>
+    <main style={{ paddingTop: '80px' }}>
       <Navbar />
       <DestinationsContent />
       <ScheduleSection />

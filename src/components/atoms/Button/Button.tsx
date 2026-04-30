@@ -5,6 +5,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'accent' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
+  rounded?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -12,6 +13,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   size = 'md',
   fullWidth = false,
+  rounded = true,
   className = '',
   ...props
 }) => {
@@ -20,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({
     styles[variant],
     styles[size],
     fullWidth ? styles.fullWidth : '',
+    rounded ? styles.rounded : '',
     className
   ].join(' ');
 

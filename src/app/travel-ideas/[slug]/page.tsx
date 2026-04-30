@@ -17,13 +17,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   }
 
   return (
-    <main>
+    <main style={{ paddingTop: '80px' }}>
       <Navbar />
       <Section variant="white" padding="xl">
         <Container className={styles.container}>
           <div className={styles.header}>
             <span className={styles.category}>{post.category}</span>
-            <h1 className={styles.title}>{post.title}</h1>
+            <h1 className={styles.title}>{post.title.split(' ').map((word, i) => i === 2 ? <em key={i}>{word} </em> : word + ' ')}</h1>
             <span className={styles.date}>{post.date} | Curated by Bryson Adams</span>
           </div>
 

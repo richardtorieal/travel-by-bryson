@@ -1,20 +1,23 @@
 @import "../../../styles/variables";
 
 .section {
+  position: relative;
   width: 100%;
 }
 
-.white { background-color: $color-white; }
-.sand { background-color: $color-background; }
-.light { background-color: lighten($color-background, 2%); }
+// Padding variants
+.none { padding: 0; }
+.sm { padding: $spacing-sm 0; }
+.md { padding: $spacing-md 0; }
+.lg { padding: $spacing-lg 0; }
+.xl { padding: $spacing-xl 0; }
 
-.padding-none { padding: 0; }
-.padding-sm { padding: $spacing-sm 0; }
-.padding-md { padding: $spacing-md 0; }
-.padding-lg { padding: $spacing-lg 0; }
-.padding-xl { padding: $spacing-xl 0; }
+// Color variants
+.white { background-color: $color-white; }
+.light { background-color: $color-background-soft; }
+.sand { background-color: #F5F5F0; }
+.dark { background-color: $color-primary; color: $color-white; }
 
 @media (max-width: $breakpoint-md) {
-  .padding-lg { padding: $spacing-md 0; }
-  .padding-xl { padding: $spacing-lg 0; }
+  .xl { padding: $spacing-lg 0; }
 }

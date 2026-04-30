@@ -71,7 +71,7 @@ const DestinationsContent: React.FC = () => {
       <Container>
         <div className={styles.header}>
           <span className={styles.subtitle}>Our Portfolio</span>
-          <h2 className={styles.title}>Curated Destinations</h2>
+          <h2 className={styles.title}>Curated <em>Destinations</em></h2>
           <p className={styles.desc}>
             While we plan trips globally, these are a few of our most requested and 
             expertly vetted locations where our insider connections truly shine.
