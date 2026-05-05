@@ -13,6 +13,7 @@ interface DestinationModalProps {
     name: string;
     region: string;
     type: string;
+    image: string;
     insiderTip: string;
     perk: string;
     description: string;
@@ -43,7 +44,8 @@ const DestinationModal: React.FC<DestinationModalProps> = ({ isOpen, onClose, de
               <X size={24} />
             </button>
             
-            <div className={styles.imagePlaceholder}>
+            <div className={styles.imageWrapper}>
+              <img src={destination.image} alt={destination.name} className={styles.image} />
               <div className={styles.badge}>{destination.type}</div>
             </div>
 

@@ -11,6 +11,7 @@ const DESTINATIONS = [
     name: 'Amalfi Coast', 
     region: 'Italy', 
     type: 'Coastal Luxury',
+    image: '/assets/dest-amalfi.jpg',
     description: 'The Amalfi Coast is a 50-kilometer stretch of coastline along the southern edge of Italy’s Sorrentine Peninsula, in the Campania region.',
     insiderTip: 'Most tourists head to Positano, but for a true insider experience, I recommend staying in Ravello. The views from the villas are peerless and the atmosphere is far more exclusive.',
     perk: 'Complimentary private boat excursion along the coast for sunset, exclusively for my clients.'
@@ -19,6 +20,7 @@ const DESTINATIONS = [
     name: 'St. Barts', 
     region: 'Caribbean', 
     type: 'Tropical Escape',
+    image: '/assets/dest-st-barts.jpg',
     description: 'A tiny, French-speaking island in the Caribbean known for its white-sand beaches, designer boutiques, and sophisticated dining.',
     insiderTip: 'Avoid the main port for lunch; let me book you a table at Shellona at sunset. The vibe is electric and the service is some of the best on the island.',
     perk: 'VIP airport assistance and fast-track customs clearance upon arrival.'
@@ -27,6 +29,7 @@ const DESTINATIONS = [
     name: 'St. Moritz', 
     region: 'Switzerland', 
     type: 'Alpine Retreat',
+    image: '/assets/dest-st-moritz.jpg',
     description: 'A luxury alpine resort town in Switzerland’s Engadin valley, St. Moritz has hosted the Winter Olympics twice.',
     insiderTip: 'The "after-ski" at Badrutt’s Palace is legendary. I can ensure you have the best table in the room even during peak season.',
     perk: 'Daily complimentary ski pass for two and equipment fitting in your suite.'
@@ -35,6 +38,7 @@ const DESTINATIONS = [
     name: 'Kyoto', 
     region: 'Japan', 
     type: 'Cultural Heritage',
+    image: '/assets/dest-kyoto.jpg',
     description: 'Once the capital of Japan, Kyoto is a city on the island of Honshu. It’s famous for its numerous classical Buddhist temples, gardens, and imperial palaces.',
     insiderTip: 'Skip the crowded Arashiyama Bamboo Grove at midday. I’ll arrange a private early morning tea ceremony in a hidden temple garden instead.',
     perk: 'Private guided tour of a "closed-to-public" Zen temple and meditation session.'
@@ -43,6 +47,7 @@ const DESTINATIONS = [
     name: 'Provence', 
     region: 'France', 
     type: 'Rustic Elegance',
+    image: '/assets/dest-provence.jpg',
     description: 'A geographical region and historical province of southeastern France, spanning from the left bank of the lower Rhône to the border of Italy.',
     insiderTip: 'The lavender fields are beautiful, but the true soul of Provence is in the local markets. I’ll provide my personal map of the best hidden antiques dealers.',
     perk: 'Personalized wine tasting session with a master sommelier in the hotel’s private cellar.'
@@ -51,6 +56,7 @@ const DESTINATIONS = [
     name: 'Maldives', 
     region: 'Indian Ocean', 
     type: 'Ultimate Seclusion',
+    image: '/assets/dest-maldives.jpg',
     description: 'A tropical nation in the Indian Ocean composed of 26 ring-shaped atolls, which are made up of more than 1,000 coral islands.',
     insiderTip: 'Choosing the right atoll is key for marine life. I recommend the Baa Atoll for Manta Ray encounters—I know exactly which villas offer the best direct reef access.',
     perk: '$200 additional spa credit per stay and a private sandbank dinner for two.'
@@ -81,7 +87,8 @@ const DestinationsContent: React.FC = () => {
         <div className={styles.gallery}>
           {DESTINATIONS.map((dest, index) => (
             <div key={index} className={styles.item} onClick={() => handleOpenModal(dest)}>
-              <div className={styles.imagePlaceholder}>
+              <div className={styles.imageWrapper}>
+                <img src={dest.image} alt={dest.name} className={styles.image} />
                 <div className={styles.overlay}>
                   <span>Explore Insider Take</span>
                 </div>
