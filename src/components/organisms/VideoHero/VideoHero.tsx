@@ -2,15 +2,17 @@
 
 import React, { useRef } from 'react';
 import styles from './VideoHero.module.scss';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import Container from '../../atoms/Container/Container';
 import Button from '../../atoms/Button/Button';
 import Link from 'next/link';
 
 const VideoHero: React.FC = () => {
-  const ref = useRef(null);
+  const containerRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: containerRef,
     offset: ["start start", "end start"]
   });
 
@@ -18,11 +20,25 @@ const VideoHero: React.FC = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
+  // Sync video frame with scroll position
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (videoRef.current && videoRef.current.duration) {
+      videoRef.current.currentTime = latest * videoRef.current.duration;
+    }
+  });
+
   return (
-    <div ref={ref} className={styles.heroWrapper}>
+    <div ref={containerRef} className={styles.heroWrapper}>
       <motion.div style={{ scale }} className={styles.videoPlaceholder}>
         <div className={styles.overlay} />
-        <div className={styles.tempMedia} />
+        <video 
+          ref={videoRef}
+          src="/assets/Santorini boat movie trimmed.mp4" 
+          muted 
+          playsInline 
+          preload="auto"
+          className={styles.video}
+        />
       </motion.div>
 
       <Container>

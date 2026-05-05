@@ -6,10 +6,10 @@
   width: 100%;
   overflow: hidden;
   display: flex;
-  align-items: flex-end; // Change from center to flex-end
+  align-items: flex-end;
   justify-content: center;
   background-color: $color-background;
-  padding-bottom: 20vh; // Position it roughly in the lower third
+  padding-bottom: 20vh;
 }
 
 .videoPlaceholder {
@@ -21,12 +21,10 @@
   z-index: 1;
 }
 
-.tempMedia {
+.video {
   width: 100%;
   height: 100%;
-  background-image: url('/assets/santorini-light.jpg');
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
 }
 
 .overlay {
@@ -35,7 +33,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.3); // Light overlay to ensure text contrast
+  background: rgba(0, 0, 0, 0.1); // Subtle overlay
   z-index: 2;
 }
 
@@ -48,38 +46,6 @@
   margin: 0 auto;
 }
 
-.subtitle {
-  display: block;
-  font-family: $font-body;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  font-size: 0.875rem;
-  font-weight: 700;
-  margin-bottom: $spacing-md;
-  color: $color-primary;
-}
-
-.title {
-  font-size: $font-size-h1;
-  line-height: 1.1;
-  margin-bottom: $spacing-md;
-  font-weight: 700;
-
-  em {
-    font-family: $font-heading;
-    font-style: italic;
-    font-weight: 400;
-  }
-}
-
-.description {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  margin-bottom: $spacing-lg;
-  opacity: 0.9;
-  font-weight: 500;
-}
-
 .actions {
   display: flex;
   gap: $spacing-sm;
@@ -88,7 +54,7 @@
 
 .heroButton {
   background-color: rgba(255, 255, 255, 0.7) !important;
-  color: #1A365D !important; // Deep Aegean Blue for readability
+  color: #1A365D !important;
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.5) !important;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;

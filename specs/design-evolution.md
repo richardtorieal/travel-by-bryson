@@ -31,8 +31,9 @@ Based on the reference design, we will evolve the Bryson Travel aesthetic toward
 - Move from the current left-aligned video hero to a centered, high-impact image/video hero.
 - Use a refined overlay to ensure text readability while maintaining image vibrancy.
 - **Hero Button**: Use a complimentary "Glassmorphism" or soft-toned style that integrates with the hero imagery rather than high-contrast black.
+- **Scroll-Synced Video**: The hero features a high-quality video (Santorini boat trimmed) that progresses frame-by-frame based on the user's scroll position for a premium, cinematic feel.
 
-## 5. Spacing
+## 6. Spacing
 - Increase vertical padding between sections to `$spacing-xl` (8rem) or more to emphasize luxury through whitespace.
 - Tighter internal spacing for content blocks to create "clusters" of information.
 
