@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import styles from './VideoHero.module.scss';
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValueEvent, useSpring } from 'framer-motion';
 import Container from '../../atoms/Container/Container';
 import Button from '../../atoms/Button/Button';
 import Link from 'next/link';
@@ -16,14 +16,23 @@ const VideoHero: React.FC = () => {
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  // Apply spring smoothing to the raw scroll value to fix "chunky" mouse wheel scrolls
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
-  // Sync video frame with scroll position
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  const y = useTransform(smoothProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(smoothProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(smoothProgress, [0, 1], [1, 1.1]);
+
+  // Sync video frame with smoothed scroll position
+  useMotionValueEvent(smoothProgress, "change", (latest) => {
     if (videoRef.current && videoRef.current.duration) {
-      videoRef.current.currentTime = latest * videoRef.current.duration;
+      // Ensure we don't try to seek past the video duration
+      const targetTime = Math.min(latest * videoRef.current.duration, videoRef.current.duration - 0.1);
+      videoRef.current.currentTime = targetTime;
     }
   });
 
@@ -33,7 +42,7 @@ const VideoHero: React.FC = () => {
         <div className={styles.overlay} />
         <video 
           ref={videoRef}
-          src="/assets/Santorini boat movie trimmed.mp4" 
+          src="/assets/Santorini_boat_scrub.mp4" 
           muted 
           playsInline 
           preload="auto"
