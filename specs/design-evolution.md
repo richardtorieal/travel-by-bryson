@@ -37,6 +37,9 @@ Based on the reference design, we will evolve the Bryson Travel aesthetic toward
 - Increase vertical padding between sections to `$spacing-xl` (8rem) or more to emphasize luxury through whitespace.
 - Tighter internal spacing for content blocks to create "clusters" of information.
 
+## 7. Animations
+- **Perks Section Headline**: The headline "The New Standard of Bespoke Travel" smoothly fades in and translates upwards with a modern ease animation when scrolled into view.
+
 ## Implementation Tasks
 1. Update `_variables.scss` with new colors and refined spacing.
 2. Create/Update `Button` atom to support the pill shape.
