@@ -9,8 +9,8 @@ const AboutContent: React.FC = () => {
       <Container>
         <div className={styles.wrapper}>
           <div className={styles.text}>
-            <span className={styles.subtitle}>The Insider Story</span>
-            <h2 className={styles.title}>From Luxury Hotels to Your <em>Personal Advisor</em></h2>
+            <span className={styles.subtitle}>Our Story</span>
+            <h2 className={styles.title}>Turning Stays into <em>Masterpieces</em></h2>
             <p>
               With over six years of experience working within the world&apos;s most prestigious luxury hotels, 
               I&apos;ve seen the industry from the inside out. I understand the nuances of exceptional service 
@@ -22,12 +22,19 @@ const AboutContent: React.FC = () => {
               relationships with hotel managers and local experts globally.
             </p>
             <p>
-              When you work with me, you&apos;re not just getting a travel agent&mdash;you&apos;re getting an 
-              insider who knows how to ensure you&apos;re treated like a VIP from the moment you arrive.
+              <strong>My Travel Style:</strong> A blend of high-energy city wandering and grounding natural beauty. 
+              I value balance&mdash;mixing iconic attractions with local hidden gems and leaving room for unplanned moments.
             </p>
+            <div className={styles.affiliation}>
+              <p>Powered by <strong>Fora Travel, Inc.</strong></p>
+            </div>
           </div>
           <div className={styles.imageWrapper}>
-            <img src="/assets/london-museums-interactive.jpg" alt="London Experience" className={styles.image} />
+            <img 
+              src="https://images.squarespace-cdn.com/content/v1/69f6ab8d7a94a05173559ac8/1e0ffb22-627d-4660-9620-c12b6e05eb7f/C505E04B-2D3D-47AE-9D30-6859F1FFA9B0.jpeg" 
+              alt="Bryson Adams at Tower Bridge" 
+              className={styles.image} 
+            />
             <div className={styles.box}>
               <span>6+ Years in Luxury Hospitality</span>
             </div>

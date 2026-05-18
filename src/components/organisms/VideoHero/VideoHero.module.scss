@@ -1,4 +1,4 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as vars;
 
 .heroWrapper {
   position: relative;
@@ -8,8 +8,9 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  background-color: $color-background;
+  background-color: vars.$color-background;
   padding-bottom: 20vh;
+  z-index: 1;
 }
 
 .videoPlaceholder {
@@ -40,7 +41,7 @@
 .content {
   position: relative;
   z-index: 3;
-  color: $color-primary;
+  color: vars.$color-primary;
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
@@ -48,7 +49,7 @@
 
 .actions {
   display: flex;
-  gap: $spacing-sm;
+  gap: vars.$spacing-sm;
   justify-content: center;
 }
 

@@ -26,42 +26,47 @@ const Navbar: React.FC = () => {
   const navbarClasses = [
     styles.navbar,
     isScrolled ? 'scrolled' : '',
-    !isHome ? 'not-home' : ''
+    !isHome ? 'not-home' : '',
+    isMobileMenuOpen ? styles.menuOpen : ''
   ].join(' ');
 
   return (
-    <nav className={navbarClasses}>
-      <Container className={styles.container}>
-        <div className={styles.logo}>
-          <Link href="/">
-            BRYSON <span>ADAMS</span>
-          </Link>
-        </div>
-        
-        <div className={styles.links}>
-          <Link href="/about">About</Link>
-          <Link href="/services">Services</Link>
-          <Link href="/destinations">Destinations</Link>
-          <Link href="/contact">
-            <Button variant="outline" size="sm">Book Now</Button>
-          </Link>
-        </div>
+    <>
+      <nav className={navbarClasses}>
+        <Container className={styles.container}>
+          <div className={styles.logo}>
+            <Link href="/" className={styles.logoWrapper}>
+              <img src="/assets/logo-mark.svg" alt="Travel by Bryson" className={styles.logoIcon} />
+              <div className={styles.logoText}>
+                TRAVEL BY <span>BRYSON</span>
+              </div>
+            </Link>
+          </div>
+          
+          <div className={styles.links}>
+            <Link href="/about">About</Link>
+            <Link href="/packages">Packages</Link>
+            <Link href="/destinations">Destinations</Link>
+            <Button variant="outline" size="sm" href="/contact">Contact</Button>
+          </div>
 
-        <button 
-          className={styles.mobileToggle} 
-          onClick={() => setIsMobileMenuOpen(true)}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+          <button 
+            className={`${styles.mobileToggle} ${isMobileMenuOpen ? styles.isOpen : ''}`} 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </Container>
+      </nav>
 
-        <MobileMenu 
-          isOpen={isMobileMenuOpen} 
-          onClose={() => setIsMobileMenuOpen(false)} 
-        />
-      </Container>
-    </nav>
+      <MobileMenu 
+        isOpen={isMobileMenuOpen} 
+        onClose={() => setIsMobileMenuOpen(false)} 
+        key="mobile-menu-drawer"
+      />
+    </>
   );
 };
 

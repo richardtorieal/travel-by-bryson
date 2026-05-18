@@ -3,7 +3,6 @@ import styles from './ScheduleSection.module.scss';
 import Container from '../../atoms/Container/Container';
 import Section from '../../atoms/Section/Section';
 import Button from '../../atoms/Button/Button';
-import Link from 'next/link';
 
 const ScheduleSection: React.FC = () => {
   return (
@@ -17,9 +16,7 @@ const ScheduleSection: React.FC = () => {
               let&apos;s connect to discuss how I can help make your vision a reality.
             </p>
             <div className={styles.actions}>
-              <Link href="/contact">
-                <Button variant="primary" size="lg">Schedule a Call</Button>
-              </Link>
+              <Button variant="primary" size="lg" href="/contact">Schedule a Call</Button>
             </div>
           </div>
           <div className={styles.ctaCard}>

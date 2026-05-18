@@ -1,0 +1,202 @@
+@use "../../../styles/variables" as vars;
+
+.pageContainer {
+  position: relative;
+  min-height: 100vh;
+}
+
+.backgroundContent {
+  filter: blur(2px);
+  opacity: 0.6;
+  pointer-events: none;
+  user-select: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(vars.$color-primary, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: vars.$spacing-md;
+  padding-top: vars.$navbar-height;
+  overflow-y: auto;
+  cursor: pointer; // Clicking backdrop will close
+}
+
+.modalCard {
+  background-color: vars.$color-white;
+  width: 95%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px -12px rgba(0, 0, 0, 0.7);
+  position: relative;
+  cursor: default; // Don't propagate click to overlay
+  max-height: calc(100vh - #{vars.$navbar-height} - #{vars.$spacing-xl});
+
+  @media (max-width: vars.$breakpoint-lg) {
+    flex-direction: column;
+    max-height: 85vh;
+    width: 100%;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: vars.$spacing-md;
+  right: vars.$spacing-md;
+  width: 44px;
+  height: 44px;
+  background: rgba(vars.$color-white, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  color: vars.$color-primary;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 300;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1) rotate(90deg);
+    background: vars.$color-white;
+  }
+}
+
+.imageSection {
+  flex: 1.2;
+  position: relative;
+  overflow: hidden;
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .badge {
+    position: absolute;
+    bottom: vars.$spacing-md;
+    left: vars.$spacing-md;
+    background-color: vars.$color-accent;
+    color: vars.$color-primary;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-radius: 2px;
+  }
+
+  @media (max-width: vars.$breakpoint-lg) {
+    flex: none;
+    height: 200px;
+  }
+}
+
+.contentSection {
+  flex: 1;
+  padding: vars.$spacing-xxl vars.$spacing-xl;
+  display: flex;
+  flex-direction: column;
+  background-color: vars.$color-white;
+  overflow-y: auto;
+
+  @media (max-width: vars.$breakpoint-lg) {
+    padding: vars.$spacing-xl vars.$spacing-md;
+  }
+}
+
+.region {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: vars.$color-accent;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: vars.$spacing-xs;
+}
+
+.title {
+  font-size: 3.5rem;
+  margin-bottom: vars.$spacing-md;
+  line-height: 1.1;
+
+  @media (max-width: vars.$breakpoint-sm) {
+    font-size: 2.2rem;
+  }
+}
+
+.description {
+  color: vars.$color-text;
+  line-height: 1.8;
+  font-size: 1.125rem;
+  margin-bottom: vars.$spacing-xl;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.richText {
+  color: vars.$color-text;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: vars.$spacing-xl;
+
+  p {
+    margin-bottom: vars.$spacing-md;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin: vars.$spacing-lg 0 vars.$spacing-sm;
+    color: vars.$color-primary;
+  }
+}
+
+.insiderSection, .perkSection {
+  margin-bottom: vars.$spacing-lg;
+  padding: vars.$spacing-md;
+  background-color: rgba(vars.$color-accent, 0.05);
+  border-left: 4px solid vars.$color-accent;
+  border-radius: 0 4px 4px 0;
+
+  h3 {
+    font-size: 0.875rem;
+    margin-bottom: vars.$spacing-xs;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: vars.$color-accent;
+  }
+
+  p {
+    color: vars.$color-text-muted;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+}
+
+.perkSection {
+  background-color: rgba(vars.$color-primary, 0.03);
+  border-left-color: vars.$color-primary;
+  
+  h3 {
+    color: vars.$color-primary;
+  }
+}
+
+.actions {
+  margin-top: auto;
+  padding-top: vars.$spacing-xl;
+}

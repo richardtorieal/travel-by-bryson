@@ -8,20 +8,16 @@ import { motion } from 'framer-motion';
 
 const STATS = [
   {
-    value: '98%',
-    label: 'Travelers trust Bryson to curate their perfect escape.'
+    value: '100%',
+    label: '5 Star reviews'
   },
   {
-    value: '200+',
-    label: 'Custom travel plans created for solo, couple, and group adventures.'
+    value: '40',
+    label: 'Trips Planned'
   },
   {
-    value: '150+',
-    label: 'Certified luxury hotel partners ready to assist your journey.'
-  },
-  {
-    value: '4.9★',
-    label: 'Average rating from travelers worldwide.'
+    value: '4,500+',
+    label: 'Partners offering VIP treatment and perks'
   }
 ];
 

@@ -1,36 +1,36 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as vars;
 
 .header {
   text-align: center;
   max-width: 800px;
-  margin: 0 auto $spacing-xl;
+  margin: 0 auto vars.$spacing-xl;
 }
 
 .subtitle {
   display: block;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: $color-accent;
+  color: vars.$color-accent;
   font-weight: 700;
   font-size: 0.75rem;
-  margin-bottom: $spacing-sm;
+  margin-bottom: vars.$spacing-sm;
 }
 
 .title {
-  font-size: $font-size-h2;
+  font-size: vars.$font-size-h2;
   font-weight: 700;
-  margin-bottom: $spacing-md;
-  color: $color-primary;
+  margin-bottom: vars.$spacing-md;
+  color: vars.$color-primary;
 
   em {
-    font-family: $font-heading;
+    font-family: vars.$font-heading;
     font-style: italic;
     font-weight: 400;
   }
 }
 
 .desc {
-  color: $color-text-muted;
+  color: vars.$color-text-muted;
   line-height: 1.8;
   font-size: 1.125rem;
 }
@@ -38,13 +38,13 @@
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: $spacing-md;
+  gap: vars.$spacing-md;
 
-  @media (max-width: $breakpoint-lg) {
+  @media (max-width: vars.$breakpoint-lg) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: $breakpoint-sm) {
+  @media (max-width: vars.$breakpoint-sm) {
     grid-template-columns: 1fr;
   }
 }
@@ -53,8 +53,8 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  border-radius: $border-radius-lg;
-  box-shadow: $shadow-sm;
+  border-radius: vars.$border-radius-lg;
+  box-shadow: vars.$shadow-sm;
 
   &:hover {
     .image {
@@ -67,7 +67,7 @@
 }
 
 .imageWrapper {
-  background-color: $color-background-soft;
+  background-color: vars.$color-background-soft;
   aspect-ratio: 4/5;
   width: 100%;
   position: relative;
@@ -87,7 +87,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba($color-primary, 0.3);
+  background-color: rgba(vars.$color-primary, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,14 +96,14 @@
   z-index: 2;
 
   span {
-    color: $color-white;
+    color: vars.$color-white;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    border: 1px solid $color-white;
+    border: 1px solid vars.$color-white;
     padding: 0.75rem 1.5rem;
-    border-radius: $border-radius-pill;
+    border-radius: vars.$border-radius-pill;
     background-color: rgba(0,0,0,0.2);
     backdrop-filter: blur(4px);
   }
@@ -114,16 +114,16 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: $spacing-md;
+  padding: vars.$spacing-md;
   background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-  color: $color-white;
+  color: vars.$color-white;
   z-index: 1;
 
   h3 {
     font-size: 1.5rem;
-    color: $color-white;
+    color: vars.$color-white;
     margin-bottom: 4px;
-    font-family: $font-heading;
+    font-family: vars.$font-heading;
     font-style: italic;
   }
   p {

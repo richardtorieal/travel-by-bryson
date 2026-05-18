@@ -1,4 +1,5 @@
-@import "../../../styles/variables";
+@use "sass:color";
+@use "../../../styles/variables" as vars;
 
 .button {
   display: inline-flex;
@@ -6,16 +7,16 @@
   justify-content: center;
   padding: 0.75rem 2rem;
   border-radius: 4px;
-  font-family: $font-body;
+  font-family: vars.$font-body;
   font-weight: 700;
-  transition: $transition-smooth;
+  transition: vars.$transition-smooth;
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   min-height: 48px;
 
   &.rounded {
-    border-radius: $border-radius-pill;
+    border-radius: vars.$border-radius-pill;
   }
 
   &.fullWidth {
@@ -40,40 +41,40 @@
 
   // Variants
   &.primary {
-    background-color: $color-primary;
-    color: $color-white;
+    background-color: vars.$color-primary;
+    color: vars.$color-white;
 
     &:hover {
-      background-color: lighten($color-primary, 10%);
+      background-color: color.adjust(vars.$color-primary, $lightness: 10%);
     }
   }
 
   &.secondary {
-    background-color: $color-background;
-    color: $color-primary;
-    border: 1px solid $color-primary;
+    background-color: vars.$color-background;
+    color: vars.$color-primary;
+    border: 1px solid vars.$color-primary;
 
     &:hover {
-      background-color: darken($color-background, 5%);
+      background-color: color.adjust(vars.$color-background, $lightness: -5%);
     }
   }
 
   &.accent {
-    background-color: $color-accent;
-    color: $color-primary;
+    background-color: vars.$color-accent;
+    color: vars.$color-primary;
 
     &:hover {
-      background-color: lighten($color-accent, 10%);
+      background-color: color.adjust(vars.$color-accent, $lightness: 10%);
     }
   }
 
   &.outline {
     background-color: transparent;
-    color: $color-primary;
-    border: 1px solid $color-primary;
+    color: vars.$color-primary;
+    border: 1px solid vars.$color-primary;
 
     &:hover {
-      background-color: rgba($color-primary, 0.05);
+      background-color: rgba(vars.$color-primary, 0.05);
     }
   }
 }

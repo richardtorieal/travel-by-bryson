@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Hero.module.scss';
 import Container from '../../atoms/Container/Container';
 import Button from '../../atoms/Button/Button';
-import Link from 'next/link';
 
 const Hero: React.FC = () => {
   return (
@@ -20,12 +19,8 @@ const Hero: React.FC = () => {
             insider access, and stress-free planning for your next escape.
           </p>
           <div className={styles.actions}>
-            <Link href="/contact">
-              <Button variant="primary" size="lg">Book a Discovery Call</Button>
-            </Link>
-            <Link href="/destinations">
-              <Button variant="outline" size="lg">View Destinations</Button>
-            </Link>
+            <Button variant="primary" size="lg" href="/contact">Book a Discovery Call</Button>
+            <Button variant="outline" size="lg" href="/destinations">View Destinations</Button>
           </div>
         </div>
       </Container>

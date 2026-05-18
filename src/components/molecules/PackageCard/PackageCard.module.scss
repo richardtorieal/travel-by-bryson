@@ -1,0 +1,153 @@
+@use "../../../styles/variables" as vars;
+
+.card {
+  background: vars.$color-white;
+  padding: vars.$spacing-lg vars.$spacing-md;
+  border-radius: 4px;
+  box-shadow: vars.$shadow-md;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: vars.$transition-smooth;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  min-width: 0;
+  text-align: center;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: vars.$shadow-lg;
+  }
+
+  &.featured {
+    border-color: rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+
+  &.selected {
+    box-shadow: vars.$shadow-lg, inset 0 0 0 2px vars.$color-accent;
+    border-color: vars.$color-accent;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: vars.$color-accent;
+  color: vars.$color-primary;
+  padding: 0.3rem 1rem;
+  border-radius: vars.$border-radius-pill;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.cardHeader {
+  text-align: center;
+  margin-bottom: vars.$spacing-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: 120px;
+  justify-content: center;
+}
+
+.icon {
+  color: vars.$color-accent;
+  margin-bottom: vars.$spacing-xs;
+  display: flex;
+  justify-content: center;
+  height: 32px;
+  
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.packageName {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+  font-family: vars.$font-body;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.price {
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: vars.$color-primary;
+  margin-bottom: vars.$spacing-xs;
+  font-family: vars.$font-heading;
+  white-space: nowrap;
+}
+
+.packageDesc {
+  color: vars.$color-text-muted;
+  line-height: 1.3;
+  font-size: 0.8rem;
+  max-width: 100%;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 vars.$spacing-md 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: vars.$spacing-xs;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: vars.$spacing-xs;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: vars.$color-text;
+    text-align: left;
+  }
+}
+
+.check {
+  color: vars.$color-accent;
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 14px;
+  height: 14px;
+}
+
+.cardFooter {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.selectionIndicator {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid vars.$color-border;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: vars.$color-accent;
+  z-index: 5;
+  background: white;
+  
+  .selected & {
+    border-color: vars.$color-accent;
+    background: vars.$color-accent;
+    color: white;
+  }
+}

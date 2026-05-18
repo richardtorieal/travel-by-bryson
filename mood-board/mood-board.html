@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bryson Travel - High-End Editorial Mood Board (Updated)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #F2EDE3;
+            --color-dark-green: #262E23;
+            --color-logo-green: #3E4C39;
+            --color-brown-gold: #8D7C5E;
+            --color-logo-sand: #d8c3a5;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: var(--font-body);
+            color: var(--color-dark-green);
+            background-color: var(--color-cream);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--color-dark-green);
+            padding-bottom: 40px;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.9rem;
+            color: var(--color-logo-green);
+            margin-top: 10px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            border-left: 4px solid var(--color-brown-gold);
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .image-card {
+            background: white;
+            padding: 20px;
+            border: 1px solid rgba(38, 46, 35, 0.1);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .image-card p {
+            font-size: 0.8rem;
+            text-align: center;
+            color: var(--color-logo-green);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 0;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .color-swatch {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .analysis-box {
+            background: var(--color-dark-green);
+            color: white;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .analysis-box h3 {
+            font-family: var(--font-heading);
+            color: var(--color-logo-sand);
+            margin-top: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--color-brown-gold);
+            color: white;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--color-logo-green);
+            margin-top: 100px;
+            border-top: 1px solid rgba(38, 46, 35, 0.1);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BRYSON TRAVEL</h1>
+            <p class="subtitle">Evolved Editorial Mood Board & Design Analysis</p>
+        </header>
+
+        <section>
+            <h2>Color Strategy</h2>
+            <div class="color-palette">
+                <div class="color-swatch" style="background-color: #262E23;">#262E23</div>
+                <div class="color-swatch" style="background-color: #3E4C39;">#3E4C39</div>
+                <div class="color-swatch" style="background-color: #8D7C5E;">#8D7C5E</div>
+                <div class="color-swatch" style="background-color: #d8c3a5; color: #262E23;">#D8C3A5</div>
+                <div class="color-swatch" style="background-color: #F2EDE3; color: #262E23;">#F2EDE3</div>
+            </div>
+            <p style="margin-top: 20px;">The new palette introduces organic, grounding tones. The <strong>Dark Green (#262E23)</strong> provides a sophisticated anchor for the footer and primary text, while the <strong>Cream (#F2EDE3)</strong> background softens the overall aesthetic for a warm, inviting luxury feel.</p>
+        </section>
+
+        <section>
+            <h2>Visual Implementation</h2>
+            <div class="grid">
+                <div class="image-card">
+                    <img src="homepage.png" alt="Homepage">
+                    <p>Home - Retaining the Cinematic Video Hero</p>
+                </div>
+                <div class="image-card">
+                    <img src="contact.png" alt="Contact">
+                    <p>Contact - Integrated Service Selection</p>
+                </div>
+                <div class="image-card">
+                    <img src="journal.png" alt="Journal">
+                    <p>Journal - Editorial Content Feed</p>
+                </div>
+                <div class="image-card">
+                    <div style="background: var(--color-dark-green); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--color-logo-sand); font-family: var(--font-heading); font-size: 1.5rem; text-align: center; padding: 20px;">
+                        <em>"Turning Stays into Masterpieces"</em>
+                    </div>
+                    <p>Brand Ethos</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="analysis-box">
+            <h3>Design Refinements</h3>
+            <p>Following client feedback, the interface has been optimized for clarity and organic flow:</p>
+            <ul>
+                <li><strong>Spatial Harmony:</strong> Reduced section spacing on the Contact page to improve information density without sacrificing luxury.</li>
+                <li><strong>Organic Color Layering:</strong> Alternating sections now use a mix of light sand and cream tones, moving away from pure monochrome.</li>
+                <li><strong>Refined UX:</strong> Improved form layouts with better padding and clear, high-contrast checkbox selection.</li>
+            </ul>
+        </section>
+
+        <div class="footer">
+            Prepared for Bryson Adams | 2026
+        </div>
+    </div>
+</body>
+</html>

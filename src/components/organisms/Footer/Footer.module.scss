@@ -1,103 +1,105 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as vars;
 
 .footer {
-  padding: $spacing-xl 0 $spacing-md;
-  background-color: $color-white;
-  border-top: 1px solid $color-border;
+  background-color: vars.$color-dark-green;
+  color: white;
+  padding: vars.$spacing-xl 0 vars.$spacing-md;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: $spacing-xl;
-  margin-bottom: $spacing-xl;
+  grid-template-columns: 1.5fr repeat(2, 1fr);
+  gap: vars.$spacing-xl;
+  margin-bottom: vars.$spacing-xl;
 
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: vars.$breakpoint-md) {
     grid-template-columns: 1fr;
-    gap: $spacing-lg;
+    gap: vars.$spacing-lg;
   }
 }
 
-.logo {
-  font-family: $font-body;
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  color: $color-primary;
-  text-transform: uppercase;
-  margin-bottom: $spacing-md;
-
-  span {
-    font-weight: 300;
-  }
-}
-
-.description {
-  color: $color-text-muted;
-  line-height: 1.8;
-  max-width: 400px;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-sm;
-
-  h3 {
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: $spacing-md;
-    color: $color-primary;
+.brand {
+  .logo {
+    font-size: 1.5rem;
     font-weight: 700;
-
-    em {
-      font-family: $font-heading;
-      font-style: italic;
-      font-weight: 400;
-      text-transform: none;
-      letter-spacing: 0;
+    letter-spacing: 0.1em;
+    margin-bottom: vars.$spacing-sm;
+    color: white;
+    
+    span {
+      color: vars.$color-logo-sand;
     }
   }
 
+  .description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(white, 0.7);
+    max-width: 320px;
+  }
+}
+
+.column {
+  h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: vars.$color-logo-sand;
+    margin-bottom: vars.$spacing-md;
+    font-weight: 600;
+  }
+
   a {
-    color: $color-text-muted;
-    font-size: 0.875rem;
-    transition: $transition-smooth;
+    display: block;
+    font-size: 1rem; // Base size for all footer links
+    color: rgba(white, 0.8);
+    margin-bottom: vars.$spacing-sm;
+    transition: vars.$transition-smooth;
 
     &:hover {
-      color: $color-primary;
+      color: white;
       transform: translateX(5px);
+    }
+  }
+
+  .socialLink {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: vars.$spacing-sm;
+    font-size: 1rem; // Force consistency
+
+    span {
+      font-size: 1rem;
+    }
+
+    svg {
+      flex-shrink: 0;
     }
   }
 }
 
 .bottom {
-  padding-top: $spacing-md;
-  border-top: 1px solid $color-border;
+  border-top: 1px solid rgba(white, 0.1);
+  padding-top: vars.$spacing-md;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: $color-text-muted;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
+  color: rgba(white, 0.5);
 
-  @media (max-width: $breakpoint-sm) {
+  @media (max-width: vars.$breakpoint-sm) {
     flex-direction: column;
-    gap: $spacing-sm;
+    gap: vars.$spacing-sm;
     text-align: center;
   }
 }
 
 .legal {
   display: flex;
-  gap: $spacing-md;
+  gap: vars.$spacing-md;
 
-  a {
-    color: $color-text-muted;
-    transition: $transition-smooth;
-
-    &:hover {
-      color: $color-primary;
-    }
+  a:hover {
+    color: white;
   }
 }

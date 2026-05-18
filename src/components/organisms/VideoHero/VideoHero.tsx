@@ -1,22 +1,23 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styles from './VideoHero.module.scss';
-import { motion, useScroll, useTransform, useMotionValueEvent, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useMotionValueEvent } from 'framer-motion';
 import Container from '../../atoms/Container/Container';
 import Button from '../../atoms/Button/Button';
-import Link from 'next/link';
+
+const TOTAL_FRAMES = 144;
 
 const VideoHero: React.FC = () => {
   const containerRef = useRef(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [frameIndex, setFrameIndex] = useState(1);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
 
-  // Apply spring smoothing to the raw scroll value to fix "chunky" mouse wheel scrolls
+  // Apply spring smoothing to the raw scroll value
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -27,35 +28,43 @@ const VideoHero: React.FC = () => {
   const opacity = useTransform(smoothProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(smoothProgress, [0, 1], [1, 1.1]);
 
-  // Sync video frame with smoothed scroll position
+  // Update frame index based on scroll progress
   useMotionValueEvent(smoothProgress, "change", (latest) => {
-    if (videoRef.current && videoRef.current.duration) {
-      // Ensure we don't try to seek past the video duration
-      const targetTime = Math.min(latest * videoRef.current.duration, videoRef.current.duration - 0.1);
-      videoRef.current.currentTime = targetTime;
+    const index = Math.min(
+      TOTAL_FRAMES,
+      Math.max(1, Math.floor(latest * TOTAL_FRAMES) + 1)
+    );
+    if (index !== frameIndex) {
+      setFrameIndex(index);
     }
   });
+
+  // Preload frames for smooth playback
+  useEffect(() => {
+    for (let i = 1; i <= TOTAL_FRAMES; i++) {
+      const img = new Image();
+      img.src = `/assets/como-frames/frame_${i.toString().padStart(3, '0')}.jpg`;
+    }
+  }, []);
+
+  const currentFramePath = `/assets/como-frames/frame_${frameIndex.toString().padStart(3, '0')}.jpg`;
 
   return (
     <div ref={containerRef} className={styles.heroWrapper}>
       <motion.div style={{ scale }} className={styles.videoPlaceholder}>
         <div className={styles.overlay} />
-        <video 
-          ref={videoRef}
-          src="/assets/Santorini_boat_scrub.mp4" 
-          muted 
-          playsInline 
-          preload="auto"
+        <img 
+          src={currentFramePath} 
+          alt="Lake Como Dolly Zoom"
           className={styles.video}
+          style={{ objectFit: 'cover' }}
         />
       </motion.div>
 
       <Container>
         <motion.div style={{ y, opacity }} className={styles.content}>
           <div className={styles.actions}>
-            <Link href="/contact">
-              <Button variant="primary" size="lg" className={styles.heroButton}>Plan Your Journey</Button>
-            </Link>
+            <Button variant="primary" size="lg" className={styles.heroButton} href="/contact">Plan Your Journey</Button>
           </div>
         </motion.div>
       </Container>

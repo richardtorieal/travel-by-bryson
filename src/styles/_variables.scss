@@ -1,14 +1,21 @@
 // src/styles/_variables.scss
 
-$color-background: #FFFFFF;
-$color-background-soft: #F9F9F9;
+// Brand Colors
+$color-dark-green: #262E23;
+$color-logo-green: #3E4C39;
+$color-brown-gold: #8D7C5E;
+$color-logo-sand: #d8c3a5;
+$color-cream: #F2EDE3;
+
+$color-background: $color-cream;
+$color-background-soft: #FFFFFF;
 $color-white: #FFFFFF;
-$color-primary: #1A1A1A;
-$color-secondary: #333333;
-$color-accent: #D4AF37;
+$color-primary: $color-dark-green;
+$color-secondary: $color-logo-green;
+$color-accent: $color-brown-gold;
 $color-text: #1A1A1A;
 $color-text-muted: #666666;
-$color-border: #EEEEEE;
+$color-border: rgba($color-dark-green, 0.1);
 
 $font-heading: 'Playfair Display', serif;
 $font-body: 'Montserrat', sans-serif;
@@ -23,13 +30,18 @@ $spacing-xs: 0.5rem;
 $spacing-sm: 1rem;
 $spacing-md: 2rem;
 $spacing-lg: 4rem;
-$spacing-xl: 10rem; // Increased for luxury feel
-$spacing-xxl: 15rem;
+$spacing-xl: 6rem; // Slightly reduced for tighter sections as requested
+$spacing-xxl: 10rem;
+
+$section-spacing-std: 5rem; // Standard spacing between major content sections
+$section-spacing-compact: 3rem; // Compact spacing for tighter layouts
 
 $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
+
+$navbar-height: 80px;
 
 $border-radius-sm: 4px;
 $border-radius-md: 8px;
