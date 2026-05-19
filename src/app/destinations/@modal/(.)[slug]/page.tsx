@@ -40,6 +40,7 @@ export default function InterceptedDestinationModal({ params }: { params: Promis
       {!isClosing && (
         <motion.div 
           className={styles.overlay}
+          data-testid="intercepted-modal-overlay"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

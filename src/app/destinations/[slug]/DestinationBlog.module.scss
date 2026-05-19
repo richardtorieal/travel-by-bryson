@@ -3,6 +3,8 @@
 .pageContainer {
   position: relative;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .backgroundContent {
@@ -10,6 +12,10 @@
   opacity: 0.6;
   pointer-events: none;
   user-select: none;
+
+  @media (max-width: vars.$breakpoint-lg) {
+    display: none; // Regular page on mobile, no background gallery
+  }
 }
 
 .overlay {
@@ -27,7 +33,34 @@
   padding: vars.$spacing-md;
   padding-top: vars.$navbar-height;
   overflow-y: auto;
-  cursor: pointer; // Clicking backdrop will close
+
+  @media (max-width: vars.$breakpoint-lg) {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: none;
+    backdrop-filter: none;
+    padding: 0;
+    padding-top: 0;
+    display: block;
+    z-index: 1;
+    overflow-y: visible;
+  }
+}
+
+.desktopCloseLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+
+  @media (max-width: vars.$breakpoint-lg) {
+    display: none;
+  }
 }
 
 .modalCard {
@@ -40,13 +73,15 @@
   overflow: hidden;
   box-shadow: 0 40px 100px -12px rgba(0, 0, 0, 0.7);
   position: relative;
-  cursor: default; // Don't propagate click to overlay
   max-height: calc(100vh - #{vars.$navbar-height} - #{vars.$spacing-xl});
 
   @media (max-width: vars.$breakpoint-lg) {
     flex-direction: column;
-    max-height: 85vh;
     width: 100%;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+    max-height: none;
   }
 }
 
@@ -72,6 +107,10 @@
   &:hover {
     transform: scale(1.1) rotate(90deg);
     background: vars.$color-white;
+  }
+
+  @media (max-width: vars.$breakpoint-lg) {
+    display: none; // Standard page navigation on mobile
   }
 }
 
@@ -102,7 +141,7 @@
 
   @media (max-width: vars.$breakpoint-lg) {
     flex: none;
-    height: 200px;
+    height: 300px; // Slightly taller image for regular page look
   }
 }
 
@@ -116,6 +155,7 @@
 
   @media (max-width: vars.$breakpoint-lg) {
     padding: vars.$spacing-xl vars.$spacing-md;
+    overflow-y: visible;
   }
 }
 
@@ -146,23 +186,6 @@
   margin-bottom: vars.$spacing-xl;
   font-style: italic;
   opacity: 0.8;
-}
-
-.richText {
-  color: vars.$color-text;
-  line-height: 1.7;
-  font-size: 1rem;
-  margin-bottom: vars.$spacing-xl;
-
-  p {
-    margin-bottom: vars.$spacing-md;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    margin: vars.$spacing-lg 0 vars.$spacing-sm;
-    color: vars.$color-primary;
-  }
 }
 
 .insiderSection, .perkSection {

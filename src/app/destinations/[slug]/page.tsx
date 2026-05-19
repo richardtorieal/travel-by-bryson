@@ -2,6 +2,8 @@
 
 import Navbar from '@/components/organisms/Navbar/Navbar';
 import Footer from '@/components/organisms/Footer/Footer';
+import DestinationsContent from '@/components/organisms/DestinationsContent/DestinationsContent';
+import ScheduleSection from '@/components/organisms/ScheduleSection/ScheduleSection';
 import Button from '@/components/atoms/Button/Button';
 import { notFound } from 'next/navigation';
 import { DESTINATIONS } from '@/data/destinations';
@@ -14,8 +16,17 @@ export default function DestinationPage({ params }: { params: Promise<{ slug: st
   const destination = DESTINATIONS.find(d => d.slug === slug);
 
   useEffect(() => {
-    // Body scroll logic for standalone page
-    document.body.style.overflow = 'unset';
+    // Body scroll logic: only lock on desktop where it's a modal
+    const isMobile = window.innerWidth <= 992;
+    if (!isMobile) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, []);
 
   if (!destination) {
@@ -23,11 +34,22 @@ export default function DestinationPage({ params }: { params: Promise<{ slug: st
   }
 
   return (
-    <div className={styles.pageContainer} style={{ background: 'var(--theme-bg, #060d1a)' }}>
+    <div className={styles.pageContainer}>
       <Navbar />
 
-      <div className={styles.overlay} style={{ position: 'relative', minHeight: '100vh', pointerEvents: 'auto', cursor: 'default' }}>
-        <div className={styles.modalCard} style={{ animation: 'none' }}>
+      {/* 1. Backdrop (Hidden on Mobile via CSS) */}
+      <div className={styles.backgroundContent} aria-hidden="true">
+        <DestinationsContent />
+        <ScheduleSection />
+      </div>
+
+      {/* 2. Main Content Area */}
+      <div className={styles.overlay}>
+        {/* Transparent link to close (Desktop only) */}
+        <Link href="/destinations" className={styles.desktopCloseLink} />
+        
+        <div className={styles.modalCard}>
+          {/* Close button (Hidden on Mobile via CSS) */}
           <Link href="/destinations" className={styles.closeButton}>
             ✕
           </Link>
@@ -65,6 +87,8 @@ export default function DestinationPage({ params }: { params: Promise<{ slug: st
           </div>
         </div>
       </div>
+
+      {/* 3. Global Footer (Always visible at bottom) */}
       <Footer />
     </div>
   );
