@@ -77,6 +77,16 @@
     display: block;
     transform-origin: center;
 
+    @media (max-width: 1100px) {
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+    }
+
+    @media (max-width: vars.$breakpoint-md) {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+
     span {
       font-weight: 800; // Changed from 400 to 800
     }
@@ -100,9 +110,13 @@
 .links {
   display: flex;
   align-items: center;
-  gap: vars.$spacing-lg;
+  gap: vars.$spacing-md;
 
-  @media (max-width: vars.$breakpoint-md) {
+  @media (max-width: vars.$breakpoint-lg) {
+    gap: vars.$spacing-sm;
+  }
+
+  @media (max-width: 900px) {
     display: none;
   }
 
@@ -128,7 +142,7 @@
   z-index: 10001; // Higher than MobileMenu's 9999
   cursor: pointer;
 
-  @media (max-width: vars.$breakpoint-md) {
+  @media (max-width: 900px) {
     display: flex;
   }
 

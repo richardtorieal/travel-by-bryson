@@ -28,6 +28,16 @@ This specification document outlines the requirements for the Bryson Travel webs
   - **RELOCATED**: Remove the "Travel Ideas" grid from the Home page.
   - Move to a dedicated "/travel-ideas" page and add a link to the main navigation menu.
 
+- **Content Management System (CMS)**:
+  - Implement **Tina CMS** for managing destination content.
+  - All destination data must be stored as local Markdown files in `content/destinations/`.
+  - Admin dashboard accessible at `/admin` for non-technical content management.
+
+- **High-Performance Destination View**:
+  - Destinations should open in an **Intercepted Modal** over the gallery on Desktop.
+  - Support full **Framer Motion** entry and exit animations.
+  - Fallback to full-page view for direct URL access and mobile devices.
+
 ### 1.2 Form Requirements
 - **Package Selection**: Must be a "select exactly one" interaction.
 - **Contact Form Fields**: 
