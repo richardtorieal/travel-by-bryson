@@ -5,26 +5,32 @@ import Footer from '@/components/organisms/Footer/Footer';
 import DestinationsContent from '@/components/organisms/DestinationsContent/DestinationsContent';
 import ScheduleSection from '@/components/organisms/ScheduleSection/ScheduleSection';
 import Button from '@/components/atoms/Button/Button';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import { DESTINATIONS } from '@/data/destinations';
-import { use, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './DestinationBlog.module.scss';
 
-export default function DestinationPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = use(params);
+export default function DestinationPage() {
+  const params = useParams();
+  const slug = params?.slug as string;
   const destination = DESTINATIONS.find(d => d.slug === slug);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 992);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
     // Body scroll logic: only lock on desktop where it's a modal
-    const isMobile = window.innerWidth <= 992;
-    if (!isMobile) {
+    if (window.innerWidth > 992) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
     
     return () => {
+      window.removeEventListener('resize', checkMobile);
       document.body.style.overflow = 'unset';
     };
   }, []);
