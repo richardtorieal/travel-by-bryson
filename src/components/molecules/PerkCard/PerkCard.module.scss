@@ -1,10 +1,10 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as vars;
 
 .card {
-  background-color: $color-white;
-  padding: $spacing-md;
+  background-color: vars.$color-white;
+  padding: vars.$spacing-md;
   border-radius: 4px;
-  border: 1px solid $color-border;
+  border: 1px solid vars.$color-border;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
   display: flex;
@@ -14,23 +14,23 @@
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba($color-primary, 0.05);
+    box-shadow: 0 10px 20px rgba(vars.$color-primary, 0.05);
   }
 }
 
 .icon {
-  margin-bottom: $spacing-sm;
-  color: $color-accent;
+  margin-bottom: vars.$spacing-sm;
+  color: vars.$color-accent;
   font-size: 2rem;
 }
 
 .title {
-  margin-bottom: $spacing-sm;
+  margin-bottom: vars.$spacing-sm;
   font-size: 1.25rem;
-  color: $color-primary;
+  color: vars.$color-primary;
 }
 
 .description {
-  color: $color-text-muted;
+  color: vars.$color-text-muted;
   line-height: 1.6;
 }

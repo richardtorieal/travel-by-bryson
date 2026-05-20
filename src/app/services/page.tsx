@@ -1,14 +1,13 @@
 import Navbar from "@/components/organisms/Navbar/Navbar";
-import ServicesContent from "@/components/organisms/ServicesContent/ServicesContent";
-import ScheduleSection from "@/components/organisms/ScheduleSection/ScheduleSection";
+import ContactForm from "@/components/organisms/ContactForm/ContactForm";
 import Footer from "@/components/organisms/Footer/Footer";
+import { LAYOUT } from "@/constants/layout";
 
 export default function Services() {
   return (
-    <main>
+    <main style={{ paddingTop: LAYOUT.navbarHeight }}>
       <Navbar />
-      <ServicesContent />
-      <ScheduleSection />
+      <ContactForm />
       <Footer />
     </main>
   );

@@ -1,17 +1,17 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as vars;
 
 .card {
-  background-color: $color-white;
-  padding: $spacing-lg;
+  background-color: vars.$color-white;
+  padding: vars.$spacing-lg;
   border-radius: 4px;
-  border: 1px solid $color-border;
+  border: 1px solid vars.$color-border;
   display: flex;
   flex-direction: column;
 }
 
 .stars {
-  color: $color-accent;
-  margin-bottom: $spacing-sm;
+  color: vars.$color-accent;
+  margin-bottom: vars.$spacing-sm;
   font-size: 0.875rem;
 }
 
@@ -19,8 +19,8 @@
   font-style: italic;
   font-size: 1.125rem;
   line-height: 1.6;
-  margin-bottom: $spacing-md;
-  color: $color-text;
+  margin-bottom: vars.$spacing-md;
+  color: vars.$color-text;
   flex-grow: 1;
 }
 
@@ -29,12 +29,12 @@
   flex-direction: column;
 
   strong {
-    color: $color-primary;
+    color: vars.$color-primary;
     font-size: 1rem;
   }
 
   span {
-    color: $color-text-muted;
+    color: vars.$color-text-muted;
     font-size: 0.875rem;
   }
 }

@@ -1,59 +1,73 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styles from './VideoHero.module.scss';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useMotionValueEvent } from 'framer-motion';
 import Container from '../../atoms/Container/Container';
 import Button from '../../atoms/Button/Button';
-import Link from 'next/link';
+
+const TOTAL_FRAMES = 144;
 
 const VideoHero: React.FC = () => {
-  const ref = useRef(null);
+  const containerRef = useRef(null);
+  const [frameIndex, setFrameIndex] = useState(1);
+  
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: containerRef,
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  // Apply spring smoothing to the raw scroll value
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  const y = useTransform(smoothProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(smoothProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(smoothProgress, [0, 1], [1, 1.1]);
+
+  // Update frame index based on scroll progress
+  useMotionValueEvent(smoothProgress, "change", (latest) => {
+    const index = Math.min(
+      TOTAL_FRAMES,
+      Math.max(1, Math.floor(latest * TOTAL_FRAMES) + 1)
+    );
+    if (index !== frameIndex) {
+      setFrameIndex(index);
+    }
+  });
+
+  // Preload frames for smooth playback
+  useEffect(() => {
+    for (let i = 1; i <= TOTAL_FRAMES; i++) {
+      const img = new Image();
+      img.src = `/assets/como-frames/frame_${i.toString().padStart(3, '0')}.jpg`;
+    }
+  }, []);
+
+  const currentFramePath = `/assets/como-frames/frame_${frameIndex.toString().padStart(3, '0')}.jpg`;
 
   return (
-    <div ref={ref} className={styles.heroWrapper}>
+    <div ref={containerRef} className={styles.heroWrapper}>
       <motion.div style={{ scale }} className={styles.videoPlaceholder}>
         <div className={styles.overlay} />
-        {/* In production, replace with <video src="/hero.mp4" autoPlay muted loop playsInline /> */}
-        <div className={styles.tempMedia} />
+        <img 
+          src={currentFramePath} 
+          alt="Lake Como Dolly Zoom"
+          className={styles.video}
+          style={{ objectFit: 'cover' }}
+        />
       </motion.div>
 
       <Container>
         <motion.div style={{ y, opacity }} className={styles.content}>
-          <span className={styles.subtitle}>Luxury Hotel Insider</span>
-          <h1 className={styles.title}>
-            The New Standard <br />
-            <span>of Bespoke Travel</span>
-          </h1>
-          <p className={styles.description}>
-            Unlocking world-class experiences through 6+ years <br />
-            of high-end hospitality expertise.
-          </p>
           <div className={styles.actions}>
-            <Link href="/contact">
-              <Button variant="accent" size="lg">Plan Your Journey</Button>
-            </Link>
+            <Button variant="primary" size="lg" className={styles.heroButton} href="/contact">Plan Your Journey</Button>
           </div>
         </motion.div>
       </Container>
-
-      <motion.div 
-        style={{ opacity }}
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className={styles.scrollIndicator}
-      >
-        <span>Discover More</span>
-        <div className={styles.line} />
-      </motion.div>
     </div>
   );
 };

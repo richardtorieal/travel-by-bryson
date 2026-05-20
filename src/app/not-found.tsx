@@ -3,16 +3,17 @@ import Navbar from '@/components/organisms/Navbar/Navbar';
 import Footer from '@/components/organisms/Footer/Footer';
 import Container from '@/components/atoms/Container/Container';
 import Section from '@/components/atoms/Section/Section';
+import { LAYOUT } from '@/constants/layout';
 
 export default function NotFound() {
   return (
-    <main>
+    <main style={{ paddingTop: LAYOUT.navbarHeight }}>
       <Navbar />
       <Section variant="white" padding="xl">
         <Container>
           <div style={{ 
             textAlign: 'center', 
-            padding: '4rem 0',
+            padding: `${LAYOUT.spacing.lg} 0`,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -21,18 +22,18 @@ export default function NotFound() {
           }}>
             <h1 style={{ 
               fontSize: '4rem', 
-              color: '#1A2B3C', 
-              marginBottom: '1rem',
-              fontFamily: 'serif' 
+              color: '#262E23', // Brand Dark Green
+              marginBottom: LAYOUT.spacing.sm,
+              fontFamily: 'var(--font-playfair)' 
             }}>404</h1>
             <h2 style={{ 
               fontSize: '1.5rem', 
-              color: '#1A2B3C', 
-              marginBottom: '2rem' 
+              color: '#262E23', 
+              marginBottom: LAYOUT.spacing.md 
             }}>Page Not Found</h2>
             <p style={{ 
               fontSize: '1.125rem', 
-              color: '#5D6D7E', 
+              color: LAYOUT.colors.mutedText, 
               maxWidth: '600px', 
               marginBottom: '3rem',
               lineHeight: '1.6'
@@ -43,7 +44,7 @@ export default function NotFound() {
             <Link 
               href="/" 
               style={{
-                backgroundColor: '#1A2B3C',
+                backgroundColor: '#262E23',
                 color: '#FFFFFF',
                 padding: '1rem 2.5rem',
                 textDecoration: 'none',

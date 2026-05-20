@@ -1,32 +1,77 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as vars;
 
-.header {
+.intro {
   text-align: center;
-  max-width: 700px;
-  margin: 0 auto $spacing-xl;
+  margin-bottom: vars.$spacing-xl;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.title {
-  font-size: $font-size-h2;
-  margin-bottom: $spacing-sm;
+.introTitle {
+  font-size: vars.$font-size-h2;
+  font-weight: 700;
+  line-height: 1.2;
+  color: vars.$color-primary;
+  margin-bottom: vars.$spacing-sm;
+
+  em {
+    font-family: vars.$font-heading;
+    font-style: italic;
+    font-weight: 400;
+  }
 }
 
-.subtitle {
-  font-size: 1.125rem;
-  color: $color-text-muted;
+.introSubtitle {
+  font-size: 1.25rem;
+  color: vars.$color-text-muted;
   line-height: 1.6;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: $spacing-md;
+  grid-template-columns: repeat(3, 1fr); // 3 columns for 3 cards
+  gap: vars.$spacing-lg; // Increased gap for better spacing
+  width: 100%;
 
-  @media (max-width: $breakpoint-lg) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: $breakpoint-sm) {
+  @media (max-width: vars.$breakpoint-md) {
     grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
   }
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: vars.$spacing-sm;
+  background: vars.$color-white;
+  padding: vars.$spacing-xl vars.$spacing-md;
+  border-radius: vars.$border-radius-lg;
+  box-shadow: vars.$shadow-sm;
+  transition: vars.$transition-smooth;
+  text-align: center;
+  height: 100%; // Ensure equal height if text varies
+  width: 100%; // Take up full column width
+
+  &:hover {
+    box-shadow: vars.$shadow-md;
+    transform: translateY(-4px);
+  }
+}
+
+.value {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: vars.$color-primary;
+  line-height: 1;
+  font-family: vars.$font-body;
+}
+
+.label {
+  font-size: 0.9rem;
+  color: vars.$color-text-muted;
+  line-height: 1.6;
+  margin: 0 auto;
 }

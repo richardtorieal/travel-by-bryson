@@ -1,83 +1,105 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as vars;
 
 .footer {
-  background-color: $color-white;
-  padding: $spacing-xl 0 $spacing-md;
-  border-top: 1px solid $color-border;
+  background-color: vars.$color-dark-green;
+  color: white;
+  padding: vars.$spacing-xl 0 vars.$spacing-md;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: $spacing-xl;
-  margin-bottom: $spacing-xl;
+  grid-template-columns: 1.5fr repeat(2, 1fr);
+  gap: vars.$spacing-xl;
+  margin-bottom: vars.$spacing-xl;
 
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: vars.$breakpoint-md) {
     grid-template-columns: 1fr;
-    gap: $spacing-lg;
+    gap: vars.$spacing-lg;
   }
 }
 
 .brand {
   .logo {
-    font-family: var(--font-playfair);
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 0.1em;
-    color: $color-primary;
-    margin-bottom: $spacing-sm;
-
+    margin-bottom: vars.$spacing-sm;
+    color: white;
+    
     span {
-      color: $color-accent;
-      font-weight: 300;
+      color: vars.$color-logo-sand;
     }
   }
 
   .description {
-    color: $color-text-muted;
+    font-size: 0.95rem;
     line-height: 1.6;
-    max-width: 300px;
+    color: rgba(white, 0.7);
+    max-width: 320px;
   }
 }
 
 .column {
   h3 {
-    font-size: 1.125rem;
-    margin-bottom: $spacing-md;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
+    color: vars.$color-logo-sand;
+    margin-bottom: vars.$spacing-md;
+    font-weight: 600;
   }
 
   a {
     display: block;
-    margin-bottom: $spacing-xs;
-    color: $color-text-muted;
-    font-size: 0.875rem;
-    transition: color 0.3s ease;
+    font-size: 1rem; // Base size for all footer links
+    color: rgba(white, 0.8);
+    margin-bottom: vars.$spacing-sm;
+    transition: vars.$transition-smooth;
 
     &:hover {
-      color: $color-accent;
+      color: white;
+      transform: translateX(5px);
+    }
+  }
+
+  .socialLink {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: vars.$spacing-sm;
+    font-size: 1rem; // Force consistency
+
+    span {
+      font-size: 1rem;
+    }
+
+    svg {
+      flex-shrink: 0;
     }
   }
 }
 
 .bottom {
-  border-top: 1px solid rgba($color-primary, 0.05);
-  padding-top: $spacing-md;
+  border-top: 1px solid rgba(white, 0.1);
+  padding-top: vars.$spacing-md;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: $color-text-muted;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
+  color: rgba(white, 0.5);
 
-  @media (max-width: $breakpoint-sm) {
+  @media (max-width: vars.$breakpoint-sm) {
     flex-direction: column;
-    gap: $spacing-sm;
+    gap: vars.$spacing-sm;
     text-align: center;
   }
 }
 
 .legal {
   display: flex;
-  gap: $spacing-md;
+  gap: vars.$spacing-md;
+
+  a:hover {
+    color: white;
+  }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Footer.module.scss';
 import Container from '../../atoms/Container/Container';
 import Link from 'next/link';
+import { Camera, Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -18,16 +19,22 @@ const Footer: React.FC = () => {
             </p>
           </div>
           <div className={styles.column}>
-            <h3>Explore</h3>
+            <h3>Explore <em>Collection</em></h3>
             <Link href="/about">About Bryson</Link>
-            <Link href="/services">Our Services</Link>
+            <Link href="/packages">Service Packages</Link>
             <Link href="/destinations">Destinations</Link>
           </div>
           <div className={styles.column}>
-            <h3>Connect</h3>
-            <a href="mailto:hello@brysonadams.travel">hello@brysonadams.travel</a>
-            <a href="https://instagram.com/brysonadams" target="_blank" rel="noreferrer">Instagram</a>
-            <Link href="/contact">Contact Us</Link>
+            <h3>Connect <em>Directly</em></h3>
+            <a href="mailto:bryson.adams@fora.travel" className={styles.socialLink}>
+              <Mail size={16} />
+              <span>Email</span>
+            </a>
+            <a href="https://www.instagram.com/travel.by.bryson/" target="_blank" rel="noreferrer" className={styles.socialLink}>
+              <Camera size={16} />
+              <span>Instagram</span>
+            </a>
+            <Link href="/contact" className={styles.socialLink}>Contact Us</Link>
           </div>
         </div>
         <div className={styles.bottom}>

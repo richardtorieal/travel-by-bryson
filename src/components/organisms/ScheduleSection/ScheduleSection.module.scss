@@ -1,64 +1,76 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as vars;
 
 .wrapper {
   display: flex;
   align-items: center;
-  gap: $spacing-xl;
+  justify-content: space-between;
+  gap: vars.$spacing-xl;
 
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: vars.$breakpoint-md) {
     flex-direction: column;
     text-align: center;
   }
 }
 
-.content {
+.header {
   flex: 1;
 }
 
 .title {
-  font-size: $font-size-h1;
-  margin-bottom: $spacing-md;
-  line-height: 1.1;
+  font-size: vars.$font-size-h2;
+  margin-bottom: vars.$spacing-md;
+  line-height: 1.2;
+  font-weight: 700;
+  color: vars.$color-primary;
+
+  em {
+    font-family: vars.$font-heading;
+    font-style: italic;
+    font-weight: 400;
+  }
 }
 
-.description {
-  font-size: 1.25rem;
-  color: $color-text-muted;
-  margin-bottom: $spacing-lg;
-  line-height: 1.6;
+.subtitle {
+  font-size: 1.125rem;
+  color: vars.$color-text-muted;
+  margin-bottom: vars.$spacing-lg;
+  line-height: 1.8;
+  max-width: 600px;
 }
 
 .ctaCard {
   flex: 0 0 400px;
-  background-color: $color-white;
-  padding: $spacing-lg;
-  border-radius: 4px;
-  border-left: 5px solid $color-accent;
-  box-shadow: 0 20px 40px rgba($color-primary, 0.1);
+  background-color: vars.$color-white;
+  padding: vars.$spacing-lg;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+  border: 1px solid vars.$color-border;
 
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: vars.$breakpoint-md) {
     flex: 1;
     width: 100%;
     text-align: left;
   }
 
   h3 {
-    margin-bottom: $spacing-md;
+    margin-bottom: vars.$spacing-md;
     font-size: 1.5rem;
+    color: vars.$color-primary;
   }
 
   ul {
     li {
-      margin-bottom: $spacing-sm;
-      color: $color-text-muted;
+      margin-bottom: vars.$spacing-sm;
+      color: vars.$color-text-muted;
       position: relative;
-      padding-left: $spacing-md;
+      padding-left: vars.$spacing-md;
+      font-size: 0.875rem;
 
       &::before {
         content: '✓';
         position: absolute;
         left: 0;
-        color: $color-accent;
+        color: vars.$color-accent;
         font-weight: bold;
       }
     }

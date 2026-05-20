@@ -1,20 +1,29 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as vars;
 
 .section {
+  position: relative;
   width: 100%;
 }
 
-.white { background-color: $color-white; }
-.sand { background-color: $color-background; }
-.light { background-color: lighten($color-background, 2%); }
+// Padding variants
+.none { padding: 0; }
+.sm { padding: vars.$spacing-sm 0; }
+.md { padding: vars.$spacing-md 0; }
+.lg { padding: vars.$spacing-lg 0; }
+.xl { padding: vars.$spacing-xl 0; }
 
-.padding-none { padding: 0; }
-.padding-sm { padding: $spacing-sm 0; }
-.padding-md { padding: $spacing-md 0; }
-.padding-lg { padding: $spacing-lg 0; }
-.padding-xl { padding: $spacing-xl 0; }
+// New standard semantic spacing
+.section-std { padding: vars.$section-spacing-std 0; }
+.section-compact { padding: vars.$section-spacing-compact 0; }
 
-@media (max-width: $breakpoint-md) {
-  .padding-lg { padding: $spacing-md 0; }
-  .padding-xl { padding: $spacing-lg 0; }
+// Color variants
+.white { background-color: vars.$color-white; }
+.light { background-color: vars.$color-background-soft; }
+.sand { background-color: vars.$color-logo-sand; }
+.dark { background-color: vars.$color-primary; color: vars.$color-white; }
+.transparent { background-color: transparent; }
+
+@media (max-width: vars.$breakpoint-md) {
+  .xl { padding: vars.$spacing-lg 0; }
+  .section-std { padding: vars.$spacing-lg 0; }
 }

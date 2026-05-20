@@ -1,29 +1,23 @@
+'use client';
+
 import React from 'react';
 import styles from './PerksGrid.module.scss';
 import Container from '../../atoms/Container/Container';
 import Section from '../../atoms/Section/Section';
-import PerkCard from '../../molecules/PerkCard/PerkCard';
+import { motion } from 'framer-motion';
 
-const PERKS = [
+const STATS = [
   {
-    title: 'Room Upgrades',
-    description: 'Complimentary room upgrades at check-in, subject to availability.',
-    icon: '✨'
+    value: '100%',
+    label: '5 Star reviews'
   },
   {
-    title: 'Daily Breakfast',
-    description: 'Complimentary daily breakfast for two at over 8,200 luxury hotels.',
-    icon: '☕'
+    value: '40',
+    label: 'Trips Planned'
   },
   {
-    title: '$100 Resort Credit',
-    description: 'Special resort or spa credits to enhance your stay.',
-    icon: '💎'
-  },
-  {
-    title: 'VIP Status',
-    description: 'Early check-in and late check-out to make the most of your trip.',
-    icon: '👑'
+    value: '4,500+',
+    label: 'Partners offering VIP treatment and perks'
   }
 ];
 
@@ -31,16 +25,27 @@ const PerksGrid: React.FC = () => {
   return (
     <Section variant="white" padding="xl">
       <Container>
-        <div className={styles.header}>
-          <h2 className={styles.title}>The Insider Advantage</h2>
-          <p className={styles.subtitle}>
-            Booking through a professional advisor unlocks exclusive benefits 
-            that you simply can&apos;t find on your own.
+        <motion.div 
+          className={styles.intro}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <h2 className={styles.introTitle}>
+            The New <em>Standard</em> <br />
+            of Bespoke Travel
+          </h2>
+          <p className={styles.introSubtitle}>
+            Save hours with our local experts and curated plans.
           </p>
-        </div>
+        </motion.div>
         <div className={styles.grid}>
-          {PERKS.map((perk, index) => (
-            <PerkCard key={index} {...perk} />
+          {STATS.map((stat, index) => (
+            <div key={index} className={styles.statItem}>
+              <span className={styles.value}>{stat.value}</span>
+              <p className={styles.label}>{stat.label}</p>
+            </div>
           ))}
         </div>
       </Container>

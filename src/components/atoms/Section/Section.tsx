@@ -3,9 +3,9 @@ import styles from './Section.module.scss';
 
 interface SectionProps {
   children: React.ReactNode;
-  variant?: 'light' | 'sand' | 'white';
+  variant?: 'light' | 'sand' | 'white' | 'transparent' | 'dark';
   className?: string;
-  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'section-std' | 'section-compact';
 }
 
 const Section: React.FC<SectionProps> = ({ 
@@ -15,7 +15,7 @@ const Section: React.FC<SectionProps> = ({
   padding = 'md'
 }) => {
   return (
-    <section className={`${styles.section} ${styles[variant]} ${styles[`padding-${padding}`]} ${className}`}>
+    <section className={`${styles.section} ${styles[variant]} ${styles[padding]} ${className}`}>
       {children}
     </section>
   );
