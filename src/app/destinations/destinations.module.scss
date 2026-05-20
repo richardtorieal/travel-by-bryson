@@ -1,0 +1,18 @@
+@use "../../styles/variables" as vars;
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.mainContent {
+  display: block;
+}
+
+.modalActive {
+  @media (max-width: vars.$breakpoint-lg) {
+    .mainContent {
+      display: none;
+    }
+  }
+}
