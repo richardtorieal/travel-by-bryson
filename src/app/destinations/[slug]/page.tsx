@@ -2,16 +2,11 @@
 
 import Navbar from '@/components/organisms/Navbar/Navbar';
 import Footer from '@/components/organisms/Footer/Footer';
-import DestinationsContent from '@/components/organisms/DestinationsContent/DestinationsContent';
-import ScheduleSection from '@/components/organisms/ScheduleSection/ScheduleSection';
 import Button from '@/components/atoms/Button/Button';
 import { notFound, useParams } from 'next/navigation';
 import { DESTINATIONS } from '@/data/destinations';
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './DestinationBlog.module.scss';
-
-import { ArrowLeft } from 'lucide-react';
 
 export default function DestinationPage() {
   const params = useParams();
@@ -27,11 +22,6 @@ export default function DestinationPage() {
       <Navbar />
 
       <div className={styles.overlay}>
-        <Link href="/destinations" className={styles.backButton}>
-          <ArrowLeft size={18} />
-          <span>Back to Destinations</span>
-        </Link>
-        
         <div className={styles.modalCard}>
           <div className={styles.imageSection}>
             <img 
@@ -41,6 +31,10 @@ export default function DestinationPage() {
             />
             <div className={styles.badge}>{destination.type}</div>
           </div>
+
+          <Link href="/destinations" className={styles.backButton}>
+            Back to Destinations
+          </Link>
 
           <div className={styles.contentSection}>
             <span className={styles.region}>{destination.region}</span>
