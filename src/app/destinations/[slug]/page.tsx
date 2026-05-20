@@ -11,6 +11,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './DestinationBlog.module.scss';
 
+import { ArrowLeft } from 'lucide-react';
+
 export default function DestinationPage() {
   const params = useParams();
   const slug = params?.slug as string;
@@ -25,6 +27,11 @@ export default function DestinationPage() {
       <Navbar />
 
       <div className={styles.overlay}>
+        <Link href="/destinations" className={styles.backButton}>
+          <ArrowLeft size={18} />
+          <span>Back to Destinations</span>
+        </Link>
+        
         <div className={styles.modalCard}>
           <div className={styles.imageSection}>
             <img 

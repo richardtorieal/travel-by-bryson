@@ -7,6 +7,8 @@ import Button from '@/components/atoms/Button/Button';
 import { DESTINATIONS } from '@/data/destinations';
 import Navbar from '@/components/organisms/Navbar/Navbar';
 import Footer from '@/components/organisms/Footer/Footer';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 import styles from './InterceptedModal.module.scss';
 
 export default function InterceptedDestinationModal() {
@@ -52,6 +54,10 @@ export default function InterceptedDestinationModal() {
       <div className={styles.pageContainer}>
         <Navbar />
         <div className={styles.overlay}>
+          <Link href="/destinations" className={styles.backButton}>
+            <ArrowLeft size={18} />
+            <span>Back to Destinations</span>
+          </Link>
           <div className={styles.modalCard}>
             <div className={styles.imageSection}>
               <img src={destination.image} alt={destination.name} className={styles.image} />
