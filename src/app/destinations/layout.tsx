@@ -1,7 +1,7 @@
 'use client';
 
 import React from "react";
-import { usePathname } from "next/navigation";
+import { useSelectedLayoutSegment } from "next/navigation";
 import styles from "./destinations.module.scss";
 
 export default function DestinationsLayout({
@@ -11,11 +11,10 @@ export default function DestinationsLayout({
   children: React.ReactNode;
   modal: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  
-  // We determine if a modal is active by checking the pathname.
-  // If we are not on the base /destinations route, we assume a parallel route is active.
-  const modalActive = pathname !== '/destinations';
+  // useSelectedLayoutSegment('modal') will return the segment name (e.g. 'lisbon')
+  // if the parallel route is active, otherwise null.
+  const modalSegment = useSelectedLayoutSegment('modal');
+  const modalActive = !!modalSegment;
 
   return (
     <div className={`${styles.container} ${modalActive ? styles.modalActive : ''}`}>

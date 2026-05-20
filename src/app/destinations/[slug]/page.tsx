@@ -15,25 +15,6 @@ export default function DestinationPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const destination = DESTINATIONS.find(d => d.slug === slug);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 992);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    // Body scroll logic: only lock on desktop where it's a modal
-    if (window.innerWidth > 992) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-      document.body.style.overflow = 'unset';
-    };
-  }, []);
 
   if (!destination) {
     notFound();
@@ -43,23 +24,8 @@ export default function DestinationPage() {
     <div className={styles.pageContainer}>
       <Navbar />
 
-      {/* 1. Backdrop (Hidden on Mobile via CSS) */}
-      <div className={styles.backgroundContent} aria-hidden="true">
-        <DestinationsContent />
-        <ScheduleSection />
-      </div>
-
-      {/* 2. Main Content Area */}
       <div className={styles.overlay}>
-        {/* Transparent link to close (Desktop only) */}
-        <Link href="/destinations" className={styles.desktopCloseLink} />
-        
         <div className={styles.modalCard}>
-          {/* Close button (Hidden on Mobile via CSS) */}
-          <Link href="/destinations" className={styles.closeButton}>
-            ✕
-          </Link>
-
           <div className={styles.imageSection}>
             <img 
               src={destination.image} 
@@ -94,7 +60,6 @@ export default function DestinationPage() {
         </div>
       </div>
 
-      {/* 3. Global Footer (Always visible at bottom) */}
       <Footer />
     </div>
   );

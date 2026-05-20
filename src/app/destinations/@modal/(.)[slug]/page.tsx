@@ -7,7 +7,7 @@ import Button from '@/components/atoms/Button/Button';
 import { DESTINATIONS } from '@/data/destinations';
 import Navbar from '@/components/organisms/Navbar/Navbar';
 import Footer from '@/components/organisms/Footer/Footer';
-import styles from '../../[slug]/DestinationBlog.module.scss';
+import styles from './InterceptedModal.module.scss';
 
 export default function InterceptedDestinationModal() {
   const router = useRouter();
