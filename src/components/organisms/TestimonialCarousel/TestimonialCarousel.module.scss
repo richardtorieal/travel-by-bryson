@@ -1,0 +1,124 @@
+@use "../../../styles/variables" as vars;
+
+.header {
+  text-align: center;
+  margin-bottom: vars.$spacing-xl;
+}
+
+.subtitle {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: vars.$color-accent;
+  font-weight: 700;
+  font-size: 0.75rem;
+  margin-bottom: vars.$spacing-sm;
+}
+
+.title {
+  font-size: vars.$font-size-h2;
+  font-weight: 700;
+  color: vars.$color-primary;
+
+  em {
+    font-family: vars.$font-heading;
+    font-style: italic;
+    font-weight: 400;
+  }
+}
+
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$spacing-lg;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+
+  @media (max-width: vars.$breakpoint-md) {
+    gap: vars.$spacing-sm;
+  }
+}
+
+.stage {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  min-height: 400px; // Ensure space for tallest content
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: vars.$breakpoint-md) {
+    min-height: 450px;
+  }
+}
+
+.cardWrapper {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navButton {
+  background: white;
+  border: 1px solid rgba(vars.$color-primary, 0.1);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: vars.$color-primary;
+  cursor: pointer;
+  transition: vars.$transition-smooth;
+  z-index: 10;
+  flex-shrink: 0;
+  box-shadow: vars.$shadow-sm;
+
+  &:hover {
+    background: vars.$color-primary;
+    color: white;
+    box-shadow: vars.$shadow-md;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: vars.$breakpoint-md) {
+    display: none; // Hide on mobile in favor of dots and swipe
+  }
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: vars.$spacing-xl;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(vars.$color-primary, 0.15);
+  border: none;
+  cursor: pointer;
+  transition: vars.$transition-smooth;
+  padding: 0;
+
+  &.active {
+    background: vars.$color-accent;
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  &:hover:not(.active) {
+    background: rgba(vars.$color-primary, 0.3);
+  }
+}

@@ -1,7 +1,7 @@
 import Navbar from "@/components/organisms/Navbar/Navbar";
 import VideoHero from "@/components/organisms/VideoHero/VideoHero";
 import PerksGrid from "@/components/organisms/PerksGrid/PerksGrid";
-import TestimonialGrid from "@/components/organisms/TestimonialGrid/TestimonialGrid";
+import TestimonialCarousel from "@/components/organisms/TestimonialCarousel/TestimonialCarousel";
 import ScheduleSection from "@/components/organisms/ScheduleSection/ScheduleSection";
 import Footer from "@/components/organisms/Footer/Footer";
 
@@ -11,7 +11,7 @@ export default function Home() {
       <Navbar />
       <VideoHero />
       <PerksGrid />
-      <TestimonialGrid />
+      <TestimonialCarousel />
       <ScheduleSection />
       <Footer />
     </main>
