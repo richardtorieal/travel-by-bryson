@@ -30,30 +30,29 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); // 3 columns for 3 cards
-  gap: vars.$spacing-lg; // Increased gap for better spacing
+  grid-template-columns: repeat(4, 1fr);
+  gap: vars.$spacing-md;
   width: 100%;
 
-  @media (max-width: vars.$breakpoint-md) {
+  @media (max-width: vars.$breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: vars.$breakpoint-sm) {
     grid-template-columns: 1fr;
-    max-width: 400px;
-    margin: 0 auto;
   }
 }
 
 .statItem {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: vars.$spacing-sm;
   background: vars.$color-white;
-  padding: vars.$spacing-xl vars.$spacing-md;
+  padding: vars.$spacing-lg vars.$spacing-md;
   border-radius: vars.$border-radius-lg;
   box-shadow: vars.$shadow-sm;
   transition: vars.$transition-smooth;
   text-align: center;
-  height: 100%; // Ensure equal height if text varies
-  width: 100%; // Take up full column width
 
   &:hover {
     box-shadow: vars.$shadow-md;

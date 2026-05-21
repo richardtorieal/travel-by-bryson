@@ -45,13 +45,13 @@
   flex: 1;
   overflow: hidden;
   position: relative;
-  min-height: 400px;
+  min-height: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
 
   @media (max-width: vars.$breakpoint-md) {
-    min-height: 450px;
+    min-height: 400px;
   }
 }
 
