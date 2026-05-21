@@ -13,8 +13,8 @@ const TestimonialCarousel: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  // We use the full list of reviews now
-  const reviews = ALL_REVIEWS;
+  // Reverting to the set of 3 reviews
+  const reviews = ALL_REVIEWS.slice(0, 3);
 
   const nextStep = () => {
     setDirection(1);
@@ -51,7 +51,7 @@ const TestimonialCarousel: React.FC = () => {
           <h2 className={styles.title}>What Our <em>Clients</em> Say</h2>
         </div>
 
-        <div className={styles.carouselWrapper}>
+        <div className={styles.carouselContainer}>
           <button 
             className={`${styles.navButton} ${styles.prev}`} 
             onClick={prevStep} 

@@ -27,18 +27,22 @@
   }
 }
 
-.carouselWrapper {
-  position: relative;
-  max-width: 1200px;
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$spacing-lg;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 60px; // Space for buttons on the edges
+  position: relative;
 
   @media (max-width: vars.$breakpoint-md) {
-    padding: 0;
+    gap: vars.$spacing-sm;
   }
 }
 
 .stage {
+  flex: 1;
   overflow: hidden;
   position: relative;
   min-height: 400px;
@@ -47,7 +51,7 @@
   justify-content: center;
 
   @media (max-width: vars.$breakpoint-md) {
-    min-height: 500px; // Extra height for wrapped mobile text
+    min-height: 450px;
   }
 }
 
@@ -64,13 +68,10 @@
 }
 
 .navButton {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   background: white;
   border: 1px solid rgba(vars.$color-primary, 0.1);
-  width: 54px;
-  height: 54px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -78,18 +79,16 @@
   color: vars.$color-primary;
   cursor: pointer;
   transition: vars.$transition-smooth;
-  z-index: 20;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  flex-shrink: 0;
+  box-shadow: vars.$shadow-sm;
 
   &:hover {
     background: vars.$color-primary;
     color: white;
     box-shadow: vars.$shadow-md;
-    transform: translateY(-50%) scale(1.05);
+    transform: translateY(-2px);
   }
-
-  &.prev { left: 0; }
-  &.next { right: 0; }
 
   @media (max-width: vars.$breakpoint-md) {
     display: none;
@@ -107,7 +106,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(vars.$color-primary, 0.1);
+  background: rgba(vars.$color-primary, 0.15);
   border: none;
   cursor: pointer;
   transition: vars.$transition-smooth;
