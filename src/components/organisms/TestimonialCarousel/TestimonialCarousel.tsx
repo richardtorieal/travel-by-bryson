@@ -38,18 +38,21 @@ const TestimonialCarousel: React.FC = () => {
 
   const variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 50 : -50,
-      opacity: 0
+      x: direction > 0 ? 500 : -500,
+      opacity: 0,
+      scale: 0.95
     }),
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
+      scale: 1
     },
     exit: (direction: number) => ({
       zIndex: 0,
-      x: direction < 0 ? 50 : -50,
-      opacity: 0
+      x: direction < 0 ? 500 : -500,
+      opacity: 0,
+      scale: 0.95
     })
   };
 
@@ -84,8 +87,8 @@ const TestimonialCarousel: React.FC = () => {
                 dragElastic={1}
                 onDragEnd={handleDragEnd}
                 transition={{
-                  x: { type: "tween", duration: 0.4, ease: "easeOut" },
-                  opacity: { duration: 0.4, ease: "easeInOut" }
+                  x: { type: "spring", stiffness: 250, damping: 30, mass: 0.8 },
+                  opacity: { duration: 0.3 }
                 }}
                 className={styles.cardWrapper}
                 style={{ cursor: 'grab', touchAction: 'none' }}
