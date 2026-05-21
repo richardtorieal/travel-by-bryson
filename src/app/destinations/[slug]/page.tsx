@@ -2,9 +2,13 @@
 
 import Navbar from '@/components/organisms/Navbar/Navbar';
 import Footer from '@/components/organisms/Footer/Footer';
+import DestinationsContent from '@/components/organisms/DestinationsContent/DestinationsContent';
+import ScheduleSection from '@/components/organisms/ScheduleSection/ScheduleSection';
 import Button from '@/components/atoms/Button/Button';
 import { notFound, useParams } from 'next/navigation';
 import { DESTINATIONS } from '@/data/destinations';
+import { useState, useEffect } from 'react';
+import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import styles from './DestinationBlog.module.scss';
 
@@ -12,17 +16,59 @@ export default function DestinationPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const destination = DESTINATIONS.find(d => d.slug === slug);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    
+    // Body scroll logic: only lock on desktop where it's a modal
+    if (window.innerWidth > 992) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
+
+  const handleBack = () => {
+    // Forced hard navigation for mobile to ensure clean gallery state
+    if (window.innerWidth <= 992) {
+      window.location.href = '/destinations';
+    } else {
+      window.location.href = '/destinations';
+    }
+  };
 
   if (!destination) {
     notFound();
   }
 
+  if (!mounted) return null;
+
   return (
     <div className={styles.pageContainer}>
       <Navbar />
 
+      {/* 1. Backdrop (Hidden on Mobile via CSS) */}
+      <div className={styles.backgroundContent} aria-hidden="true">
+        <DestinationsContent />
+        <ScheduleSection />
+      </div>
+
+      {/* 2. Main Content Area */}
       <div className={styles.overlay}>
+        {/* Transparent link to close (Desktop only) */}
+        <Link href="/destinations" className={styles.desktopCloseLink} />
+        
         <div className={styles.modalCard}>
+          {/* Close button (Hidden on Mobile via CSS) */}
+          <Link href="/destinations" className={styles.closeButton}>
+            ✕
+          </Link>
+
           <div className={styles.imageSection}>
             <img 
               src={destination.image} 
@@ -32,9 +78,12 @@ export default function DestinationPage() {
             <div className={styles.badge}>{destination.type}</div>
           </div>
 
-          <Link href="/destinations" className={styles.backButton}>
-            Back to Destinations
-          </Link>
+          <button 
+            onClick={handleBack} 
+            className={styles.backButton}
+          >
+            <ArrowLeft size={16} /> Back to Destinations
+          </button>
 
           <div className={styles.contentSection}>
             <span className={styles.region}>{destination.region}</span>
@@ -61,6 +110,7 @@ export default function DestinationPage() {
         </div>
       </div>
 
+      {/* 3. Global Footer (Always visible at bottom) */}
       <Footer />
     </div>
   );

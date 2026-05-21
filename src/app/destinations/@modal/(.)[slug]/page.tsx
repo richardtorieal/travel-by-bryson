@@ -3,6 +3,7 @@
 import { useRouter, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft } from 'lucide-react';
 import Button from '@/components/atoms/Button/Button';
 import { DESTINATIONS } from '@/data/destinations';
 import Navbar from '@/components/organisms/Navbar/Navbar';
@@ -39,10 +40,16 @@ export default function InterceptedDestinationModal() {
   }, []);
 
   const handleClose = () => {
+    document.body.style.overflow = 'unset';
     setIsClosing(true);
     setTimeout(() => {
       router.back();
     }, 400); 
+  };
+
+  const handleMobileBack = () => {
+    // Forced hard navigation for mobile to ensure clean gallery state
+    window.location.href = '/destinations';
   };
 
   if (!destination || !mounted) return null;
@@ -59,9 +66,12 @@ export default function InterceptedDestinationModal() {
               <div className={styles.badge}>{destination.type}</div>
             </div>
 
-            <Link href="/destinations" className={styles.backButton}>
-              Back to Destinations
-            </Link>
+            <button 
+              onClick={handleMobileBack} 
+              className={styles.backButton}
+            >
+              <ArrowLeft size={16} /> Back to Destinations
+            </button>
 
             <div className={styles.contentSection}>
               <span className={styles.region}>{destination.region}</span>

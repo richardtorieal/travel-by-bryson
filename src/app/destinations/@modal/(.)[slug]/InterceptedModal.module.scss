@@ -38,8 +38,8 @@
   @media (max-width: vars.$breakpoint-lg) {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: vars.$spacing-lg 0;
+    justify-content: flex-start; // Left align content
+    padding: vars.$spacing-lg vars.$spacing-md; // Add horizontal padding
     color: vars.$color-primary;
     text-decoration: none;
     font-size: 0.75rem;
@@ -49,9 +49,19 @@
     transition: vars.$transition-smooth;
     width: 100%;
     background: transparent;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      margin-right: 8px;
+      transition: transform 0.3s ease;
+    }
 
     &:hover {
       opacity: 0.7;
+      svg {
+        transform: translateX(-4px);
+      }
     }
   }
 }

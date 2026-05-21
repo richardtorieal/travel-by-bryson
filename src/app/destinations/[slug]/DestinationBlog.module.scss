@@ -8,20 +8,110 @@
   padding-top: vars.$navbar-height;
 }
 
-// Background gallery logic is removed as this is now a standalone page
-
-.overlay {
-  // Standalone page look on all screens
-  position: relative;
-  background: none;
-  backdrop-filter: none;
-  padding: vars.$spacing-xl 0;
-  display: block;
-  z-index: 1;
-  overflow-y: visible;
+.backgroundContent {
+  filter: blur(2px);
+  opacity: 0.6;
+  pointer-events: none;
+  user-select: none;
 
   @media (max-width: vars.$breakpoint-lg) {
+    display: none; // Regular page on mobile, no background gallery
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(vars.$color-primary, 0.65);
+  backdrop-filter: blur(8px);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: vars.$spacing-md;
+  padding-top: vars.$navbar-height;
+  overflow-y: auto;
+
+  @media (max-width: vars.$breakpoint-lg) {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: none;
+    backdrop-filter: none;
     padding: 0;
+    padding-top: 0;
+    display: block;
+    z-index: 1;
+    overflow-y: visible;
+  }
+}
+
+.desktopCloseLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+
+  @media (max-width: vars.$breakpoint-lg) {
+    display: none;
+  }
+}
+
+.modalCard {
+  background-color: vars.$color-white;
+  width: 95%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px -12px rgba(0, 0, 0, 0.7);
+  position: relative;
+  max-height: calc(100vh - #{vars.$navbar-height} - #{vars.$spacing-xl});
+
+  @media (max-width: vars.$breakpoint-lg) {
+    flex-direction: column;
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+    max-height: none;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: vars.$spacing-md;
+  right: vars.$spacing-md;
+  width: 44px;
+  height: 44px;
+  background: rgba(vars.$color-white, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  color: vars.$color-primary;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 300;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1) rotate(90deg);
+    background: vars.$color-white;
+  }
+
+  @media (max-width: vars.$breakpoint-lg) {
+    display: none; // Standard page navigation on mobile
   }
 }
 
@@ -31,8 +121,8 @@
   @media (max-width: vars.$breakpoint-lg) {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: vars.$spacing-lg 0; // Vertical centering space
+    justify-content: flex-start; // Left align content
+    padding: vars.$spacing-lg vars.$spacing-md; // Add horizontal padding
     color: vars.$color-primary;
     text-decoration: none;
     font-size: 0.75rem;
@@ -42,38 +132,27 @@
     transition: vars.$transition-smooth;
     width: 100%;
     background: transparent;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      margin-right: 8px;
+      transition: transform 0.3s ease;
+    }
 
     &:hover {
       opacity: 0.7;
+      svg {
+        transform: translateX(-4px);
+      }
     }
-  }
-}
-
-.modalCard {
-  background-color: vars.$color-white;
-  width: 95%;
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: vars.$shadow-lg;
-  position: relative;
-
-  @media (max-width: vars.$breakpoint-lg) {
-    flex-direction: column;
-    width: 100%;
-    max-width: none;
-    border-radius: 0;
-    box-shadow: none;
   }
 }
 
 .imageSection {
   flex: 1.2;
   position: relative;
-  min-height: 500px;
+  overflow: hidden;
 
   .image {
     width: 100%;
@@ -98,7 +177,6 @@
   @media (max-width: vars.$breakpoint-lg) {
     flex: none;
     height: 300px;
-    min-height: 300px;
   }
 }
 
@@ -108,9 +186,11 @@
   display: flex;
   flex-direction: column;
   background-color: vars.$color-white;
+  overflow-y: auto;
 
   @media (max-width: vars.$breakpoint-lg) {
     padding: 0 vars.$spacing-md vars.$spacing-xl; // Reduced top padding because backButton adds space
+    overflow-y: visible;
   }
 }
 

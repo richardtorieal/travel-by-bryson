@@ -1,0 +1,11 @@
+fragment DestinationParts on Destination {
+  __typename
+  name
+  region
+  type
+  image
+  description
+  insiderTip
+  perk
+  body
+}
