@@ -32,6 +32,40 @@
   }
 }
 
+.backButton {
+  display: none;
+
+  @media (max-width: vars.$breakpoint-lg) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; // Left align content
+    padding: vars.$spacing-lg vars.$spacing-md; // Add horizontal padding
+    color: vars.$color-primary;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    transition: vars.$transition-smooth;
+    width: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      margin-right: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      opacity: 0.7;
+      svg {
+        transform: translateX(-4px);
+      }
+    }
+  }
+}
+
 .modalCard {
   background-color: vars.$color-white;
   width: 95%;
@@ -123,7 +157,7 @@
   overflow-y: auto;
 
   @media (max-width: vars.$breakpoint-lg) {
-    padding: vars.$spacing-xl vars.$spacing-md;
+    padding: 0 vars.$spacing-md vars.$spacing-xl;
     overflow-y: visible;
   }
 }
@@ -136,12 +170,22 @@
   font-weight: 600;
   display: block;
   margin-bottom: vars.$spacing-xs;
+  text-align: center;
+
+  @media (min-width: vars.$breakpoint-lg) {
+    text-align: left;
+  }
 }
 
 .title {
   font-size: 3.5rem;
   margin-bottom: vars.$spacing-md;
   line-height: 1.1;
+  text-align: center;
+
+  @media (min-width: vars.$breakpoint-lg) {
+    text-align: left;
+  }
 
   @media (max-width: vars.$breakpoint-sm) {
     font-size: 2.2rem;
@@ -155,6 +199,11 @@
   margin-bottom: vars.$spacing-xl;
   font-style: italic;
   opacity: 0.8;
+  text-align: center;
+
+  @media (min-width: vars.$breakpoint-lg) {
+    text-align: left;
+  }
 }
 
 .insiderSection, .perkSection {

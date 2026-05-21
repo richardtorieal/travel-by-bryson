@@ -3,14 +3,14 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: vars.$spacing-lg;
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
 .header {
   text-align: center;
-  margin-bottom: vars.$spacing-sm;
+  margin-bottom: vars.$spacing-lg;
+  padding: 0 vars.$spacing-md;
   
   p {
     color: vars.$color-text-muted;
@@ -36,21 +36,55 @@
   margin-bottom: vars.$spacing-sm;
 }
 
+.packageSection {
+  background-color: vars.$color-sand;
+  padding: vars.$spacing-xl 0;
+  margin-bottom: 0;
+
+  @media (max-width: vars.$breakpoint-md) {
+    padding: vars.$spacing-lg 0;
+  }
+}
+
+.journeySection {
+  background-color: white;
+  padding: vars.$spacing-xl 0;
+  
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    filter: grayscale(0.5);
+  }
+
+  @media (max-width: vars.$breakpoint-md) {
+    padding: vars.$spacing-lg 0;
+  }
+}
+
 .sectionTitle {
-  font-family: var(--font-playfair);
-  font-size: 1.5rem;
-  margin-bottom: vars.$spacing-sm;
+  font-family: vars.$font-body;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 1.25rem;
+  margin-bottom: vars.$spacing-lg;
   text-align: center;
+  color: vars.$color-primary;
 }
 
 .formWrapper {
   max-width: 800px;
   margin: 0 auto;
-  width: 100%;
+  width: 95%;
+
+  @media (max-width: vars.$breakpoint-sm) {
+    width: 100%;
+    padding: 0 vars.$spacing-sm;
+  }
 }
 
 .success {
-  background-color: white; // Inverted
+  background-color: white;
   padding: vars.$spacing-xl;
   border-radius: vars.$border-radius-lg;
   text-align: center;
@@ -80,39 +114,41 @@
 }
 
 .form {
-  background-color: white; // Inverted: background was white, now explicitly white on tan page
-  padding: vars.$spacing-xl; // Increased padding for more space
+  background-color: white;
+  padding: vars.$spacing-xl;
   border-radius: vars.$border-radius-lg;
   border: 1px solid vars.$color-border;
   box-shadow: vars.$shadow-sm;
   display: flex;
   flex-direction: column;
-  gap: vars.$spacing-lg; // Increased gap between fields
+  gap: vars.$spacing-lg;
   
   @media (max-width: vars.$breakpoint-sm) {
-    padding: vars.$spacing-lg;
+    padding: vars.$spacing-md; // Significantly reduced from xl
+    gap: vars.$spacing-md;
   }
 }
 
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: vars.$spacing-lg; // Increased
+  gap: vars.$spacing-lg;
 
   @media (max-width: vars.$breakpoint-sm) {
     grid-template-columns: 1fr;
+    gap: vars.$spacing-md;
   }
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 12px; // Increased space between label and input
+  gap: 12px;
 
   label {
     display: block;
     font-size: 0.875rem;
-    font-weight: 700; // Bolder
+    font-weight: 700;
     color: vars.$color-primary;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -120,12 +156,12 @@
 
   input, textarea, select {
     width: 100%;
-    padding: 1rem; // Increased padding
+    padding: 1rem;
     border: 1px solid vars.$color-border;
     border-radius: vars.$border-radius-md;
     font-family: inherit;
     font-size: 1rem;
-    background-color: #FAFAFA; // Very light grey for input contrast
+    background-color: #FAFAFA;
     transition: vars.$transition-smooth;
 
     &:focus {
@@ -139,18 +175,18 @@
       background-color: vars.$color-background-soft;
       cursor: not-allowed;
     }
+
+    @media (max-width: vars.$breakpoint-sm) {
+      padding: 0.875rem; // Slightly tighter padding for better fit
+    }
   }
 }
 
 .checkboxGroup, .radioGroup {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: vars.$spacing-md;
+  display: flex;
+  flex-direction: column; 
+  gap: vars.$spacing-xs;
   padding: vars.$spacing-xs 0;
-
-  @media (max-width: vars.$breakpoint-sm) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .checkbox, .radio {
@@ -162,6 +198,7 @@
   font-weight: 500;
   color: vars.$color-text;
   padding: 8px 0;
+  width: fit-content;
 
   input[type="checkbox"], input[type="radio"] {
     width: 20px;
@@ -172,6 +209,10 @@
     accent-color: vars.$color-accent;
     flex-shrink: 0;
   }
+
+  span {
+    white-space: nowrap;
+  }
 }
 
 .actions {
@@ -179,20 +220,13 @@
 }
 
 .contactDetails {
-  margin-top: vars.$spacing-xl;
-  padding-top: vars.$spacing-xl;
-  border-top: 1px solid rgba(vars.$color-accent, 0.2);
+  background-color: vars.$color-sand;
+  padding: vars.$spacing-xl 0;
+  margin-top: 0;
   position: relative;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 1px;
-    background-color: vars.$color-accent;
+  @media (max-width: vars.$breakpoint-md) {
+    padding: vars.$spacing-lg 0;
   }
 }
 
@@ -219,6 +253,15 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: vars.$spacing-md;
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: vars.$breakpoint-sm) {
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding: 0 vars.$spacing-sm;
+  }
 }
 
 .contactCard {
@@ -247,6 +290,11 @@
       color: vars.$color-primary;
       transform: translateY(-5px);
     }
+  }
+
+  @media (max-width: vars.$breakpoint-sm) {
+    padding: vars.$spacing-md;
+    min-height: 180px;
   }
 }
 

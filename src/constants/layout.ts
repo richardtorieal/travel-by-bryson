@@ -1,6 +1,6 @@
 export const LAYOUT = {
   navbarHeight: '70px',
-  brandBackground: '#F2EDE3',
+  brandBackground: '#FFFFFF',
   colors: {
     mutedText: '#5D6D7E',
   },

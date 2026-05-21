@@ -1,7 +1,7 @@
 @use "../../../styles/variables" as vars;
 
 .container {
-  margin-bottom: vars.$section-spacing-std;
+  margin-bottom: 0;
 }
 
 .sectionTitle {
@@ -25,10 +25,23 @@
 
   @media (max-width: vars.$breakpoint-lg) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: center;
+
+    // Center the 3rd card when it's on a new row (iPad portrait)
+    > *:last-child:nth-child(odd) {
+      grid-column: span 2;
+      justify-self: center;
+      max-width: 50%; // Match the width of the other cards in 2-column layout
+    }
   }
 
   @media (max-width: vars.$breakpoint-md) {
     grid-template-columns: 1fr;
     max-width: 450px;
+
+    > *:last-child:nth-child(odd) {
+      grid-column: auto;
+      max-width: none;
+    }
   }
 }

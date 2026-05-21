@@ -73,7 +73,7 @@ const PackagesPage = () => {
         </Container>
       </Section>
 
-      <Section variant="light" padding="section-std">
+      <Section variant="white" padding="section-std">
         <Container>
           <div className={styles.grid}>
             {packages.map((pkg, index) => (

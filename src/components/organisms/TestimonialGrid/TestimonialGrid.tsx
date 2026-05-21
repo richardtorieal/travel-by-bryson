@@ -11,7 +11,7 @@ const TestimonialGrid: React.FC = () => {
   const displayReviews = ALL_REVIEWS.slice(0, 3);
 
   return (
-    <Section variant="light" padding="xl">
+    <Section variant="white" padding="xl">
       <Container>
         <div className={styles.header}>
           <span className={styles.subtitle}>Client Experiences</span>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.scss";
 import ScrollToTop from "@/components/utils/ScrollToTop";
@@ -12,6 +12,10 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  themeColor: "#FFFFFF",
+};
 
 export const metadata: Metadata = {
   title: "Bryson Adams | Luxury Travel Curator",
