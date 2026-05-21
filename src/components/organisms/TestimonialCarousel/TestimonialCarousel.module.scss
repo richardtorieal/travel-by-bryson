@@ -35,7 +35,7 @@
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
-  padding-top: vars.$spacing-md; // Safe zone from header
+  padding-top: vars.$spacing-sm; // Safe zone from header
 
   @media (max-width: vars.$breakpoint-md) {
     gap: vars.$spacing-sm;
