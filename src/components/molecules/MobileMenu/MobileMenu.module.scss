@@ -10,7 +10,8 @@
   display: flex;
   flex-direction: column;
   padding: vars.$spacing-md vars.$spacing-lg;
-  padding-top: 100px; // Account for navbar height
+  padding-top: 100px;
+  padding-bottom: vars.$spacing-lg;
   transform: translateY(-100%);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
