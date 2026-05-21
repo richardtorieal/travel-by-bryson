@@ -6,7 +6,7 @@ import Button from '../../atoms/Button/Button';
 
 const ScheduleSection: React.FC = () => {
   return (
-    <Section variant="white" padding="xl">
+    <Section variant="sand" padding="xl">
       <Container>
         <div className={styles.wrapper}>
           <div className={styles.header}>
