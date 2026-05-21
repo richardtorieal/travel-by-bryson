@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './TestimonialCarousel.module.scss';
 import Container from '../../atoms/Container/Container';
 import Section from '../../atoms/Section/Section';
@@ -11,16 +11,19 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const TestimonialCarousel: React.FC = () => {
   const [index, setIndex] = useState(0);
-  const [direction, setIndexDirection] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  // We use the full list of reviews now
+  const reviews = ALL_REVIEWS;
 
   const nextStep = () => {
-    setIndexDirection(1);
-    setIndex((prev) => (prev + 1) % ALL_REVIEWS.length);
+    setDirection(1);
+    setIndex((prev) => (prev + 1) % reviews.length);
   };
 
   const prevStep = () => {
-    setIndexDirection(-1);
-    setIndex((prev) => (prev - 1 + ALL_REVIEWS.length) % ALL_REVIEWS.length);
+    setDirection(-1);
+    setIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
   };
 
   const variants = {
@@ -48,8 +51,12 @@ const TestimonialCarousel: React.FC = () => {
           <h2 className={styles.title}>What Our <em>Clients</em> Say</h2>
         </div>
 
-        <div className={styles.carouselContainer}>
-          <button className={`${styles.navButton} ${styles.prev}`} onClick={prevStep} aria-label="Previous review">
+        <div className={styles.carouselWrapper}>
+          <button 
+            className={`${styles.navButton} ${styles.prev}`} 
+            onClick={prevStep} 
+            aria-label="Previous review"
+          >
             <ChevronLeft size={24} />
           </button>
 
@@ -68,23 +75,27 @@ const TestimonialCarousel: React.FC = () => {
                 }}
                 className={styles.cardWrapper}
               >
-                <TestimonialCard {...ALL_REVIEWS[index]} />
+                <TestimonialCard {...reviews[index]} />
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <button className={`${styles.navButton} ${styles.next}`} onClick={nextStep} aria-label="Next review">
+          <button 
+            className={`${styles.navButton} ${styles.next}`} 
+            onClick={nextStep} 
+            aria-label="Next review"
+          >
             <ChevronRight size={24} />
           </button>
         </div>
 
         <div className={styles.dots}>
-          {ALL_REVIEWS.map((_, i) => (
+          {reviews.map((_, i) => (
             <button 
               key={i} 
               className={`${styles.dot} ${i === index ? styles.active : ''}`}
               onClick={() => {
-                setIndexDirection(i > index ? 1 : -1);
+                setDirection(i > index ? 1 : -1);
                 setIndex(i);
               }}
               aria-label={`Go to review ${i + 1}`}

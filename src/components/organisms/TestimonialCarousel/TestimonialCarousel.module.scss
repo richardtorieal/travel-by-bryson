@@ -27,31 +27,27 @@
   }
 }
 
-.carouselContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: vars.$spacing-lg;
-  max-width: 1000px;
-  margin: 0 auto;
+.carouselWrapper {
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px; // Space for buttons on the edges
 
   @media (max-width: vars.$breakpoint-md) {
-    gap: vars.$spacing-sm;
+    padding: 0;
   }
 }
 
 .stage {
-  flex: 1;
   overflow: hidden;
   position: relative;
-  min-height: 400px; // Ensure space for tallest content
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
 
   @media (max-width: vars.$breakpoint-md) {
-    min-height: 450px;
+    min-height: 500px; // Extra height for wrapped mobile text
   }
 }
 
@@ -68,10 +64,13 @@
 }
 
 .navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   background: white;
   border: 1px solid rgba(vars.$color-primary, 0.1);
-  width: 50px;
-  height: 50px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -79,19 +78,21 @@
   color: vars.$color-primary;
   cursor: pointer;
   transition: vars.$transition-smooth;
-  z-index: 10;
-  flex-shrink: 0;
-  box-shadow: vars.$shadow-sm;
+  z-index: 20;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 
   &:hover {
     background: vars.$color-primary;
     color: white;
     box-shadow: vars.$shadow-md;
-    transform: translateY(-2px);
+    transform: translateY(-50%) scale(1.05);
   }
 
+  &.prev { left: 0; }
+  &.next { right: 0; }
+
   @media (max-width: vars.$breakpoint-md) {
-    display: none; // Hide on mobile in favor of dots and swipe
+    display: none;
   }
 }
 
@@ -106,7 +107,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(vars.$color-primary, 0.15);
+  background: rgba(vars.$color-primary, 0.1);
   border: none;
   cursor: pointer;
   transition: vars.$transition-smooth;
@@ -116,9 +117,5 @@
     background: vars.$color-accent;
     width: 24px;
     border-radius: 4px;
-  }
-
-  &:hover:not(.active) {
-    background: rgba(vars.$color-primary, 0.3);
   }
 }
