@@ -29,7 +29,7 @@ const AboutMe: React.FC = () => {
             >
               <div className={styles.frame}>
                 <Image
-                  src="/assets/Bryson adams fora profile picture.webp?v=1.1"
+                  src="/assets/Bryson adams fora profile picture.webp"
                   alt="Bryson Adams"
                   width={600}
                   height={800}
