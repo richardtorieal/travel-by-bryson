@@ -38,7 +38,7 @@ const TestimonialCarousel: React.FC = () => {
 
   const variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 500 : -500,
+      x: direction > 0 ? 250 : -250,
       opacity: 0,
       scale: 0.95
     }),

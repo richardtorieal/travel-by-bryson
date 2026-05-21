@@ -32,7 +32,7 @@
   align-items: center;
   justify-content: center;
   gap: vars.$spacing-lg;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
 
@@ -43,15 +43,15 @@
 
 .stage {
   flex: 1;
-  overflow: hidden;
+  overflow: visible; // Allow cards to bleed during transition if needed
   position: relative;
-  min-height: 350px;
+  min-height: 450px; // Increased to prevent clipping
   display: flex;
   align-items: center;
   justify-content: center;
 
   @media (max-width: vars.$breakpoint-md) {
-    min-height: 400px;
+    min-height: 550px; // Extra room for mobile text wrapping
   }
 }
 
@@ -65,6 +65,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px 0; // Internal buffer
 }
 
 .navButton {
