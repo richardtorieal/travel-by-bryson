@@ -83,7 +83,7 @@ const PackagesPage = () => {
         </Container>
       </Section>
 
-      <Section variant="white" padding="section-std">
+      <Section variant="sand" padding="section-std">
         <Container>
           <div className={styles.faqWrapper}>
             <h2 className={styles.faqTitle}>Common <em>Questions</em></h2>
