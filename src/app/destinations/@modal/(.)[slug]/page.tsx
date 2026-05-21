@@ -86,7 +86,13 @@ export default function InterceptedDestinationModal() {
                 <p>{destination.perk}</p>
               </div>
               <div className={styles.actions}>
-                <Button variant="primary" fullWidth href="/contact">Inquire About This Destination</Button>
+                <Button 
+                  variant="primary" 
+                  fullWidth 
+                  href={`/contact?destination=${encodeURIComponent(destination.name)}`}
+                >
+                  Inquire About This Destination
+                </Button>
               </div>
             </div>
           </div>
@@ -148,7 +154,11 @@ export default function InterceptedDestinationModal() {
               </div>
 
               <div className={styles.actions}>
-                <Button variant="primary" fullWidth href="/contact">
+                <Button 
+                  variant="primary" 
+                  fullWidth 
+                  href={`/contact?destination=${encodeURIComponent(destination.name)}`}
+                >
                   Inquire About This Destination
                 </Button>
               </div>

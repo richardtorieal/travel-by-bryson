@@ -35,11 +35,7 @@ export default function DestinationPage() {
 
   const handleBack = () => {
     // Forced hard navigation for mobile to ensure clean gallery state
-    if (window.innerWidth <= 992) {
-      window.location.href = '/destinations';
-    } else {
-      window.location.href = '/destinations';
-    }
+    window.location.href = '/destinations';
   };
 
   if (!destination) {
@@ -102,7 +98,11 @@ export default function DestinationPage() {
             </div>
 
             <div className={styles.actions}>
-              <Button variant="primary" fullWidth href="/contact">
+              <Button 
+                variant="primary" 
+                fullWidth 
+                href={`/contact?destination=${encodeURIComponent(destination.name)}`}
+              >
                 Inquire About This Destination
               </Button>
             </div>
