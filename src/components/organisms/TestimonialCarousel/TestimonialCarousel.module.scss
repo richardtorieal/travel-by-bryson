@@ -35,6 +35,7 @@
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
+  padding-top: vars.$spacing-md; // Safe zone from header
 
   @media (max-width: vars.$breakpoint-md) {
     gap: vars.$spacing-sm;
@@ -45,13 +46,13 @@
   flex: 1;
   overflow: visible;
   position: relative;
-  min-height: 400px; // Default height for wide desktop
+  min-height: 400px;
   display: flex;
-  align-items: center;
+  align-items: flex-start; // Anchor to top to prevent upward overlap
   justify-content: center;
 
   @media (max-width: vars.$breakpoint-lg) {
-    min-height: 550px; // Increased height for tablet/mobile where cards grow taller due to wrapping
+    min-height: 550px;
   }
 }
 
@@ -63,9 +64,9 @@
   right: 0;
   bottom: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start; // Match stage alignment
   justify-content: center;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .navButton {
@@ -83,6 +84,7 @@
   z-index: 10;
   flex-shrink: 0;
   box-shadow: none;
+  margin-top: 150px; // Align buttons with the center of a typical card height
 
   &:hover {
     background: vars.$color-accent;
