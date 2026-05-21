@@ -5,38 +5,51 @@ import styles from './AboutMe.module.scss';
 import Container from '../../atoms/Container/Container';
 import Section from '../../atoms/Section/Section';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const AboutMe: React.FC = () => {
+  const stats = [
+    { label: 'Experience', value: '6 Years' },
+    { label: 'Based in', value: 'Fort Myers, Florida' },
+    { label: 'Pronouns', value: 'He / Him' },
+    { label: 'Status', value: 'Advanced Fora Advisor' }
+  ];
+
   return (
-    <Section variant="white" padding="xl">
+    <Section variant="white" id="about" className={styles.aboutSection}>
       <Container>
         <div className={styles.grid}>
           <div className={styles.imageSide}>
-            <motion.div 
-              className={styles.imageWrapper}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              className={styles.imageWrapper}
             >
-              <img 
-                src="/assets/Bryson adams fora profile picture.webp" 
-                alt="Bryson Adams" 
-                className={styles.image}
-              />
-              <div className={styles.infoBox}>
-                <div className={styles.infoItem}>
-                  <span className={styles.label}>Based in</span>
-                  <span className={styles.value}>Fort Myers, Florida</span>
-                </div>
-                <div className={styles.infoItem}>
-                  <span className={styles.label}>Language</span>
-                  <span className={styles.value}>English</span>
-                </div>
+              <div className={styles.frame}>
+                <Image
+                  src="/assets/Bryson adams fora profile picture.webp"
+                  alt="Bryson Adams"
+                  width={600}
+                  height={800}
+                  className={styles.image}
+                  priority
+                />
+              </div>
+
+              {/* Advisor Stats Section */}
+              <div className={styles.advisorStats}>
+                {stats.map((stat, index) => (
+                  <div key={index} className={styles.statLine}>
+                    <span className={styles.statLabel}>{stat.label}</span>
+                    <span className={styles.statValue}>{stat.value}</span>
+                  </div>
+                ))}
               </div>
             </motion.div>
           </div>
-          
+
           <div className={styles.contentSide}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -46,7 +59,7 @@ const AboutMe: React.FC = () => {
             >
               <span className={styles.subtitle}>Our Story</span>
               <h2 className={styles.title}>Meet <em>Bryson Adams</em></h2>
-              
+
               <div className={styles.story}>
                 <p>
                   With six years of experience working in luxury hotels, I bring an insider’s understanding of what it takes to turn a stay into a lifelong memory. While I love exploring new cultures and cuisines, my true passion lies in celebrating life’s biggest chapters. I believe the most important milestones—honeymoons, milestone birthdays, anniversaries, and graduations—deserve more than just a standard itinerary—they deserve a masterpiece. I specialize in translating your personal milestones into thoughtfully crafted journeys, whether that’s a high-end luxury escape or a hidden-gem adventure.
