@@ -23,7 +23,7 @@ const STATS = [
 
 const PerksGrid: React.FC = () => {
   return (
-    <Section variant="sand" padding="xl">
+    <Section variant="white" padding="xl">
       <Container>
         <motion.div 
           className={styles.intro}
