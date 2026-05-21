@@ -28,7 +28,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0.5rem !important; // Force 0.5rem as requested
+  padding: 0 2.5rem !important;
+
+  @media (max-width: vars.$breakpoint-md) {
+    padding: 0 1.5rem !important;
+  } // Force 0.5rem as requested
 }
 
 .logo {
