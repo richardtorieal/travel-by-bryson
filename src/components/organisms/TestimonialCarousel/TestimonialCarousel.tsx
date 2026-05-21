@@ -6,14 +6,13 @@ import Container from '../../atoms/Container/Container';
 import Section from '../../atoms/Section/Section';
 import TestimonialCard from '../../molecules/TestimonialCard/TestimonialCard';
 import { ALL_REVIEWS } from '@/data/reviews';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const TestimonialCarousel: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  // Reverting to the set of 3 reviews
   const reviews = ALL_REVIEWS.slice(0, 3);
 
   const nextStep = () => {
@@ -26,20 +25,34 @@ const TestimonialCarousel: React.FC = () => {
     setIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
   };
 
+  const handleDragEnd = (event: any, info: PanInfo) => {
+    const swipeThreshold = 50;
+    const velocityThreshold = 500;
+
+    if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
+      nextStep();
+    } else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
+      prevStep();
+    }
+  };
+
   const variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 100 : -100,
-      opacity: 0
+      x: direction > 0 ? 250 : -250,
+      opacity: 0,
+      scale: 0.95
     }),
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
+      scale: 1
     },
     exit: (direction: number) => ({
       zIndex: 0,
-      x: direction < 0 ? 100 : -100,
-      opacity: 0
+      x: direction < 0 ? 500 : -500,
+      opacity: 0,
+      scale: 0.95
     })
   };
 
@@ -69,11 +82,17 @@ const TestimonialCarousel: React.FC = () => {
                 initial="enter"
                 animate="center"
                 exit="exit"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1}
+                onDragEnd={handleDragEnd}
                 transition={{
-                  x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 }
+                  x: { type: "spring", stiffness: 250, damping: 30, mass: 0.8 },
+                  opacity: { duration: 0.3 }
                 }}
                 className={styles.cardWrapper}
+                style={{ cursor: 'grab', touchAction: 'none' }}
+                whileTap={{ cursor: 'grabbing' }}
               >
                 <TestimonialCard {...reviews[index]} />
               </motion.div>

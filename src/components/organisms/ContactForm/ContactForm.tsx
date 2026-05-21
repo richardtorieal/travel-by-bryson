@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, Suspense } from 'react';
 import styles from './ContactForm.module.scss';
 import Container from '../../atoms/Container/Container';
 import Section from '../../atoms/Section/Section';
@@ -8,12 +8,22 @@ import Button from '../../atoms/Button/Button';
 import { Mail, Camera } from 'lucide-react';
 import ServicePicker from './ServicePicker';
 import { ServiceTier } from '../../molecules/PackageCard/PackageCard';
+import { useSearchParams } from 'next/navigation';
 
-const ContactForm: React.FC = () => {
+const ContactFormContent: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedTier, setSelectedTier] = useState<ServiceTier | null>(null);
+  const [destinationValue, setDestinationValue] = useState('');
   const journeySectionRef = useRef<HTMLDivElement>(null);
   const successMessageRef = useRef<HTMLDivElement>(null);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const dest = searchParams.get('destination');
+    if (dest) {
+      setDestinationValue(dest);
+    }
+  }, [searchParams]);
 
   const handleSelectTier = (tier: ServiceTier) => {
     setSelectedTier(tier);
@@ -113,7 +123,14 @@ const ContactForm: React.FC = () => {
                 
                 <div className={styles.field}>
                   <label>Where would you like to go?</label>
-                  <input type="text" placeholder="Destination or region" required disabled={!selectedTier} />
+                  <input 
+                    type="text" 
+                    placeholder="Destination or region" 
+                    required 
+                    disabled={!selectedTier}
+                    value={destinationValue}
+                    onChange={(e) => setDestinationValue(e.target.value)}
+                  />
                 </div>
 
                 <div className={styles.field}>
@@ -184,6 +201,14 @@ const ContactForm: React.FC = () => {
         </Container>
       </div>
     </div>
+  );
+};
+
+const ContactForm: React.FC = () => {
+  return (
+    <Suspense fallback={<div>Loading form...</div>}>
+      <ContactFormContent />
+    </Suspense>
   );
 };
 

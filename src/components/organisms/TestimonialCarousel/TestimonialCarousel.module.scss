@@ -32,9 +32,10 @@
   align-items: center;
   justify-content: center;
   gap: vars.$spacing-lg;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
+  padding-top: vars.$spacing-sm; // Safe zone from header
 
   @media (max-width: vars.$breakpoint-md) {
     gap: vars.$spacing-sm;
@@ -43,15 +44,15 @@
 
 .stage {
   flex: 1;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   min-height: 400px;
   display: flex;
-  align-items: center;
+  align-items: flex-start; // Anchor to top to prevent upward overlap
   justify-content: center;
 
-  @media (max-width: vars.$breakpoint-md) {
-    min-height: 450px;
+  @media (max-width: vars.$breakpoint-lg) {
+    min-height: 550px;
   }
 }
 
@@ -63,8 +64,9 @@
   right: 0;
   bottom: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start; // Match stage alignment
   justify-content: center;
+  padding: 10px 0;
 }
 
 .navButton {
@@ -82,6 +84,7 @@
   z-index: 10;
   flex-shrink: 0;
   box-shadow: none;
+  margin-top: 150px; // Align buttons with the center of a typical card height
 
   &:hover {
     background: vars.$color-accent;
