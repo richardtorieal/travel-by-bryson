@@ -16,7 +16,7 @@ const AboutMe: React.FC = () => {
   ];
 
   return (
-    <Section variant="white" id="about" className={styles.aboutSection}>
+    <Section variant="white" className={styles.aboutSection}>
       <Container>
         <div className={styles.grid}>
           <div className={styles.imageSide}>
