@@ -31,13 +31,14 @@
 .subtitle {
   font-size: 1.125rem;
   color: vars.$color-text-muted;
-  margin: 0 auto vars.$spacing-md; // Decreased from lg
+  margin: 0 auto 0; // Removed bottom margin to use margin-top on actions instead
   line-height: 1.8;
   max-width: 600px;
 }
 
 .actions {
-  margin-bottom: vars.$spacing-md; // Decreased from lg
+  margin-top: vars.$spacing-lg; // 64px top margin
+  margin-bottom: vars.$spacing-md;
 }
 
 .ctaCard {
