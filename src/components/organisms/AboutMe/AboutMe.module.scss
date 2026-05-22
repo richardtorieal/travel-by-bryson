@@ -103,7 +103,7 @@
 
 .expandableWrapper {
   position: relative;
-  margin-bottom: vars.$spacing-xl;
+  margin-bottom: vars.$spacing-md; // Decreased from xl
 }
 
 .storyContainer {
@@ -138,19 +138,19 @@
 .readMoreBtn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; // Align with text
   gap: 0.5rem;
   background: transparent;
   border: none;
   color: vars.$color-primary;
   font-family: vars.$font-heading;
-  font-size: 0.9rem;
+  font-size: 0.8rem; // Slightly smaller
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: vars.$spacing-md 0;
+  letter-spacing: 0.15em;
+  padding: vars.$spacing-sm 0;
   cursor: pointer;
-  width: 100%;
+  width: auto;
   transition: vars.$transition-smooth;
 
   svg {
@@ -160,13 +160,24 @@
   &:hover {
     color: vars.$color-accent;
     svg {
-      transform: translateY(3px);
+      transform: translateY(2px);
+    }
+  }
+
+  &.expanded {
+    svg {
+      transform: translateY(0);
+    }
+    &:hover {
+      svg {
+        transform: translateY(-2px);
+      }
     }
   }
 }
 
 .travelStyle {
-  padding-top: vars.$spacing-xl;
+  padding-top: vars.$spacing-lg; // Decreased from xl
   border-top: 1px solid rgba(vars.$color-primary, 0.05);
 
   .sectionHeading {

@@ -6,7 +6,7 @@ import Container from '../../atoms/Container/Container';
 import Section from '../../atoms/Section/Section';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const AboutMe: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -70,7 +70,7 @@ const AboutMe: React.FC = () => {
                   className={styles.storyContainer}
                   initial={false}
                   animate={{ height: isExpanded ? 'auto' : '200px' }}
-                  transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }} // Smooth bezier ease-in-out
+                  transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                 >
                   <div className={styles.storyContent}>
                     <p>
@@ -84,14 +84,13 @@ const AboutMe: React.FC = () => {
                   {!isExpanded && <div className={styles.fadeOverlay} />}
                 </motion.div>
 
-                {!isExpanded && (
-                  <button 
-                    className={styles.readMoreBtn} 
-                    onClick={() => setIsExpanded(true)}
-                  >
-                    Read More <ChevronDown size={16} />
-                  </button>
-                )}
+                <button 
+                  className={`${styles.readMoreBtn} ${isExpanded ? styles.expanded : ''}`} 
+                  onClick={() => setIsExpanded(!isExpanded)}
+                >
+                  {isExpanded ? 'Read Less' : 'Read More'} 
+                  {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                </button>
               </div>
 
               <div className={styles.travelStyle}>
