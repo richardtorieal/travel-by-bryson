@@ -31,10 +31,12 @@ const AboutMe: React.FC = () => {
                 <Image
                   src="/assets/Bryson adams fora profile picture.webp"
                   alt="Bryson Adams"
-                  width={600}
-                  height={800}
+                  width={3024}
+                  height={4032}
+                  quality={100}
                   className={styles.image}
                   priority
+                  sizes="(max-width: 768px) 100vw, 500px"
                 />
               </div>
 
