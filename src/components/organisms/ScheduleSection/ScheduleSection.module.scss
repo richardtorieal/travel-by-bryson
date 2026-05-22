@@ -2,18 +2,16 @@
 
 .wrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: vars.$spacing-xl;
-
-  @media (max-width: vars.$breakpoint-md) {
-    flex-direction: column;
-    text-align: center;
-  }
+  text-align: center;
+  gap: vars.$spacing-lg;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .header {
-  flex: 1;
+  width: 100%;
 }
 
 .title {
@@ -33,24 +31,24 @@
 .subtitle {
   font-size: 1.125rem;
   color: vars.$color-text-muted;
-  margin-bottom: vars.$spacing-lg;
+  margin: 0 auto vars.$spacing-lg;
   line-height: 1.8;
   max-width: 600px;
 }
 
+.actions {
+  margin-bottom: vars.$spacing-lg;
+}
+
 .ctaCard {
-  flex: 0 0 400px;
+  width: 100%;
+  max-width: 500px;
   background-color: vars.$color-white;
   padding: vars.$spacing-lg;
   border-radius: 8px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
   border: 1px solid vars.$color-border;
-
-  @media (max-width: vars.$breakpoint-md) {
-    flex: 1;
-    width: 100%;
-    text-align: left;
-  }
+  text-align: left;
 
   h3 {
     margin-bottom: vars.$spacing-md;

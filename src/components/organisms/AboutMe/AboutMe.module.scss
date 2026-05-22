@@ -1,0 +1,197 @@
+@use "../../../styles/variables" as vars;
+
+.aboutSection {
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: vars.$spacing-xxl;
+  align-items: flex-start;
+
+  @media (max-width: vars.$breakpoint-lg) {
+    grid-template-columns: 1fr;
+    gap: vars.$spacing-xl;
+  }
+}
+
+.imageSide {
+  .imageWrapper {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .frame {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: vars.$shadow-lg;
+    aspect-ratio: 3/4;
+    background-color: vars.$color-cream;
+
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.advisorStats {
+  margin-top: vars.$spacing-md;
+  padding: vars.$spacing-sm 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: vars.$spacing-md;
+
+  @media (max-width: vars.$breakpoint-sm) {
+    grid-template-columns: 1fr;
+    gap: vars.$spacing-sm;
+  }
+}
+
+.statLine {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statLabel {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: vars.$color-text-muted;
+  font-weight: 500;
+}
+
+.statValue {
+  font-size: 0.95rem;
+  color: vars.$color-primary;
+  font-weight: 600;
+  font-family: vars.$font-body;
+}
+
+.contentSide {
+  .subtitle {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: vars.$color-accent;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: vars.$spacing-sm;
+  }
+
+  .title {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: vars.$spacing-md; // Decreased from lg (64px) to md (32px)
+
+    em {
+      font-style: italic;
+      font-family: vars.$font-heading;
+      color: vars.$color-primary;
+    }
+
+    @media (max-width: vars.$breakpoint-md) {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+.expandableWrapper {
+  position: relative;
+  margin-bottom: vars.$spacing-md; // Decreased from xl
+}
+
+.storyContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.storyContent {
+  p {
+    color: vars.$color-text;
+    line-height: 1.8;
+    margin-bottom: vars.$spacing-md;
+    font-size: 1.125rem;
+    opacity: 0.9;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.fadeOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  pointer-events: none;
+}
+
+.readMoreBtn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; // Align with text
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  color: vars.$color-primary;
+  font-family: vars.$font-heading;
+  font-size: 0.8rem; // Slightly smaller
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: vars.$spacing-sm 0;
+  cursor: pointer;
+  width: auto;
+  transition: vars.$transition-smooth;
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    color: vars.$color-accent;
+    svg {
+      transform: translateY(2px);
+    }
+  }
+
+  &.expanded {
+    svg {
+      transform: translateY(0);
+    }
+    &:hover {
+      svg {
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+.travelStyle {
+  padding-top: vars.$spacing-md; // Decreased to 32px to match margin-bottom above
+  border-top: 1px solid rgba(vars.$color-primary, 0.05);
+
+  .sectionHeading {
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: vars.$spacing-md;
+    color: vars.$color-primary;
+    font-family: vars.$font-heading;
+  }
+
+  p {
+    color: vars.$color-text-muted;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+}
