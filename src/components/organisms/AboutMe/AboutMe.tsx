@@ -1,13 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './AboutMe.module.scss';
 import Container from '../../atoms/Container/Container';
 import Section from '../../atoms/Section/Section';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { ChevronDown } from 'lucide-react';
 
 const AboutMe: React.FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const stats = [
     { label: 'Experience', value: '6 Years' },
     { label: 'Based in', value: 'Fort Myers, Florida' },
@@ -62,13 +65,33 @@ const AboutMe: React.FC = () => {
               <span className={styles.subtitle}>Our Story</span>
               <h2 className={styles.title}>Meet <em>Bryson Adams</em></h2>
 
-              <div className={styles.story}>
-                <p>
-                  With six years of experience working in luxury hotels, I bring an insider’s understanding of what it takes to turn a stay into a lifelong memory. While I love exploring new cultures and cuisines, my true passion lies in celebrating life’s biggest chapters. I believe the most important milestones—honeymoons, milestone birthdays, anniversaries, and graduations—deserve more than just a standard itinerary—they deserve a masterpiece. I specialize in translating your personal milestones into thoughtfully crafted journeys, whether that’s a high-end luxury escape or a hidden-gem adventure.
-                </p>
-                <p>
-                  By combining my professional background in service with a constant hunger for fresh destinations, I ensure your celebration is seamless, personalized, and truly unforgettable. You bring the reason to celebrate; I’ll bring the fresh ideas and meticulous planning to make it feel truly yours.
-                </p>
+              <div className={styles.expandableWrapper}>
+                <motion.div 
+                  className={styles.storyContainer}
+                  initial={false}
+                  animate={{ height: isExpanded ? 'auto' : '200px' }}
+                  transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }} // Smooth bezier ease-in-out
+                >
+                  <div className={styles.storyContent}>
+                    <p>
+                      With six years of experience working in luxury hotels, I bring an insider’s understanding of what it takes to turn a stay into a lifelong memory. While I love exploring new cultures and cuisines, my true passion lies in celebrating life’s biggest chapters. I believe the most important milestones—honeymoons, milestone birthdays, anniversaries, and graduations—deserve more than just a standard itinerary—they deserve a masterpiece. I specialize in translating your personal milestones into thoughtfully crafted journeys, whether that’s a high-end luxury escape or a hidden-gem adventure.
+                    </p>
+                    <p>
+                      By combining my professional background in service with a constant hunger for fresh destinations, I ensure your celebration is seamless, personalized, and truly unforgettable. You bring the reason to celebrate; I’ll bring the fresh ideas and meticulous planning to make it feel truly yours.
+                    </p>
+                  </div>
+
+                  {!isExpanded && <div className={styles.fadeOverlay} />}
+                </motion.div>
+
+                {!isExpanded && (
+                  <button 
+                    className={styles.readMoreBtn} 
+                    onClick={() => setIsExpanded(true)}
+                  >
+                    Read More <ChevronDown size={16} />
+                  </button>
+                )}
               </div>
 
               <div className={styles.travelStyle}>
