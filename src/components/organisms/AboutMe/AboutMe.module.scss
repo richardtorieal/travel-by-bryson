@@ -177,7 +177,7 @@
 }
 
 .travelStyle {
-  padding-top: vars.$spacing-lg; // Decreased from xl
+  padding-top: vars.$spacing-md; // Decreased to 32px to match margin-bottom above
   border-top: 1px solid rgba(vars.$color-primary, 0.05);
 
   .sectionHeading {
