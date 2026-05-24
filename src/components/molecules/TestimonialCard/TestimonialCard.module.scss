@@ -2,7 +2,7 @@
 
 .card {
   background-color: white;
-  padding: vars.$spacing-md vars.$spacing-lg;
+  padding: vars.$spacing-xl vars.$spacing-lg vars.$spacing-md;
   border-radius: vars.$border-radius-lg;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
   border: 1px solid rgba(vars.$color-primary, 0.05);
@@ -13,13 +13,13 @@
   max-width: 800px;
   width: 90%;
   margin: 0 auto;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
   min-height: 400px;
   height: 400px; // Lock height for total consistency
 
   @media (max-width: vars.$breakpoint-md) {
-    padding: vars.$spacing-md vars.$spacing-sm;
+    padding: vars.$spacing-lg vars.$spacing-sm;
     width: 100%;
     min-height: 450px;
     height: 450px;
@@ -27,7 +27,7 @@
 }
 
 .header {
-  margin-bottom: vars.$spacing-sm;
+  margin-bottom: vars.$spacing-md;
 }
 
 .stars {
@@ -42,7 +42,8 @@
   overflow: hidden;
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
   
   &.truncated {
     max-height: 220px;
