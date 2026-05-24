@@ -15,14 +15,14 @@
   margin: 0 auto;
   justify-content: center;
   position: relative;
-  min-height: 280px;
-  height: 280px; // Lock height for total consistency
+  min-height: 400px;
+  height: 400px; // Lock height for total consistency
 
   @media (max-width: vars.$breakpoint-md) {
     padding: vars.$spacing-md vars.$spacing-sm;
     width: 100%;
-    min-height: 320px;
-    height: 320px;
+    min-height: 450px;
+    height: 450px;
   }
 }
 
@@ -45,7 +45,7 @@
   align-items: center;
   
   &.truncated {
-    max-height: 120px;
+    max-height: 220px;
   }
 }
 

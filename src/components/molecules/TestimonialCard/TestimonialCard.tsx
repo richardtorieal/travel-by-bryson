@@ -9,9 +9,9 @@ interface TestimonialCardProps {
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author }) => {
-  // Truncate logic: if quote is longer than 280 chars, show Read More visual
-  const shouldTruncate = quote.length > 280;
-  const displayQuote = shouldTruncate ? quote.substring(0, 270) + '...' : quote;
+  // Truncate logic: if quote is longer than 450 chars, show Read More visual
+  const shouldTruncate = quote.length > 450;
+  const displayQuote = shouldTruncate ? quote.substring(0, 440) + '...' : quote;
 
   return (
     <div className={styles.card}>
