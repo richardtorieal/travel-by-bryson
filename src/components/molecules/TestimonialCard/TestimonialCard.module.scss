@@ -2,7 +2,7 @@
 
 .card {
   background-color: white;
-  padding: vars.$spacing-xl;
+  padding: vars.$spacing-xl vars.$spacing-lg vars.$spacing-md;
   border-radius: vars.$border-radius-lg;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
   border: 1px solid rgba(vars.$color-primary, 0.05);
@@ -13,37 +13,86 @@
   max-width: 800px;
   width: 90%;
   margin: 0 auto;
+  justify-content: flex-start;
+  position: relative;
+  min-height: 400px;
+  height: 400px; // Lock height for total consistency
 
   @media (max-width: vars.$breakpoint-md) {
-    padding: vars.$spacing-lg vars.$spacing-md;
+    padding: vars.$spacing-lg vars.$spacing-sm;
     width: 100%;
+    min-height: 450px;
+    height: 450px;
   }
+}
+
+.header {
+  margin-bottom: vars.$spacing-md;
 }
 
 .stars {
   color: vars.$color-accent;
-  font-size: 1.25rem;
+  font-size: 1rem;
   letter-spacing: 4px;
-  margin-bottom: vars.$spacing-md;
+}
+
+.quoteWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  
+  &.truncated {
+    max-height: 220px;
+  }
 }
 
 .quote {
   font-family: vars.$font-heading;
-  font-size: 1.5rem;
-  line-height: 1.6;
+  font-size: 1.15rem;
+  line-height: 1.5;
   color: vars.$color-primary;
-  font-style: italic;
-  margin-bottom: vars.$spacing-lg;
+  margin-bottom: vars.$spacing-xs;
 
   @media (max-width: vars.$breakpoint-md) {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.4;
   }
+}
+
+.fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  pointer-events: none;
+}
+
+.readMore {
+  background: none;
+  border: none;
+  color: vars.$color-accent;
+  font-family: vars.$font-body;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  cursor: default; // Non-functional for now as requested
+  padding: 4px 8px;
+  margin-top: 4px;
+  transition: vars.$transition-smooth;
 }
 
 .author {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
+  margin-bottom: 4px;
 
   strong {
     display: block;
@@ -51,13 +100,6 @@
     letter-spacing: 0.1em;
     font-weight: 700;
     color: vars.$color-primary;
-    font-size: 0.9rem;
-  }
-
-  span {
-    font-size: 0.8rem;
-    color: vars.$color-text-muted;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 1rem;
   }
 }
