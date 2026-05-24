@@ -92,11 +92,6 @@ export default function DestinationPage() {
               <p>{destination.insiderTip}</p>
             </div>
 
-            <div className={styles.perkSection}>
-              <h3>Exclusive Perk</h3>
-              <p>{destination.perk}</p>
-            </div>
-
             <div className={styles.actions}>
               <Button 
                 variant="primary" 

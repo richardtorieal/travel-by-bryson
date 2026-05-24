@@ -81,10 +81,6 @@ export default function InterceptedDestinationModal() {
                 <h3>The Insider Take</h3>
                 <p>{destination.insiderTip}</p>
               </div>
-              <div className={styles.perkSection}>
-                <h3>Exclusive Perk</h3>
-                <p>{destination.perk}</p>
-              </div>
               <div className={styles.actions}>
                 <Button 
                   variant="primary" 
@@ -146,11 +142,6 @@ export default function InterceptedDestinationModal() {
               <div className={styles.insiderSection}>
                 <h3>The Insider Take</h3>
                 <p>{destination.insiderTip}</p>
-              </div>
-
-              <div className={styles.perkSection}>
-                <h3>Exclusive Perk</h3>
-                <p>{destination.perk}</p>
               </div>
 
               <div className={styles.actions}>

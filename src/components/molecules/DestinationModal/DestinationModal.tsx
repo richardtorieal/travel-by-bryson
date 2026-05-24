@@ -15,7 +15,6 @@ interface DestinationModalProps {
     type: string;
     image: string;
     insiderTip: string;
-    perk: string;
     description: string;
   } | null;
 }
@@ -60,11 +59,6 @@ const DestinationModal: React.FC<DestinationModalProps> = ({ isOpen, onClose, de
               <div className={styles.insiderSection}>
                 <h3>The Insider Take</h3>
                 <p>{destination.insiderTip}</p>
-              </div>
-
-              <div className={styles.perkSection}>
-                <h3>Exclusive Perk</h3>
-                <p>{destination.perk}</p>
               </div>
 
               <div className={styles.actions}>

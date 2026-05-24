@@ -11,6 +11,9 @@ This specification document outlines the requirements for the Bryson Travel webs
 - **Reviews Section Refinement**:
   - Display exactly 3 primary reviews on the Home page.
   - **REMOVED**: The "See All Reviews" button and the corresponding review modal are no longer required.
+  - **NEW**: Review cards should only display the author's name and their quote (remove the "location/description" field).
+- **Destinations Content Refinement**:
+  - **NEW**: Remove "Exclusive Perks" from destination summaries. Each destination should only show the summary and the "Insider Tip".
 - **Combined Services & Contact Experience**:
   - The "Services" and "Contact" pages must be merged into a single, intuitive flow (accessible via the "Contact" link in navigation).
   - **Sequence**:
