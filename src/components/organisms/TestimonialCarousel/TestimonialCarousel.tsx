@@ -58,70 +58,77 @@ const TestimonialCarousel: React.FC = () => {
 
   return (
     <Section variant="white" padding="xl">
-      <Container>
-        <div className={styles.header}>
-          <span className={styles.subtitle}>Client Experiences</span>
-          <h2 className={styles.title}>What Our <em>Clients</em> Say</h2>
-        </div>
-
-        <div className={styles.carouselContainer}>
-          <button 
-            className={`${styles.navButton} ${styles.prev}`} 
-            onClick={prevStep} 
-            aria-label="Previous review"
-          >
-            <ChevronLeft size={24} />
-          </button>
-
-          <div className={styles.stage}>
-            <AnimatePresence initial={false} custom={direction} mode="wait">
-              <motion.div
-                key={index}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={handleDragEnd}
-                transition={{
-                  x: { type: "spring", stiffness: 250, damping: 30, mass: 0.8 },
-                  opacity: { duration: 0.3 }
-                }}
-                className={styles.cardWrapper}
-                style={{ cursor: 'grab', touchAction: 'none' }}
-                whileTap={{ cursor: 'grabbing' }}
-              >
-                <TestimonialCard {...reviews[index]} />
-              </motion.div>
-            </AnimatePresence>
+      <motion.div 
+        layout 
+        transition={{
+          layout: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
+        }}
+      >
+        <Container>
+          <div className={styles.header}>
+            <span className={styles.subtitle}>Client Experiences</span>
+            <h2 className={styles.title}>What Our <em>Clients</em> Say</h2>
           </div>
 
-          <button 
-            className={`${styles.navButton} ${styles.next}`} 
-            onClick={nextStep} 
-            aria-label="Next review"
-          >
-            <ChevronRight size={24} />
-          </button>
-        </div>
-
-        <div className={styles.dots}>
-          {reviews.map((_, i) => (
+          <div className={styles.carouselContainer}>
             <button 
-              key={i} 
-              className={`${styles.dot} ${i === index ? styles.active : ''}`}
-              onClick={() => {
-                setDirection(i > index ? 1 : -1);
-                setIndex(i);
-              }}
-              aria-label={`Go to review ${i + 1}`}
-            />
-          ))}
-        </div>
-      </Container>
+              className={`${styles.navButton} ${styles.prev}`} 
+              onClick={prevStep} 
+              aria-label="Previous review"
+            >
+              <ChevronLeft size={24} />
+            </button>
+
+            <div className={styles.stage}>
+              <AnimatePresence initial={false} custom={direction} mode="wait">
+                <motion.div
+                  key={index}
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={1}
+                  onDragEnd={handleDragEnd}
+                  transition={{
+                    x: { type: "spring", stiffness: 250, damping: 30, mass: 0.8 },
+                    opacity: { duration: 0.3 }
+                  }}
+                  className={styles.cardWrapper}
+                  style={{ cursor: 'grab', touchAction: 'none' }}
+                  whileTap={{ cursor: 'grabbing' }}
+                >
+                  <TestimonialCard {...reviews[index]} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <button 
+              className={`${styles.navButton} ${styles.next}`} 
+              onClick={nextStep} 
+              aria-label="Next review"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
+
+          <div className={styles.dots}>
+            {reviews.map((_, i) => (
+              <button 
+                key={i} 
+                className={`${styles.dot} ${i === index ? styles.active : ''}`}
+                onClick={() => {
+                  setDirection(i > index ? 1 : -1);
+                  setIndex(i);
+                }}
+                aria-label={`Go to review ${i + 1}`}
+              />
+            ))}
+          </div>
+        </Container>
+      </motion.div>
     </Section>
   );
 };
