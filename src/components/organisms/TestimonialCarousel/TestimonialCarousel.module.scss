@@ -2,7 +2,7 @@
 
 .header {
   text-align: center;
-  margin-bottom: vars.$spacing-xl;
+  margin-bottom: vars.$spacing-lg;
 }
 
 .subtitle {
@@ -35,7 +35,6 @@
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
-  padding-top: vars.$spacing-sm; // Safe zone from header
 
   @media (max-width: vars.$breakpoint-md) {
     gap: vars.$spacing-sm;
@@ -48,11 +47,11 @@
   position: relative;
   min-height: 400px;
   display: flex;
-  align-items: flex-start; // Anchor to top to prevent upward overlap
+  align-items: center;
   justify-content: center;
 
-  @media (max-width: vars.$breakpoint-lg) {
-    min-height: 550px;
+  @media (max-width: vars.$breakpoint-md) {
+    min-height: 450px;
   }
 }
 
@@ -64,9 +63,8 @@
   right: 0;
   bottom: 0;
   display: flex;
-  align-items: flex-start; // Match stage alignment
+  align-items: center;
   justify-content: center;
-  padding: 10px 0;
 }
 
 .navButton {
@@ -83,8 +81,7 @@
   transition: vars.$transition-smooth;
   z-index: 10;
   flex-shrink: 0;
-  box-shadow: none;
-  margin-top: 150px; // Align buttons with the center of a typical card height
+  box-shadow: vars.$shadow-sm;
 
   &:hover {
     background: vars.$color-accent;
@@ -101,7 +98,7 @@
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: vars.$spacing-xl;
+  margin-top: vars.$spacing-lg;
 }
 
 .dot {

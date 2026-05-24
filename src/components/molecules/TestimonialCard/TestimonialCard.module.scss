@@ -2,7 +2,7 @@
 
 .card {
   background-color: white;
-  padding: vars.$spacing-xl;
+  padding: vars.$spacing-md vars.$spacing-lg;
   border-radius: vars.$border-radius-lg;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
   border: 1px solid rgba(vars.$color-primary, 0.05);
@@ -13,34 +13,40 @@
   max-width: 800px;
   width: 90%;
   margin: 0 auto;
+  justify-content: center;
+  position: relative;
+  min-height: 280px;
+  height: 280px; // Lock height for total consistency
 
   @media (max-width: vars.$breakpoint-md) {
-    padding: vars.$spacing-lg vars.$spacing-md;
+    padding: vars.$spacing-md vars.$spacing-sm;
     width: 100%;
+    min-height: 320px;
+    height: 320px;
   }
 }
 
-.author {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 8px;
-
-  strong {
-    display: block;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 700;
-    color: vars.$color-primary;
-    font-size: 1.1rem;
-  }
+.header {
+  margin-bottom: vars.$spacing-sm;
 }
 
 .stars {
   color: vars.$color-accent;
   font-size: 1rem;
   letter-spacing: 4px;
-  margin-bottom: vars.$spacing-md;
+}
+
+.quoteWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  
+  &.truncated {
+    max-height: 120px;
+  }
 }
 
 .quote {
@@ -48,9 +54,51 @@
   font-size: 1.15rem;
   line-height: 1.5;
   color: vars.$color-primary;
-  margin-bottom: 0;
+  margin-bottom: vars.$spacing-xs;
 
   @media (max-width: vars.$breakpoint-md) {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+}
+
+.fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  pointer-events: none;
+}
+
+.readMore {
+  background: none;
+  border: none;
+  color: vars.$color-accent;
+  font-family: vars.$font-body;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  cursor: default; // Non-functional for now as requested
+  padding: 4px 8px;
+  margin-top: 4px;
+  transition: vars.$transition-smooth;
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 4px;
+
+  strong {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: vars.$color-primary;
     font-size: 1rem;
   }
 }
