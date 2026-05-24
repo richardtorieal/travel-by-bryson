@@ -14,8 +14,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
     <div className={`${styles.overlay} ${isOpen ? styles.open : ''}`}>
       <div className={styles.links}>
         <Link href="/about" onClick={onClose}>About</Link>
-        <Link href="/packages" onClick={onClose}>Packages</Link>
         <Link href="/destinations" onClick={onClose}>Destinations</Link>
+        <Link href="/travel-ideas" onClick={onClose}>Travel Ideas</Link>
         <Link href="/contact" onClick={onClose}>Contact</Link>
       </div>
     </div>

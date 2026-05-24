@@ -45,8 +45,8 @@ const Navbar: React.FC = () => {
           
           <div className={styles.links}>
             <Link href="/about">About</Link>
-            <Link href="/packages">Packages</Link>
             <Link href="/destinations">Destinations</Link>
+            <Link href="/travel-ideas">Travel Ideas</Link>
             <Button variant="outline" size="sm" href="/contact">Contact</Button>
           </div>
 
