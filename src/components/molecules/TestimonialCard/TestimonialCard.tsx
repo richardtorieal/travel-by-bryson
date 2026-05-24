@@ -13,7 +13,6 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   
   // Truncate logic: if quote is longer than 280 chars, show Read More visual
-  // Using a lower threshold for initial view to ensure consistency
   const needsTruncation = quote.length > 280;
   const truncatedQuote = quote.substring(0, 270) + '...';
 
@@ -22,8 +21,14 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author }) => {
   };
 
   return (
-    <div className={`${styles.card} ${isExpanded ? styles.expanded : ''}`}>
-      <div className={styles.contentInner}>
+    <motion.div 
+      layout
+      transition={{
+        layout: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
+      }}
+      className={`${styles.card} ${isExpanded ? styles.expanded : ''}`}
+    >
+      <motion.div layout="position" className={styles.contentInner}>
         <div className={styles.header}>
           <div className={styles.author}>
             <strong>{author}</strong>
@@ -56,8 +61,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author }) => {
             {isExpanded ? 'Read Less' : 'Read More'}
           </button>
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
