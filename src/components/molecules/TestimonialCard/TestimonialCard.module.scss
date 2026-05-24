@@ -2,7 +2,7 @@
 
 .card {
   background-color: white;
-  padding: vars.$spacing-xl vars.$spacing-lg vars.$spacing-md;
+  padding: vars.$spacing-lg vars.$spacing-lg;
   border-radius: vars.$border-radius-lg;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
   border: 1px solid rgba(vars.$color-primary, 0.05);
@@ -13,41 +13,54 @@
   max-width: 800px;
   width: 90%;
   margin: 0 auto;
-  justify-content: flex-start;
   position: relative;
+  
+  // Base height and transition
   min-height: 400px;
-  height: 400px; // Lock height for total consistency
+  height: auto;
+  transition: min-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  &.expanded {
+    min-height: 400px; // Still maintain min height but allow it to grow
+  }
 
   @media (max-width: vars.$breakpoint-md) {
-    padding: vars.$spacing-lg vars.$spacing-sm;
+    padding: vars.$spacing-md vars.$spacing-sm;
     width: 100%;
     min-height: 450px;
-    height: 450px;
   }
 }
 
+// Inner wrapper to handle centering of content
+.contentInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
+  padding: vars.$spacing-md 0;
+}
+
 .header {
-  margin-bottom: vars.$spacing-md;
+  margin-bottom: vars.$spacing-xs; // Significantly reduced space above quote
 }
 
 .stars {
   color: vars.$color-accent;
-  font-size: 1rem;
+  font-size: 0.9rem;
   letter-spacing: 4px;
 }
 
-.quoteWrapper {
+.quoteContainer {
   position: relative;
   width: 100%;
-  overflow: hidden;
-  flex: 1;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  
-  &.truncated {
-    max-height: 220px;
-  }
+  margin: vars.$spacing-sm 0;
 }
 
 .quote {
@@ -55,10 +68,10 @@
   font-size: 1.15rem;
   line-height: 1.5;
   color: vars.$color-primary;
-  margin-bottom: vars.$spacing-xs;
+  margin: 0;
 
   @media (max-width: vars.$breakpoint-md) {
-    font-size: 1rem;
+    font-size: 1.05rem;
     line-height: 1.4;
   }
 }
@@ -68,7 +81,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 40px;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
   pointer-events: none;
 }
@@ -82,17 +95,21 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.75rem;
-  cursor: default; // Non-functional for now as requested
-  padding: 4px 8px;
-  margin-top: 4px;
+  cursor: pointer;
+  padding: 8px 16px;
+  margin-top: vars.$spacing-sm;
   transition: vars.$transition-smooth;
+  
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 .author {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 
   strong {
     display: block;
