@@ -9,7 +9,7 @@ export default function TravelIdeas() {
     <main style={{ backgroundColor: LAYOUT.brandBackground, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar />
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', paddingTop: LAYOUT.navbarHeight }}>
-        <Section variant="white" padding="section-std" style={{ width: '100%' }}>
+        <Section variant="white" padding="section-std">
           <Container>
             <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
               <h1 style={{ fontSize: '3rem', marginBottom: '1rem', fontFamily: 'var(--font-primary)', color: 'var(--text-primary)' }}>Travel <em>Ideas</em></h1>
