@@ -12,9 +12,8 @@ interface TestimonialCardProps {
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   
-  // Truncate logic: if quote is longer than 280 chars, show Read More visual
+  // Logic to determine if we need the Read More button
   const needsTruncation = quote.length > 280;
-  const truncatedQuote = quote.substring(0, 270) + '...';
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -36,9 +35,17 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author }) => {
           <div className={styles.stars}>★★★★★</div>
         </div>
 
-        <div className={styles.quoteContainer}>
+        <motion.div 
+          layout
+          className={styles.quoteContainer}
+          initial={false}
+          animate={{ 
+            height: isExpanded ? 'auto' : (needsTruncation ? 120 : 'auto') 
+          }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+        >
           <p className={styles.quote}>
-            &ldquo;{needsTruncation && !isExpanded ? truncatedQuote : quote}&rdquo;
+            &ldquo;{quote}&rdquo;
           </p>
           
           <AnimatePresence>
@@ -47,11 +54,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
                 className={styles.fade} 
               />
             )}
           </AnimatePresence>
-        </div>
+        </motion.div>
 
         {needsTruncation && (
           <button 
