@@ -57,7 +57,7 @@ const TestimonialCarousel: React.FC = () => {
   };
 
   return (
-    <Section variant="white" padding="xl">
+    <Section variant="white" padding="xl" animated={true}>
       <Container>
         <div className={styles.header}>
           <span className={styles.subtitle}>Client Experiences</span>
@@ -77,6 +77,7 @@ const TestimonialCarousel: React.FC = () => {
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
                 key={index}
+                layout
                 custom={direction}
                 variants={variants}
                 initial="enter"
@@ -88,7 +89,8 @@ const TestimonialCarousel: React.FC = () => {
                 onDragEnd={handleDragEnd}
                 transition={{
                   x: { type: "spring", stiffness: 250, damping: 30, mass: 0.8 },
-                  opacity: { duration: 0.3 }
+                  opacity: { duration: 0.3 },
+                  layout: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
                 }}
                 className={styles.cardWrapper}
                 style={{ cursor: 'grab', touchAction: 'none' }}
@@ -98,7 +100,6 @@ const TestimonialCarousel: React.FC = () => {
               </motion.div>
             </AnimatePresence>
           </div>
-
           <button 
             className={`${styles.navButton} ${styles.next}`} 
             onClick={nextStep} 

@@ -11,7 +11,13 @@ This specification document outlines the requirements for the Bryson Travel webs
 - **Reviews Section Refinement**:
   - Display exactly 3 primary reviews on the Home page.
   - **REMOVED**: The "See All Reviews" button and the corresponding review modal are no longer required.
-  - **NEW**: Review cards should only display the author's name and their quote (remove the "location/description" field).
+  - **NEW**: Review cards should only display the author's name and their quote.
+  - **NEW: Advanced Card Interactivity**:
+    - **Vertical Centering**: The entire card content (Reviewer Name, Stars, Quote, and Read More button) must be perfectly vertically centered within the card.
+    - **Header Spacing**: Significantly reduce the vertical space between the reviewer name/stars and the beginning of the quote.
+    - **Smooth Expansion**: When "Read More" is clicked, the card must expand downwards to reveal the full text using a smooth `cubic-bezier(0.4, 0, 0.2, 1)` (ease-in-out) transition. Clicking again (or a "Read Less" state) must collapse it.
+    - **Layout Integrity**: Expanded cards must **never** overlap with the pagination indicators or any content below. The layout must "push" subsequent elements down dynamically.
+    - **Auto-Collapse**: Any expanded card must automatically and smoothly collapse when the user swiped or clicked to a different card in the carousel.
 - **Destinations Content Refinement**:
   - **NEW**: Remove "Exclusive Perks" from destination summaries. Each destination should only show the summary and the "Insider Tip".
 - **Combined Services & Contact Experience**:
