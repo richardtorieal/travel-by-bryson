@@ -19,21 +19,26 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author }) => {
     setIsExpanded(!isExpanded);
   };
 
+  // Using 'as any' for the transition ease to satisfy TypeScript with custom cubic-bezier arrays
+  const sharedTransition = { duration: 0.6, ease: [0.4, 0, 0.2, 1] as any };
+
   return (
     <motion.div 
       layout
       transition={{
-        layout: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
+        layout: sharedTransition
       }}
       className={`${styles.card} ${isExpanded ? styles.expanded : ''}`}
     >
-      <motion.div layout="position" className={styles.contentInner}>
-        <div className={styles.header}>
-          <div className={styles.author}>
+      <motion.div layout className={styles.contentInner} transition={{ layout: sharedTransition }}>
+        <motion.div layout className={styles.header} transition={{ layout: sharedTransition }}>
+          <motion.div layout className={styles.author} transition={{ layout: sharedTransition }}>
             <strong>{author}</strong>
-          </div>
-          <div className={styles.stars}>★★★★★</div>
-        </div>
+          </motion.div>
+          <motion.div layout className={styles.stars} transition={{ layout: sharedTransition }}>
+            ★★★★★
+          </motion.div>
+        </motion.div>
 
         <motion.div 
           layout
@@ -42,11 +47,11 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author }) => {
           animate={{ 
             height: isExpanded ? 'auto' : (needsTruncation ? 120 : 'auto') 
           }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          transition={sharedTransition}
         >
-          <p className={styles.quote}>
+          <motion.p layout className={styles.quote} transition={{ layout: sharedTransition }}>
             &ldquo;{quote}&rdquo;
-          </p>
+          </motion.p>
           
           <AnimatePresence>
             {needsTruncation && !isExpanded && (
@@ -62,12 +67,14 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author }) => {
         </motion.div>
 
         {needsTruncation && (
-          <button 
+          <motion.button 
+            layout
             className={styles.readMore} 
             onClick={toggleExpand}
+            transition={{ layout: sharedTransition }}
           >
             {isExpanded ? 'Read Less' : 'Read More'}
-          </button>
+          </motion.button>
         )}
       </motion.div>
     </motion.div>
