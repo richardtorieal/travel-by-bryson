@@ -58,7 +58,7 @@ const TestimonialCarousel: React.FC = () => {
 
   return (
     <Section variant="white" padding="xl" animated={true}>
-      <Container>
+      <Container animated={true}>
         <div className={styles.header}>
           <span className={styles.subtitle}>Client Experiences</span>
           <h2 className={styles.title}>What Our <em>Clients</em> Say</h2>
