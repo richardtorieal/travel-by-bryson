@@ -71,7 +71,7 @@
   }
 
   .logoText {
-    font-family: vars.$font-body;
+    font-family: var(--font-playfair), serif;
     font-size: 1.25rem; // Slightly larger starting size
     font-weight: 400; // Changed from 800 to 400
     letter-spacing: 0.4em;

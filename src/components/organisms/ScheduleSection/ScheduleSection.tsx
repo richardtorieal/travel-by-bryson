@@ -7,7 +7,7 @@ import Button from '../../atoms/Button/Button';
 const ScheduleSection: React.FC = () => {
   return (
     <Section variant="sand" padding="xl" animated={true}>
-      <Container>
+      <Container animated={true}>
         <div className={styles.wrapper}>
           <div className={styles.header}>
             <h2 className={styles.title}>Ready to Begin Your <em>Next Journey</em>?</h2>
