@@ -65,7 +65,7 @@ This specification document outlines the requirements for the Bryson Travel webs
 - **Responsiveness**: The new combined flow must be fully responsive, ensuring the package selection and form are easy to use on mobile devices.
 
 ### 2.2 Integration & Performance
-- **Email Notifications**: Form submissions must trigger an email notification to Bryson.
+- **Email Notifications**: [COMPLETED] Form submissions trigger an email notification to Bryson (`bryson.adams@fora.travel`) using `nodemailer` via a Next.js API route.
 - **Privacy & Security**: 
   - No persistence of user data on the server; form data is transmitted via email only.
   - Privacy Policy must accurately reflect this lack of data persistence.

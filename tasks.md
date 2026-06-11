@@ -7,6 +7,7 @@
 - **Destinations Content Refinement**: Removed "Exclusive Perks" from all destinations to focus on the summary and insider tip.
 - **Review Content Sync**: Updated `src/data/reviews.ts` with verbatim content from the provided text file (`1779589882334_Reviews_text_for_Bryson_website_.txt`).
 - **Spec Sync**: Updated `bryson-travel-requirements.md` to match the current project state and new requests.
+- **Email Integration**: Integrated `nodemailer` to send contact form inquiries to `bryson.adams@fora.travel`.
 
 ## Open / Pending
 - Fully merge the 'Services' and 'Contact' pages into a single intuitive flow (currently `/packages` and `/contact` still exist independently).
