@@ -65,11 +65,36 @@ This specification document outlines the requirements for the Bryson Travel webs
 - **Responsiveness**: The new combined flow must be fully responsive, ensuring the package selection and form are easy to use on mobile devices.
 
 ### 2.2 Integration & Performance
-- **Email Notifications**: [COMPLETED] Form submissions trigger an email notification to Bryson (`bryson.adams@fora.travel`) using `nodemailer` via a Next.js API route.
+- **Email Notifications**: [REFINED]
+  - Form submissions trigger an email notification to Bryson (`bryson.adams@fora.travel`) using `nodemailer` via a Next.js API route.
+  - **Brand Alignment**: Subject line and body copy use evocative, professional language ("New Journey Inquiry") rather than system-style messages.
+  - **Visual Consistency**:
+    - Card border radius increased to **16px** to match the website's primary UI components.
+    - Responsive layout with refined typography (Playfair Display for headings).
+    - *Note: Logo addition deferred until production URL is established.*
 - **Privacy & Security**: 
   - No persistence of user data on the server; form data is transmitted via email only.
   - Privacy Policy must accurately reflect this lack of data persistence.
 - **Copyright**: All images must be verified for copyright compliance.
+
+### 2.3 Developer Reference: Sample Payload
+For testing the Contact API, use the following robust payload structure:
+
+```bash
+curl -X POST http://localhost:3000/api/contact \
+-H "Content-Type: application/json" \
+-d '{
+  "firstName": "Alexander",
+  "lastName": "Vanderbilt",
+  "email": "alex.vanderbilt@example.com",
+  "phone": "+1 (555) 123-4567",
+  "contactMethod": "email",
+  "destination": "Amalfi Coast & Puglia, Italy",
+  "selectedTier": "Bespoke",
+  "interests": ["Hotels & Resorts", "Tours & Experiences", "Transportation"],
+  "details": "We are looking to plan a 10-day anniversary trip in late September. Interested in staying at Belmond Hotel Caruso in Ravello and then exploring the trulli of Alberobello. We love wine tastings, private boat tours, and authentic culinary experiences. High-end luxury is a priority."
+}'
+```
 
 ### 2.3 Nice to Have (Future Iterations)
 - **Calendly Integration**: A direct link or embedded widget for Bryson's work calendar to facilitate discovery calls.
