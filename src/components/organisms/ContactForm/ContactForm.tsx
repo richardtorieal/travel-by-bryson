@@ -12,6 +12,8 @@ import { useSearchParams } from 'next/navigation';
 
 const ContactFormContent: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [selectedTier, setSelectedTier] = useState<ServiceTier | null>(null);
   const [destinationValue, setDestinationValue] = useState('');
   const journeySectionRef = useRef<HTMLDivElement>(null);
@@ -33,15 +35,53 @@ const ContactFormContent: React.FC = () => {
     }, 300);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!selectedTier) return;
-    setIsSubmitted(true);
     
-    // Auto scroll to the success message after the form disappears
-    setTimeout(() => {
-      successMessageRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 100);
+    setIsLoading(true);
+    setSubmitError(null);
+
+    const formData = new FormData(e.currentTarget);
+    const interests = formData.getAll('interest');
+    
+    const payload = {
+      firstName: formData.get('firstName'),
+      lastName: formData.get('lastName'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      contactMethod: formData.get('contactMethod'),
+      destination: formData.get('destination'),
+      interests: interests,
+      details: formData.get('details'),
+      selectedTier: selectedTier
+    };
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send inquiry. Please try again or email Bryson directly.');
+      }
+
+      setIsSubmitted(true);
+      
+      // Auto scroll to the success message after the form disappears
+      setTimeout(() => {
+        successMessageRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitError(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -85,21 +125,21 @@ const ContactFormContent: React.FC = () => {
                 <div className={styles.row}>
                   <div className={styles.field}>
                     <label>First Name</label>
-                    <input type="text" placeholder="Your first name" required disabled={!selectedTier} />
+                    <input type="text" name="firstName" placeholder="Your first name" required disabled={!selectedTier || isLoading} />
                   </div>
                   <div className={styles.field}>
                     <label>Last Name</label>
-                    <input type="text" placeholder="Your last name" required disabled={!selectedTier} />
+                    <input type="text" name="lastName" placeholder="Your last name" required disabled={!selectedTier || isLoading} />
                   </div>
                 </div>
                 <div className={styles.row}>
                   <div className={styles.field}>
                     <label>Email Address</label>
-                    <input type="email" placeholder="Your email address" required disabled={!selectedTier} />
+                    <input type="email" name="email" placeholder="Your email address" required disabled={!selectedTier || isLoading} />
                   </div>
                   <div className={styles.field}>
                     <label>Phone Number</label>
-                    <input type="tel" placeholder="Your phone number" disabled={!selectedTier} />
+                    <input type="tel" name="phone" placeholder="Your phone number" disabled={!selectedTier || isLoading} />
                   </div>
                 </div>
 
@@ -107,15 +147,15 @@ const ContactFormContent: React.FC = () => {
                   <label>Preferred Contact Method</label>
                   <div className={styles.radioGroup}>
                     <label className={styles.radio}>
-                      <input type="radio" name="contactMethod" value="email" defaultChecked disabled={!selectedTier} />
+                      <input type="radio" name="contactMethod" value="email" defaultChecked disabled={!selectedTier || isLoading} />
                       <span>Email</span>
                     </label>
                     <label className={styles.radio}>
-                      <input type="radio" name="contactMethod" value="phone" disabled={!selectedTier} />
+                      <input type="radio" name="contactMethod" value="phone" disabled={!selectedTier || isLoading} />
                       <span>Phone</span>
                     </label>
                     <label className={styles.radio}>
-                      <input type="radio" name="contactMethod" value="instagram" disabled={!selectedTier} />
+                      <input type="radio" name="contactMethod" value="instagram" disabled={!selectedTier || isLoading} />
                       <span>Instagram</span>
                     </label>
                   </div>
@@ -125,9 +165,10 @@ const ContactFormContent: React.FC = () => {
                   <label>Where would you like to go?</label>
                   <input 
                     type="text" 
+                    name="destination"
                     placeholder="Destination or region" 
                     required 
-                    disabled={!selectedTier}
+                    disabled={!selectedTier || isLoading}
                     value={destinationValue}
                     onChange={(e) => setDestinationValue(e.target.value)}
                   />
@@ -137,19 +178,19 @@ const ContactFormContent: React.FC = () => {
                   <label>What can I book for you?</label>
                   <div className={styles.checkboxGroup}>
                     <label className={styles.checkbox}>
-                      <input type="checkbox" name="interest" value="hotels" disabled={!selectedTier} />
+                      <input type="checkbox" name="interest" value="hotels" disabled={!selectedTier || isLoading} />
                       <span>Hotels & Resorts</span>
                     </label>
                     <label className={styles.checkbox}>
-                      <input type="checkbox" name="interest" value="cruises" disabled={!selectedTier} />
+                      <input type="checkbox" name="interest" value="cruises" disabled={!selectedTier || isLoading} />
                       <span>Cruises</span>
                     </label>
                     <label className={styles.checkbox}>
-                      <input type="checkbox" name="interest" value="tours" disabled={!selectedTier} />
+                      <input type="checkbox" name="interest" value="tours" disabled={!selectedTier || isLoading} />
                       <span>Tours & Experiences</span>
                     </label>
                     <label className={styles.checkbox}>
-                      <input type="checkbox" name="interest" value="transport" disabled={!selectedTier} />
+                      <input type="checkbox" name="interest" value="transport" disabled={!selectedTier || isLoading} />
                       <span>Transportation</span>
                     </label>
                   </div>
@@ -158,16 +199,23 @@ const ContactFormContent: React.FC = () => {
                 <div className={styles.field}>
                   <label>Dream Details</label>
                   <textarea 
+                    name="details"
                     placeholder="Tell us more about your travel style, preferred dates, or specific vision..." 
                     rows={5} 
                     required 
-                    disabled={!selectedTier}
+                    disabled={!selectedTier || isLoading}
                   ></textarea>
                 </div>
                 
+                {submitError && (
+                  <div className={styles.error}>
+                    {submitError}
+                  </div>
+                )}
+
                 <div className={styles.actions}>
-                  <Button type="submit" variant="primary" size="lg" fullWidth disabled={!selectedTier}>
-                    SEND INQUIRY
+                  <Button type="submit" variant="primary" size="lg" fullWidth disabled={!selectedTier || isLoading}>
+                    {isLoading ? 'SENDING...' : 'SEND INQUIRY'}
                   </Button>
                 </div>
               </form>

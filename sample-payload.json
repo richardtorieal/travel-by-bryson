@@ -1,0 +1,11 @@
+{
+  "firstName": "Alexander",
+  "lastName": "Vanderbilt",
+  "email": "alex.vanderbilt@example.com",
+  "phone": "+1 (555) 123-4567",
+  "contactMethod": "email",
+  "destination": "Amalfi Coast & Puglia, Italy",
+  "selectedTier": "Elevated",
+  "interests": ["Hotels & Resorts", "Tours & Experiences", "Transportation"],
+  "details": "We are looking to plan a 10-day anniversary trip in late September. Interested in staying at Belmond Hotel Caruso in Ravello and then exploring the trulli of Alberobello. We love wine tastings, private boat tours, and authentic culinary experiences. High-end luxury is a priority."
+}
