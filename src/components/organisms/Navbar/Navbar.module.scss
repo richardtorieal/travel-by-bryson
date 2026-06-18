@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   height: 80px;
   padding-top: 0;
   z-index: 10000;
@@ -29,11 +29,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2.5rem !important;
+  padding: 0 vars.$spacing-md !important;
 
-  @media (max-width: vars.$breakpoint-md) {
-    padding: 0 1.5rem !important;
-  } // Force 0.5rem as requested
+  @media (max-width: vars.$breakpoint-sm) {
+    padding: 0 vars.$spacing-sm !important;
+  }
 }
 
 .logo {
