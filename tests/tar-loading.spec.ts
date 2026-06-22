@@ -15,9 +15,9 @@ test.describe('TAR Bundle Integration Verification', () => {
 
     await page.goto('/');
     
-    // Wait for the canvas element to be visible (signaling tar was loaded and parsed)
+    // Wait for the canvas element to be fully loaded and opaque
     const canvas = page.locator('canvas');
-    await expect(canvas).toBeVisible({ timeout: 10000 });
+    await expect(canvas).toHaveCSS('opacity', '1', { timeout: 10000 });
 
     // Verify that the tar request was made
     expect(tarRequested).toBe(true);
