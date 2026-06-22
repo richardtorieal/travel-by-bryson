@@ -5,6 +5,7 @@ import styles from './VideoHero.module.scss';
 import { motion, useScroll, useTransform, useSpring, useMotionValueEvent } from 'framer-motion';
 import Container from '../../atoms/Container/Container';
 import Button from '../../atoms/Button/Button';
+import { parseTar } from '../../../utils/tar';
 
 const TOTAL_FRAMES = 144;
 
@@ -31,26 +32,83 @@ const VideoHero: React.FC = () => {
   const opacity = useTransform(smoothProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(smoothProgress, [0, 1], [1, 1.1]);
 
-  // Preload frames for smooth playback
+  // Preload frames for smooth playback via a single TAR request
   useEffect(() => {
-    let loadedCount = 0;
-    const loadedImages: HTMLImageElement[] = [];
+    let active = true;
+    const blobUrls: string[] = [];
 
-    const handleImageLoad = () => {
-      loadedCount++;
-      if (loadedCount === TOTAL_FRAMES) {
-        setImagesLoaded(true);
+    const loadTarFrames = async () => {
+      try {
+        const response = await fetch('/assets/como-frames.tar');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        const arrayBuffer = await response.arrayBuffer();
+        const tarFiles = parseTar(arrayBuffer);
+        
+        const loadedImages: HTMLImageElement[] = [];
+        let loadedCount = 0;
+
+        tarFiles.forEach((file) => {
+          const blob = new Blob([file.data as any], { type: 'image/jpeg' });
+          const blobUrl = URL.createObjectURL(blob);
+          blobUrls.push(blobUrl);
+
+          const img = new Image();
+          img.onload = () => {
+            if (!active) return;
+            loadedCount++;
+            if (loadedCount === tarFiles.length) {
+              setImagesLoaded(true);
+            }
+          };
+          img.onerror = () => {
+            if (!active) return;
+            loadedCount++;
+            if (loadedCount === tarFiles.length) {
+              setImagesLoaded(true);
+            }
+          };
+          img.src = blobUrl;
+          loadedImages.push(img);
+        });
+
+        if (active) {
+          imagesRef.current = loadedImages;
+        }
+      } catch (err) {
+        console.error('Failed to load tar frames, falling back to individual frame requests:', err);
+        // Fallback: Fetch frames individually if TAR load fails
+        let loadedCount = 0;
+        const loadedImages: HTMLImageElement[] = [];
+
+        const handleImageLoad = () => {
+          if (!active) return;
+          loadedCount++;
+          if (loadedCount === TOTAL_FRAMES) {
+            setImagesLoaded(true);
+          }
+        };
+
+        for (let i = 1; i <= TOTAL_FRAMES; i++) {
+          const img = new Image();
+          img.onload = handleImageLoad;
+          img.onerror = handleImageLoad;
+          img.src = `/assets/como-frames/frame_${i.toString().padStart(3, '0')}.jpg`;
+          loadedImages.push(img);
+        }
+        if (active) {
+          imagesRef.current = loadedImages;
+        }
       }
     };
 
-    for (let i = 1; i <= TOTAL_FRAMES; i++) {
-      const img = new Image();
-      img.onload = handleImageLoad;
-      img.onerror = handleImageLoad; // Avoid blocking the site if a single frame fails to load
-      img.src = `/assets/como-frames/frame_${i.toString().padStart(3, '0')}.jpg`;
-      loadedImages.push(img);
-    }
-    imagesRef.current = loadedImages;
+    loadTarFrames();
+
+    return () => {
+      active = false;
+      // Cleanup Object URLs to avoid memory leaks
+      blobUrls.forEach((url) => URL.revokeObjectURL(url));
+    };
   }, []);
 
   // Draw the current frame onto the canvas

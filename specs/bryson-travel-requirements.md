@@ -106,4 +106,10 @@ curl -X POST http://localhost:3000/api/contact \
   - **Memory Preloading**: All 144 image frames (`frame_001.jpg` to `frame_144.jpg`) must be preloaded once as `HTMLImageElement` instances in JavaScript when the component mounts.
   - **Canvas Rendering**: Use an HTML5 `<canvas>` element for rendering the frames rather than dynamically changing the `src` attribute of an `<img>` element.
   - **Fluid 60 FPS playback**: Update the canvas using `ctx.drawImage` in the frame-change scroll handler. This completely avoids browser layout thrashing and aborted network requests, providing a smooth user experience.
+  - **Frame Bundling (Single Request)**:
+    - All 144 image files are compiled into a single uncompressed TAR archive (`public/assets/como-frames.tar`) during the build process (`prebuild` / `predev` scripting hook).
+    - The client-side application downloads this TAR file in a single request and decodes the files dynamically in memory using a custom TAR parser method.
+    - Object URLs are dynamically mapped to the preloaded `HTMLImageElement` instances.
+    - Provides fallback individual request preloading in the event of a network or parsing failure.
+
 
