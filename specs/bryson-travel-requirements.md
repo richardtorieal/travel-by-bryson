@@ -99,3 +99,11 @@ curl -X POST http://localhost:3000/api/contact \
 ### 2.3 Nice to Have (Future Iterations)
 - **Calendly Integration**: A direct link or embedded widget for Bryson's work calendar to facilitate discovery calls.
 - **Enhanced Destinations**: Dynamic recommendations and client trip case studies.
+
+## 2.4 Performance & Scroll Animation Caching [NEW]
+- **Scroll-Driven Video Performance**:
+  - The home page's scroll-driven Dolly Zoom video sequence must not trigger network requests during scrolling.
+  - **Memory Preloading**: All 144 image frames (`frame_001.jpg` to `frame_144.jpg`) must be preloaded once as `HTMLImageElement` instances in JavaScript when the component mounts.
+  - **Canvas Rendering**: Use an HTML5 `<canvas>` element for rendering the frames rather than dynamically changing the `src` attribute of an `<img>` element.
+  - **Fluid 60 FPS playback**: Update the canvas using `ctx.drawImage` in the frame-change scroll handler. This completely avoids browser layout thrashing and aborted network requests, providing a smooth user experience.
+

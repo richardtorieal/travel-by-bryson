@@ -11,6 +11,8 @@
 - **Sample Payload Generation**: Created `sample-payload.json` with robust, realistic details for API testing.
 - **Email Integration**: Integrated `nodemailer` to send contact form inquiries to `bryson.adams@fora.travel`.
 - **Favicon Update**: Replaced `favicon.ico` with `icon.svg` (copied from `logo-mark.svg` with a square viewBox) to match the logo from the navbar.
+- **Scroll Video Performance**: Optimized scroll-driven video Hero to preload all 144 frames in memory and render to HTML5 `<canvas>`, resolving canceled network requests and scrolling lag.
+
 
 ## Open / Pending
 - Fully merge the 'Services' and 'Contact' pages into a single intuitive flow (currently `/packages` and `/contact` still exist independently).
