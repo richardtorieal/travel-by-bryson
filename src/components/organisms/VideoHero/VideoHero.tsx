@@ -158,21 +158,36 @@ const VideoHero: React.FC = () => {
     <div ref={containerRef} className={styles.heroWrapper}>
       <motion.div style={{ scale }} className={styles.videoPlaceholder}>
         <div className={styles.overlay} />
-        {/* Render a fallback img tag only until the full memory cache is loaded */}
-        {!imagesLoaded && (
-          <img 
-            src="/assets/como-frames/frame_001.jpg" 
-            alt="Lake Como Dolly Zoom Preview"
-            className={styles.video}
-            style={{ objectFit: 'cover' }}
-          />
-        )}
+        {/* Render a fallback preview image that sits underneath the canvas */}
+        <img 
+          src="/assets/como-frames/frame_001.jpg" 
+          alt="Lake Como Dolly Zoom Preview"
+          className={styles.video}
+          style={{ 
+            objectFit: 'cover',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 1
+          }}
+        />
+        {/* Canvas overlays the image and fades in smoothly once fully cached in memory */}
         <canvas 
           ref={canvasRef}
           className={styles.video}
           style={{ 
             objectFit: 'cover',
-            display: imagesLoaded ? 'block' : 'none'
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 2,
+            opacity: imagesLoaded ? 1 : 0,
+            transition: 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+            pointerEvents: 'none'
           }}
         />
       </motion.div>
