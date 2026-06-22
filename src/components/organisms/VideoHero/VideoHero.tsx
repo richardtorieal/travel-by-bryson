@@ -12,7 +12,7 @@ const TOTAL_FRAMES = 144;
 const VideoHero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const framesRef = useRef<(ImageBitmap | HTMLImageElement)[]>([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [activeFrameIndex, setActiveFrameIndex] = useState(1);
   
@@ -45,35 +45,20 @@ const VideoHero: React.FC = () => {
         const arrayBuffer = await response.arrayBuffer();
         const tarFiles = parseTar(arrayBuffer);
         
-        const loadedImages: HTMLImageElement[] = [];
-        let loadedCount = 0;
-
-        tarFiles.forEach((file) => {
+        // Decode all JPEGs into ImageBitmaps asynchronously using createImageBitmap
+        // This decodes the bytes directly on a helper thread and keeps them GPU-ready,
+        // preventing any lazy decoding during draw and avoiding blob URL network logs.
+        const promises = tarFiles.map(async (file) => {
           const blob = new Blob([file.data as any], { type: 'image/jpeg' });
-          const blobUrl = URL.createObjectURL(blob);
-          blobUrls.push(blobUrl);
-
-          const img = new Image();
-          img.onload = () => {
-            if (!active) return;
-            loadedCount++;
-            if (loadedCount === tarFiles.length) {
-              setImagesLoaded(true);
-            }
-          };
-          img.onerror = () => {
-            if (!active) return;
-            loadedCount++;
-            if (loadedCount === tarFiles.length) {
-              setImagesLoaded(true);
-            }
-          };
-          img.src = blobUrl;
-          loadedImages.push(img);
+          const bitmap = await createImageBitmap(blob);
+          return bitmap;
         });
 
+        const decodedBitmaps = await Promise.all(promises);
+
         if (active) {
-          imagesRef.current = loadedImages;
+          framesRef.current = decodedBitmaps;
+          setImagesLoaded(true);
         }
       } catch (err) {
         console.error('Failed to load tar frames, falling back to individual frame requests:', err);
@@ -97,7 +82,7 @@ const VideoHero: React.FC = () => {
           loadedImages.push(img);
         }
         if (active) {
-          imagesRef.current = loadedImages;
+          framesRef.current = loadedImages;
         }
       }
     };
@@ -106,8 +91,14 @@ const VideoHero: React.FC = () => {
 
     return () => {
       active = false;
-      // Cleanup Object URLs to avoid memory leaks
+      // Cleanup Object URLs to avoid memory leaks (in case fallback path was triggered)
       blobUrls.forEach((url) => URL.revokeObjectURL(url));
+      // Release ImageBitmap GPU memory resources
+      framesRef.current.forEach((frame) => {
+        if ('close' in frame) {
+          frame.close();
+        }
+      });
     };
   }, []);
 
@@ -118,23 +109,33 @@ const VideoHero: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const img = imagesRef.current[index - 1];
-    if (img && img.complete) {
-      // Set internal canvas resolution to match image natural size once
-      if (canvas.width !== img.naturalWidth || canvas.height !== img.naturalHeight) {
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
-      }
+    const frame = framesRef.current[index - 1];
+    if (frame) {
+      const isLoaded = 'naturalWidth' in frame ? frame.complete : true;
+      if (isLoaded) {
+        const width = 'naturalWidth' in frame ? frame.naturalWidth : frame.width;
+        const height = 'naturalHeight' in frame ? frame.naturalHeight : frame.height;
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        if (width && height) {
+          // Set internal canvas resolution to match image natural size once
+          if (canvas.width !== width || canvas.height !== height) {
+            canvas.width = width;
+            canvas.height = height;
+          }
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(frame, 0, 0, canvas.width, canvas.height);
+        }
+      }
     }
   };
 
-  // Re-draw when active frame or load status changes
+  // Re-draw when load status changes
   useEffect(() => {
-    drawFrame(activeFrameIndex);
-  }, [activeFrameIndex, imagesLoaded]);
+    if (imagesLoaded) {
+      drawFrame(activeFrameIndex);
+    }
+  }, [imagesLoaded]);
 
   // Update frame index based on scroll progress
   useMotionValueEvent(smoothProgress, "change", (latest) => {
@@ -142,6 +143,12 @@ const VideoHero: React.FC = () => {
       TOTAL_FRAMES,
       Math.max(1, Math.floor(latest * TOTAL_FRAMES) + 1)
     );
+    
+    // Draw canvas frame immediately to avoid asynchronous React render loop lag and flashing
+    if (imagesLoaded) {
+      drawFrame(index);
+    }
+
     if (index !== activeFrameIndex) {
       setActiveFrameIndex(index);
     }
