@@ -58,12 +58,15 @@ export function parseTar(arrayBuffer: ArrayBuffer): TarFile[] {
         throw new Error(`Malformed TAR archive: file data for '${name}' exceeds archive bounds`);
       }
 
-      const fileData = bytes.subarray(offset, offset + size);
-      files.push({
-        name,
-        size,
-        data: fileData
-      });
+      // Skip macOS metadata files (._*) and hidden files (like .DS_Store)
+      if (!name.startsWith('._') && !name.startsWith('.')) {
+        const fileData = bytes.subarray(offset, offset + size);
+        files.push({
+          name,
+          size,
+          data: fileData
+        });
+      }
     }
 
     // File data block is padded to a multiple of 512 bytes

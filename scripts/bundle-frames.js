@@ -14,7 +14,8 @@ console.log('Bundling como-frames into como-frames.tar...');
 try {
   // Use native tar. In macOS/Linux, this is standard, extremely fast, and robust.
   // We sort files to guarantee alphabetical order (frame_001.jpg, frame_002.jpg, etc.)
-  execSync(`tar -cf "${destTar}" -C "${srcDir}" $(ls "${srcDir}" | sort)`);
+  // and exclude any macOS metadata/hidden files (like ._ or .DS_Store).
+  execSync(`COPYFILE_DISABLE=1 tar -cf "${destTar}" -C "${srcDir}" $(ls "${srcDir}" | grep -v '^[._]' | sort)`);
   console.log(`Successfully bundled: ${destTar} (${fs.statSync(destTar).size} bytes)`);
 } catch (error) {
   console.error('Failed to bundle using system tar:', error.message);
