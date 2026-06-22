@@ -161,7 +161,7 @@ const VideoHero: React.FC = () => {
         {/* Render a fallback img tag only until the full memory cache is loaded */}
         {!imagesLoaded && (
           <img 
-            src={`/assets/como-frames/frame_${activeFrameIndex.toString().padStart(3, '0')}.jpg`} 
+            src="/assets/como-frames/frame_001.jpg" 
             alt="Lake Como Dolly Zoom Preview"
             className={styles.video}
             style={{ objectFit: 'cover' }}
