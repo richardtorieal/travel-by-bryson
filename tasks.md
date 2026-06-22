@@ -10,6 +10,7 @@
 - **Refined Email Branding**: Increased card border radius to 16px and improved subject/body copy to align with luxury brand identity. (Note: Logo integration deferred until live).
 - **Sample Payload Generation**: Created `sample-payload.json` with robust, realistic details for API testing.
 - **Email Integration**: Integrated `nodemailer` to send contact form inquiries to `bryson.adams@fora.travel`.
+- **Favicon Update**: Replaced `favicon.ico` with `icon.svg` (copied from `logo-mark.svg` with a square viewBox) to match the logo from the navbar.
 
 ## Open / Pending
 - Fully merge the 'Services' and 'Contact' pages into a single intuitive flow (currently `/packages` and `/contact` still exist independently).
