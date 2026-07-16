@@ -6,7 +6,7 @@
     "predev": "node scripts/bundle-frames.js",
     "dev": "tinacms dev -c \"next dev\"",
     "prebuild": "node scripts/bundle-frames.js",
-    "build": "next build",
+    "build": "tinacms build && next build",
     "start": "next start",
     "lint": "eslint"
   },

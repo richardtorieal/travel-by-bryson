@@ -5,9 +5,13 @@ import styles from './DestinationsContent.module.scss';
 import Container from '../../atoms/Container/Container';
 import Section from '../../atoms/Section/Section';
 import Link from 'next/link';
-import { DESTINATIONS } from '@/data/destinations';
+import type { DestinationData } from '@/lib/tina';
 
-const DestinationsContent = () => {
+interface DestinationsContentProps {
+  destinations: DestinationData[];
+}
+
+const DestinationsContent = ({ destinations }: DestinationsContentProps) => {
   return (
     <Section variant="white" padding="xl">
       <Container>
@@ -21,7 +25,7 @@ const DestinationsContent = () => {
         </div>
         
         <div className={styles.gallery}>
-          {DESTINATIONS.map((dest: any) => (
+          {destinations.map((dest) => (
             <Link 
               href={`/destinations/${dest.slug}`} 
               key={dest.slug} 
@@ -45,7 +49,7 @@ const DestinationsContent = () => {
           ))}
         </div>
 
-        {DESTINATIONS.length === 0 && (
+        {destinations.length === 0 && (
           <div className={styles.empty}>
             <p>Admin is currently updating our luxury destination portfolio.</p>
           </div>
