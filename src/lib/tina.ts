@@ -23,7 +23,11 @@ const BRANCH =
   process.env.HEAD ||
   'main';
 
-const IS_LOCAL = process.env.TINA_PUBLIC_IS_LOCAL === 'true';
+// In local dev, `tinacms dev` always spins up a GraphQL server on port 4001.
+// We use that instead of Tina Cloud so edits reflect immediately without pushing to GitHub.
+const IS_LOCAL =
+  process.env.TINA_PUBLIC_IS_LOCAL === 'true' ||
+  process.env.NODE_ENV === 'development';
 const TINA_TIMEOUT_MS = 5000;
 
 // ── Destination shape used by the UI layer ────────────────────────────────────
